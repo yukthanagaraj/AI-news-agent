@@ -1,42 +1,41 @@
+
 name: Daily AI News
 
 on:
-schedule:
-- cron: '30 3 * * *'
-workflow_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 3 * * *'
 
 jobs:
-run-agent:
-runs-on: ubuntu-latest
+  run-agent:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-steps:
-  - name: Checkout Repository
-    uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-  - name: Setup Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: "3.11"
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
 
-  - name: Install Dependencies
-    run: |
-      pip install -r requirements.txt
+      - name: Create .env
+        run: |
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+          echo "GOOGLE_SHEET_ID=${{ secrets.GOOGLE_SHEET_ID }}" >> .env
+          echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env
+          echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
 
-  - name: Create .env
-    run: |
-      echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
-      echo "GOOGLE_SHEET_ID=${{ secrets.GOOGLE_SHEET_ID }}" >> .env
-      echo "CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> .env
-      echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env
-      echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env
+      - name: Create Service Account File
+        run: |
+          mkdir -p credentials
+          echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > credentials/service_account.json
 
-  - name: Create Service Account File
-    run: |
-      mkdir -p credentials
-      echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > credentials/service_account.json
+      - name: Run Agent
+   
 
-  - name: Run Agent
-    run: |
-      python main.py
 
