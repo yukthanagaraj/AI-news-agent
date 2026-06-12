@@ -1,8 +1,8 @@
-from google import genai
-from dotenv import load_dotenv
 import os
+import requests
 import cloudinary
 import cloudinary.uploader
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -12,23 +12,29 @@ cloudinary.config(
     api_secret=os.getenv("CLOUDINARY_API_SECRET")
 )
 
-client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
-)
 
+def generate_image(category):
 
-def generate_image(image_prompt):
+    image_urls = {
+        "Customer Service AI": "https://images.unsplash.com/photo-1551434678-e076c223a692",
+        "Enterprise AI": "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+        "Healthcare AI": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f",
+        "Robotics": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+        "Future of Work": "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
+        "Sustainable Technology": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e",
+    }
 
-    response = client.models.generate_images(
-        model="imagen-4.0-generate-001",
-        prompt=image_prompt
+    image_url = image_urls.get(
+        category,
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995"
     )
 
-    image = response.generated_images[0].image
+    temp_file = "temp_image.jpg"
 
-    temp_file = "generated_image.png"
+    response = requests.get(image_url)
 
-    image.save(temp_file)
+    with open(temp_file, "wb") as f:
+        f.write(response.content)
 
     upload_result = cloudinary.uploader.upload(
         temp_file,

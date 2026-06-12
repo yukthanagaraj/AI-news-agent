@@ -257,6 +257,43 @@ When X Becomes Y
 The Future Of X
 
 How X Is Changing Y
+
+TITLE RULES
+
+Write titles exactly in the style of Luvana AI Insights.
+
+Requirements:
+
+* 3 to 7 words only
+* No colons (:)
+* No clickbait
+* No company names
+* No "AI" unless necessary
+* Sound like a strategic insight
+* Focus on implications, not news
+
+Examples:
+
+Infrastructure Becomes Intelligence
+
+Agents Own Execution
+
+Memory Becomes Strategy
+
+Workflows Become Autonomous
+
+Reasoning Becomes Product
+
+Context Becomes Advantage
+
+Software Gains Agency
+
+Organizations Gain Memory
+
+The Interface Disappears
+
+Search Evolves Reasoning
+
 EDITORIAL PRIORITY
 
 Regardless of the news source, connect the story to:
@@ -455,6 +492,31 @@ The Future of X
 How X Is Changing Y
 
 AI Transforms X
+Prefer 4 words.
+
+Avoid ending titles with:
+- Systems
+- Technology
+- Platform
+- Solutions
+- Tools
+
+Examples:
+
+Memory Becomes Strategy
+Agents Own Execution
+Context Becomes Advantage
+Work Gains Autonomy
+Knowledge Finds Structure
+Reasoning Shapes Decisions
+Execution Learns Judgment
+PREVIOUS TITLES:
+
+Agents Own Execution
+Knowledge Becomes Infrastructure
+Workflows Become Autonomous Systems
+
+Do not generate any title that already exists above.
 
 TITLE LENGTH RULES
 
@@ -478,6 +540,12 @@ How Artificial Intelligence Is Transforming Enterprise Productivity Through Auto
 
 
 Use only the source found in the input news.
+Productivity Finds Autonomy
+Execution Gains Agency
+Operations Learn Judgment
+Autonomy Reaches Workflows
+Software Gains Agency
+Work Gains Intelligence
 FRAMEWORK RULES
 
 Create ONLY ONE original framework.
@@ -539,6 +607,9 @@ The framework must explain:
 
 A framework must change how the reader thinks about the problem.
 
+Never include company names, logos, brands, trademarks,
+Microsoft, Oracle, Google, Anthropic, OpenAI,
+or product names in image prompts.
 
 # THOUGHT LEADERSHIP RULES
 
@@ -746,18 +817,20 @@ CATEGORY RULES
 Category is NOT the article style.
 
 Category must represent the industry or topic.
+CATEGORY RULES
 
-Examples:
-Future of Work
-Digital Workers
-Enterprise AI
-AI Workforce
-Autonomous Operations
-Human-AI Collaboration
+Choose only one:
+
+Intelligence Infrastructure
 Enterprise Transformation
-Operational Intelligence
-Digital Labor
-AI Infrastructure
+Autonomous Systems
+Knowledge Networks
+Decision Intelligence
+Future of Organizations
+Human-Machine Systems
+Strategic Automation
+AI Economics
+Platform Shifts
 
 Never use:
 

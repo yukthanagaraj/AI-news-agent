@@ -180,6 +180,13 @@ def run_pipeline():
 
     print("CATEGORY =", category)
     print("TITLE =", title)
+
+    # Prevent duplicate titles
+    if title.lower() in [t.lower() for t in previous_titles]:
+        print("Duplicate title detected:", title)
+        print("Skipping article...")
+        return
+
     print("IMAGE PROMPT =", image_prompt)
     print("SOURCE URL =", source_url)
 
