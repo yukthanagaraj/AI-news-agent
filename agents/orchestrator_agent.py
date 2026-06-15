@@ -178,14 +178,18 @@ def run_pipeline():
     if not source_url:
         source_url = research_source_url
 
-    print("CATEGORY =", category)
+
+        print("CATEGORY =", category)
     print("TITLE =", title)
 
     # Prevent duplicate titles
     if title.lower() in [t.lower() for t in previous_titles]:
+
         print("Duplicate title detected:", title)
-        print("Skipping article...")
-        return
+
+        title = f"{title} Strategy"
+
+        print("Using alternative title:", title)
 
     print("IMAGE PROMPT =", image_prompt)
     print("SOURCE URL =", source_url)
@@ -233,6 +237,8 @@ def run_pipeline():
 
     print("Saved Successfully")
     print("Pipeline Completed")
+
+
 
 
 if __name__ == "__main__":
