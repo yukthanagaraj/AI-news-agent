@@ -1,5 +1,4 @@
 import os
-import random
 from dotenv import load_dotenv
 from groq import Groq
 
@@ -10,852 +9,174 @@ client = Groq(
 )
 
 
-def generate_blog(news):
+def generate_blog(news, previous_titles=None):
 
-    article_styles = [
-        "Founder Memo",
-        "Executive Briefing",
-        "Industry Analysis",
-        "Strategic Outlook",
-        "Future of Work Essay",
-        "Technology Thesis",
-        "Market Shift Analysis"
-    ]
-
-    style = random.choice(article_styles)
+    used_titles = "\n".join(previous_titles or [])
 
     prompt = f"""
-...
-You are the Chief Insights Officer at Luvana AI.
-PRIMARY EDITORIAL THEMES
+You are an enterprise technology analyst writing for a publication similar in style to Luvana AI Insights.
 
-- AI Agents
-- Digital Workers
-- AI Employees
-- Future of Work
-- Enterprise AI
-- Human-AI Collaboration
-- Autonomous Operations
-- Enterprise Productivity
-- Knowledge Systems
-- Organizational Transformation
+NEWS INPUT
 
-The article should always connect the news to one of these themes.
-ARTICLE STYLE
+{news}
 
-Write this article as a: {style}
+PREVIOUS TITLES
 
-You write executive-level insight articles for:
-The article should feel like an analyst briefing.
+{used_titles}
 
-================================================
+Do not generate any title that already exists above.
 
-LUVANA-STYLE INSIGHT RULES
+Avoid similar title structures.
 
-The article is NOT about the news.
+Create a fresh title every time.
 
-The article is about the shift behind the news.
+OBJECTIVE
 
-The article should feel like a founder memo, executive briefing, or strategy document.
+Use the news as evidence.
 
-The article must introduce ONE original framework or mental model.
+Do not simply summarize the news.
 
-Example framework names:
+Explain the larger organizational shift behind the news.
 
-- Outcome Ownership
-- Operational Intelligence
-- Digital Workforce Architecture
-- Autonomous Operations Layer
-- Human-in-the-Loop Boundaries
-- Infrastructure of Trust
-- Decision Velocity Framework
-- Enterprise Memory Layer
+The reader should understand:
 
-The framework should be referenced throughout the article.
+1. What happened.
+2. Why it matters.
+3. What changes because of it.
 
-Introduce the framework once.
+CATEGORY
 
-After paragraph 2, do not repeat the framework name more than one additional time.
+Choose exactly one:
 
-Use natural references:
+Future of Organizations
+AI Workforce
+Digital Labor
+Enterprise Intelligence
+Human-AI Collaboration
+Autonomous Operations
+Knowledge Systems
+Enterprise Transformation
+AI Governance
+Operating Models
 
-- this shift
-- this model
-- this architecture
-- this operating layer
-- this approach
+Generate titles that describe a shift,
+an observation,
+or a business consequence.
 
-The framework should guide the article, not dominate it.
-The article should be:
+Avoid:
+- Imperative
+- Revolution
+- Transformation
+- Future of
+- Wins
+- Takes Hold
 
-20% news
-80% analysis
+Prefer:
+- The Geography of Intelligence
+- Access Shapes Advantage
+- Work Without Coordination
+- Knowledge Without Queues
+- Organizations Built for Agents
 
-Do not explain what happened.
+TITLE RULES
 
-Explain why it matters.
-
-Explain what changes because of it.
-
-Explain what leaders should do now.
-
-Every paragraph must introduce a new insight.
-
-Every article should contain:
-
-1. A bold observation.
-2. A new mental model.
-3. Why the old model is breaking.
-4. Why the new model wins.
-5. Who benefits.
-6. Who gets disrupted.
-7. A second-order consequence.
-8. A prediction.
-9. What leaders should do.
-10. A memorable closing insight.
-10. Strong closing insight.
-
-Never write generic statements such as:
-
-- Technology is changing rapidly.
-- Companies should adapt.
-- AI is transforming industries.
-
-Use specific operational language.
+- 3 to 6 words
+- No company names
+- No colons
+- No clickbait
+- No headlines
+- No em dashes
+- Sound like an executive insight
 
 Examples:
 
-Software is becoming labor.
+The Geography of Intelligence
+Knowledge Without Queues
+The New Management Layer
+Work Without Coordination
+Organizations Built for Agents
+The Rise of AI Colleagues
+The End of Manual Handoffs
 
-Workflows are becoming autonomous systems.
+ARTICLE RULES
 
-Enterprise value is shifting from tools to outcomes.
+- Write exactly 10 paragraphs
+- Use simple language
+- Use human writing
+- Avoid consultant jargon
+- Avoid hype
+- Avoid generic AI statements
+- Focus on organizations, work, management, operations, and decision making
+- Avoid repeating the title inside the article
 
-Digital workers are becoming a new organizational layer.
+STRUCTURE
 
-Organizations will hire AI before humans.
-FINAL LUVANA INSIGHTS RULES
+Paragraph 1:
+What happened.
 
-The article should feel like it was written by a founder, not a consultant.
+Paragraph 2:
+Why it matters.
 
-Do not write:
+Paragraph 3:
+What is changing.
 
-* Business implications
-* Operational implications
-* Economic implications
+Paragraph 4:
+Why old models break.
 
-Instead, weave these ideas naturally into the narrative.
+Paragraph 5:
+What replaces them.
 
-Introduce one framework.
+Paragraph 6:
+Hidden consequence.
 
-After introducing the framework, avoid repeating its name.
+Paragraph 7:
+Who adapts fastest.
 
-Use it as a lens, not a keyword.
+Paragraph 8:
+Prediction.
 
-Every paragraph should contain a surprising observation, prediction, or insight.
+Paragraph 9:
+Strategic observation.
 
-Challenge common assumptions.
+Paragraph 10:
+Strong closing insight.
 
-Examples:
+IMAGE PROMPT RULES
 
-* The future of medicine will be built by software companies that happen to understand biology.
+Create a premium editorial illustration.
 
-* Manufacturing is becoming a computational problem.
+The image should visually represent the core insight of the article.
 
-* The most valuable factories of the next decade may look more like data centers than industrial plants.
+Avoid generic robots.
 
-* Competitive advantage is shifting from physical assets to biological programmability.
+Avoid people shaking hands.
 
-The article should feel like the reader discovered a new way of thinking.
+Avoid company logos.
 
-The goal is not to explain the news.
+Use:
+- enterprise operations
+- digital workers
+- knowledge networks
+- intelligence infrastructure
+- organizational transformation
+- autonomous systems
+- future workplaces
 
-The goal is to explain what the news means for the future.
+The image should look like a magazine cover illustration, not stock photography.
 
-================================================
+Create one detailed sentence.
 
 OUTPUT FORMAT
-
-IMPORTANT:
-
-Keep every metadata field on ONE LINE.
-...
-CRITICAL OUTPUT RULES
-
-You MUST return the response in exactly this format:
 
 Category: <category>
 
 Title: <title>
 
-Source URL: <source URL>
+Source URL: <source url>
 
 Image Prompt: <image prompt>
 
 Blog: <article>
-
-Do NOT start with the article.
-
-Do NOT start with markdown.
-
-Do NOT start with bold text.
-
-Do NOT start with headings.
-
-The first line MUST begin with:
-
-Category:
-
-The second line MUST begin with:
-
-Title:
-
-The third line MUST begin with:
-
-Source URL:
-
-The fifth line MUST begin with:
-
-Image Prompt:
-
-The sixth line MUST begin with:
-
-Blog:
-CRITICAL ARTICLE STRUCTURE
-
-The Blog section MUST contain exactly 10 separate paragraphs.
-
-Each paragraph must be separated by a blank line.
-
-Do not write one long paragraph.
-TITLE STYLE
-
-Titles should feel like a thesis.
-
-Examples:
-
-AI Owns Outcomes
-
-Software Is Becoming Labor
-
-The New Labor Layer
-
-Work Without Queues
-
-The Autonomous Enterprise
-
-The Next Org Chart
-
-Digital Workers Win
-
-Every Team Gets Agents
-
-Avoid:
-
-When X Becomes Y
-
-The Future Of X
-
-How X Is Changing Y
-
-TITLE RULES
-
-Write titles exactly in the style of Luvana AI Insights.
-
-Requirements:
-
-* 3 to 7 words only
-* No colons (:)
-* No clickbait
-* No company names
-* No "AI" unless necessary
-* Sound like a strategic insight
-* Focus on implications, not news
-
-Examples:
-
-Infrastructure Becomes Intelligence
-
-Agents Own Execution
-
-Memory Becomes Strategy
-
-Workflows Become Autonomous
-
-Reasoning Becomes Product
-
-Context Becomes Advantage
-
-Software Gains Agency
-
-Organizations Gain Memory
-
-The Interface Disappears
-
-Search Evolves Reasoning
-
-EDITORIAL PRIORITY
-
-Regardless of the news source, connect the story to:
-
-- Digital Workers
-- AI Employees
-- Enterprise AI
-- Future of Work
-- Human-AI Collaboration
-- Organizational Design
-- Autonomous Operations
-
-Do not focus on the technology itself.
-
-Focus on what changes inside organizations.
-
-PARAGRAPH RULES
-
-PARAGRAPH FORMATTING RULES
-
-Write exactly 8-10 paragraphs.
-
-Each paragraph should be 2-4 sentences.
-
-Prefer concise writing.
-
-Avoid walls of text.
-
-Use only ONE blank line between paragraphs.
-
-Do NOT add extra spacing.
-
-Do NOT leave multiple empty lines.
-
-The final blog should read like a professional article, not a list of separated blocks.
-
-Narrative Structure
-
-Paragraph 1:
-Start with a surprising observation.
-
-Paragraph 2:
-Introduce a new mental model.
-
-Paragraph 3:
-Explain why the old model breaks.
-
-Paragraph 4:
-Explain what replaces it.
-
-Paragraph 5:
-Explain the hidden shift.
-
-Paragraph 6:
-Explain who wins.
-
-Paragraph 7:
-Explain what leaders miss.
-
-Paragraph 8:
-Make a bold prediction.
-
-Paragraph 9:
-Explain what leaders should do.
-
-Paragraph 10:
-End with a memorable thesis.
-
-If the article contains fewer than 10 paragraphs, the answer is invalid.
-
-If the blog has fewer than 10 paragraphs, the answer is invalid.
-
-Create titles similar to:
-
-Software Is Becoming Labor
-
-AI Owns Outcomes
-
-The New Labor Layer
-
-Why Workflows Disappear
-
-Every Team Gets Agents
-
-The Autonomous Enterprise
-
-Work Without Queues
-
-The Enterprise Memory Layer
-
-When Software Manages Software
-
-The Next Org Chart
-
-Do NOT write traditional news headlines.
-# BANNED PHRASES
-
-# Never use:
-
-# * In conclusion
-# * Furthermore
-# * Moreover
-# * Overall
-# * To summarize
-# * Game changer
-# * Revolutionary technology
-# * Today's rapidly evolving world
-
-# If any banned phrase appears, the answer is invalid.
-WRITING STYLE
-
-Use short paragraphs.
-
-Average paragraph length:
-2-4 sentences.
-
-Mix paragraph lengths naturally.
-
-Some paragraphs can be one sentence.
-
-Do not make every paragraph the same size.
-
-Write like a founder sharing a realization.
-
-Not like a consultant presenting a framework.
-
-CRITICAL WRITING RULE
-
-Do not write:
-
-The winners will be...
-
-The losers will be...
-
-Leaders should...
-
-The future of work will...
-
-Companies should adapt...
-
-AI is transforming industries...
-
-These phrases are generic and forbidden.
-
-Instead write:
-
-Software is becoming labor.
-
-Management is becoming orchestration.
-
-The org chart is changing shape.
-
-The next workforce may not be human.
-
-Competitive advantage is shifting from labor to coordination.
-
-Enterprise value is moving from tools to outcomes.
-
-PARAGRAPH VALIDATION RULE
-
-The Blog section must contain exactly 10 paragraphs.
-
-Each paragraph must be separated by a blank line.
-
-If fewer than 10 paragraphs are written, continue writing until there are 10.
-
-If more than 10 paragraphs are written, rewrite to exactly 10.
-
-TITLE QUALITY RULES
-
-Title should feel like a thesis.
-
-Examples:
-
-Software Starts Working
-
-The End of Workflow Software
-
-Digital Workers Need Managers
-
-Every Team Gets Agents
-
-Work Without Queues
-
-The New Labor Layer
-
-The Next Org Chart
-
-
-Do NOT write:
-
-Revolutionizing X Through Y
-
-The Future of X
-
-How X Is Changing Y
-
-AI Transforms X
-Prefer 4 words.
-
-Avoid ending titles with:
-- Systems
-- Technology
-- Platform
-- Solutions
-- Tools
-
-Examples:
-
-Memory Becomes Strategy
-Agents Own Execution
-Context Becomes Advantage
-Work Gains Autonomy
-Knowledge Finds Structure
-Reasoning Shapes Decisions
-Execution Learns Judgment
-PREVIOUS TITLES:
-
-Agents Own Execution
-Knowledge Becomes Infrastructure
-Workflows Become Autonomous Systems
-
-Do not generate any title that already exists above.
-
-TITLE LENGTH RULES
-
-Maximum 7 words.
-
-Prefer 3-6 words.
-
-Good:
-
-AI Owns Outcomes
-
-The New Labor Layer
-
-Every Team Gets Agents
-
-Work Without Queues
-
-Bad:
-
-How Artificial Intelligence Is Transforming Enterprise Productivity Through Autonomous Agents
-
-
-Use only the source found in the input news.
-Productivity Finds Autonomy
-Execution Gains Agency
-Operations Learn Judgment
-Autonomy Reaches Workflows
-Software Gains Agency
-Work Gains Intelligence
-FRAMEWORK RULES
-
-Create ONLY ONE original framework.
-
-Give the framework a unique name.
-
-Use the framework throughout the article.
-
-Do NOT introduce multiple frameworks.
-
-The framework should explain the shift behind the news.
-
-Examples:
-
-Outcome Ownership Model
-
-Digital Workforce Architecture
-
-Autonomous Operations Layer
-
-Enterprise Memory Layer
-
-Decision Velocity Framework
-
-Human-AI Coordination Layer
-
-Operational Intelligence Layer
-
-Use only one framework per article.
-FRAMEWORK USAGE RULES
-
-Create ONLY ONE framework.
-
-Introduce the framework in paragraph 2.
-
-After introducing it, do NOT repeat the framework name in every paragraph.
-
-Mention it only when necessary.
-
-Use natural writing.
-
-The article should feel written by a human analyst.
-
-Avoid repeating phrases.
-
-Avoid repeating terminology.
-
-Avoid repeating sentence structures.
-FRAMEWORK DEPTH RULES
-
-Do not create a framework only as a label.
-
-The framework must explain:
-
-* Why the old model is breaking.
-* Why the new model wins.
-* What leaders should do differently.
-* What becomes possible because of it.
-
-A framework must change how the reader thinks about the problem.
-
-Never include company names, logos, brands, trademarks,
-Microsoft, Oracle, Google, Anthropic, OpenAI,
-or product names in image prompts.
-
-# THOUGHT LEADERSHIP RULES
-
-# Take a strong point of view.
-
-# Make bold predictions.
-
-# Challenge conventional assumptions.
-
-# Do not write like an academic report.
-
-# Do not write like a news summary.
-
-# Write like a founder explaining a major shift in how industries operate.
-
-# The reader should feel they learned a new mental model.
-
-# Focus on:
-
-# * Why the old way no longer works.
-# * Why this shift matters now.
-# * What leaders are missing.
-# * What winners will do differently.
-# * What happens over the next 3-5 years.
-
-# Avoid generic observations.
-
-# Avoid obvious statements.
-
-# Avoid repeating industry buzzwords.
-
-# Prefer insights over explanations.
-
-# Prefer predictions over descriptions.
-
-# Prefer strategic thinking over reporting.
-
-# The article should feel like a premium executive briefing.
-
-# The reader should finish the article with a new way of thinking about the problem.
-
-THOUGHT QUALITY RULES
-
-Do not repeat framework names more than twice.
-
-Do not repeat key phrases.
-
-After introducing a framework, refer to it naturally:
-
-* this shift
-* this model
-* this architecture
-* this capability
-* this operating layer
-
-Focus on second-order effects.
-
-Do not explain what the technology does.
-
-Explain what changes because the technology exists.
-
-Ask:
-
-* What industries change?
-* What business models disappear?
-* What new advantages emerge?
-* What becomes cheaper?
-* What becomes faster?
-* What becomes possible?
-
-
-
-
-
-THOUGHT LEADERSHIP RULES
-
-Take a strong point of view.
-
-Make bold predictions.
-
-Challenge conventional assumptions.
-
-Do not write like an academic report.
-
-Do not write like a news summary.
-
-Write like a founder explaining a major shift in how industries operate.
-
-The reader should feel they learned a new mental model.
-
-Focus on:
-
-* Why the old way no longer works.
-* Why this shift matters now.
-* What leaders are missing.
-* What winners will do differently.
-* What happens over the next 3-5 years.
-
-Avoid generic observations.
-
-Avoid obvious statements.
-
-Avoid repeating industry buzzwords.
-
-Prefer insights over explanations.
-
-Prefer predictions over descriptions.
-
-Prefer strategic thinking over reporting.
-
-The article should feel like a premium executive briefing.
-
-The reader should finish the article with a new way of thinking about the problem.
-
-NARRATIVE STRUCTURE RULES
-
-Do not write:
-
-* Business implications
-* Operational implications
-* Economic implications
-* Industry impact
-* Leadership takeaway
-
-Do not label ideas.
-
-Instead, build a narrative.
-
-Paragraph 1:
-Start with a bold observation.
-
-Paragraph 2:
-Introduce the shift.
-
-Paragraph 3:
-Explain why the old model is breaking.
-
-Paragraph 4:
-Explain the new model.
-
-Paragraph 5:
-Describe who wins.
-
-Paragraph 6:
-Describe who loses.
-
-Paragraph 7:
-Reveal a non-obvious consequence.
-
-Paragraph 8:
-Make a bold prediction.
-
-Paragraph 9:
-Explain what leaders should do.
-
-Paragraph 10:
-End with a memorable insight.
-
-The article should read like a founder memo, not a consulting report.
-
-HUMAN WRITING RULES
-
-After introducing a framework, do not repeat the framework name more than 2 times.
-
-Use natural references such as:
-
-* this model
-* this shift
-* this architecture
-* this approach
-* this infrastructure
-
-Avoid keyword repetition.
-
-Write like a human analyst, not an SEO article.
-
-Every paragraph should feel different in tone and structure.
-
-VOICE RULES
-
-Write in short, punchy sentences.
-
-Mix short and long paragraphs.
-
-Occasionally use a one-sentence paragraph for emphasis.
-
-Challenge assumptions.
-
-Prefer strong statements over explanations.
-
-Examples:
-
-* Software is becoming labor.
-
-* Biology is becoming infrastructure.
-
-* The factory is becoming a data center.
-
-* The next workforce may not be human.
-
-The article should feel provocative but believable.
-
-CATEGORY RULES
-
-Category is NOT the article style.
-
-Category must represent the industry or topic.
-CATEGORY RULES
-
-Choose only one:
-
-Intelligence Infrastructure
-Enterprise Transformation
-Autonomous Systems
-Knowledge Networks
-Decision Intelligence
-Future of Organizations
-Human-Machine Systems
-Strategic Automation
-AI Economics
-Platform Shifts
-
-Never use:
-
-* Founder Memo
-* Executive Briefing
-* Industry Analysis
-* Strategic Outlook
-* Technology Thesis
-* Market Shift Analysis
-
-Those are writing styles, not categories.
-
-BANNED PHRASES RULE
-
-If any of these phrases appear,
-rewrite the paragraph.
-
-- In conclusion
-- Furthermore
-- Moreover
-- Overall
-- To summarize
-
-The answer is invalid if these phrases appear.
-{news}
 """
 
     response = client.chat.completions.create(
@@ -863,22 +184,20 @@ The answer is invalid if these phrases appear.
         messages=[
             {
                 "role": "system",
-                "content": "You are the Chief Insights Officer at Luvana AI."
+                "content": "You are a senior enterprise technology analyst."
             },
             {
                 "role": "user",
                 "content": prompt
             }
         ],
-        temperature=0.5,
+        temperature=0.7,
         max_tokens=2000
     )
 
     print("BLOG GENERATED")
 
-    blog_content = response.choices[0].message.content
-
-    return blog_content
+    return response.choices[0].message.content
 
 
 

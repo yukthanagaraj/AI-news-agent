@@ -83,7 +83,10 @@ def run_pipeline():
         research_source_url
     )
 
-    blog = generate_blog(news)
+    blog = generate_blog(
+    news,
+    previous_titles
+)
 
     if not blog:
         print(
@@ -179,7 +182,7 @@ def run_pipeline():
         source_url = research_source_url
 
 
-        print("CATEGORY =", category)
+    print("CATEGORY =", category)
     print("TITLE =", title)
 
     # Prevent duplicate titles
