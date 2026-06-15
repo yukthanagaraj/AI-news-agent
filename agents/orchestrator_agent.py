@@ -24,22 +24,26 @@ def get_previous_titles():
         return []
 
 
-def get_previous_sources():
+def get_previous_urls():
     try:
         s = get_sheet()
 
         records = s.col_values(6)
 
-        sources = [
-            src for src in records[1:]
-            if src.strip()
+        urls = [
+            url for url in records[1:]
+            if url.strip()
         ] if len(records) > 1 else []
 
-        return list(set(sources[-20:]))
+        return urls[-50:]
 
     except Exception as e:
-        print(f"Warning: Could not fetch previous sources: {e}")
+        print(f"Warning: Could not fetch previous urls: {e}")
         return []
+
+
+def get_previous_sources():
+    return []
 
 
 def parse_research_source_url(news_text):
@@ -63,6 +67,7 @@ def run_pipeline():
 
     previous_titles = get_previous_titles()
     previous_sources = get_previous_sources()
+    previous_urls = get_previous_urls()
 
     print(
         f"Found {len(previous_titles)} previous titles and "
@@ -73,8 +78,13 @@ def run_pipeline():
 
     news = fetch_ai_news(
         previous_titles,
-        previous_sources
+        previous_sources,
+        previous_urls
     )
+
+    if not news:
+        print("No suitable news article found")
+        return
 
     research_source_url = parse_research_source_url(news)
 
@@ -84,9 +94,9 @@ def run_pipeline():
     )
 
     blog = generate_blog(
-    news,
-    previous_titles
-)
+        news,
+        previous_titles
+    )
 
     if not blog:
         print(
@@ -181,11 +191,9 @@ def run_pipeline():
     if not source_url:
         source_url = research_source_url
 
-
     print("CATEGORY =", category)
     print("TITLE =", title)
 
-    # Prevent duplicate titles
     if title.lower() in [t.lower() for t in previous_titles]:
 
         print("Duplicate title detected:", title)
@@ -240,8 +248,6 @@ def run_pipeline():
 
     print("Saved Successfully")
     print("Pipeline Completed")
-
-
 
 
 if __name__ == "__main__":
