@@ -11,16 +11,39 @@ __pycache__/
 
 # Virtual environments
 venv/
+.env/
 
 # Node
 node_modules/
 .next/
 
 # Vector database
+vector_store/
 agents/vector_store/
 
 # Runtime data
 memory/
 outputs/
+
 agents/memory/
 agents/outputs/
+
+# RSS and sitemap generated files
+*.xml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Streamlit
+.streamlit/
+
+# Build files
+dist/
+build/
