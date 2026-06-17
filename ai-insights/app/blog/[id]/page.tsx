@@ -3,8 +3,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Calendar, Clock } from "lucide-react";
 
-import RelatedArticles from "../../components/RelatedArticles";
-import NewsletterBox from "../../components/NewsletterBox";
+import RelatedArticles from "../../../components/RelatedArticles";
+import NewsletterBox from "../../../components/NewsletterBox";
 
 export default async function BlogPage({
     params,
