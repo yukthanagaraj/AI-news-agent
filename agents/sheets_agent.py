@@ -1,6 +1,5 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from gspread_formatting import *
 from dotenv import load_dotenv
 import os
 
@@ -25,9 +24,13 @@ def get_sheet():
             scope
         )
 
-        client = gspread.authorize(creds)
+        client = gspread.authorize(
+            creds
+        )
 
-        sheet_id = os.getenv("GOOGLE_SHEET_ID")
+        sheet_id = os.getenv(
+            "GOOGLE_SHEET_ID"
+        )
 
         _sheet = client.open_by_key(
             sheet_id
@@ -48,14 +51,16 @@ def save_blog(
 
     sheet = get_sheet()
 
-    sheet.append_row([
-        date,
-        category,
-        title,
-        blog_content,
-        image_prompt,
-        source_url,
-        image_url
-    ])
+    sheet.append_row(
+        [
+            date,
+            category,
+            title,
+            blog_content,
+            image_prompt,
+            source_url,
+            image_url
+        ]
+    )
 
     print("Blog saved to Google Sheets")

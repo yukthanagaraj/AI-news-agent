@@ -2,8 +2,18 @@ from agents.research_agent import fetch_ai_news
 from agents.writer_agent import generate_blog
 from agents.sheets_agent import save_blog, get_sheet
 from agents.image_agent import generate_image
+from agents.seo_agent import generate_seo
+from agents.rss_generator import generate_rss
+from agents.sitemap_generator import generate_sitemap
+
+from agents.history_manager import (
+    remember_title,
+    remember_category
+)
 
 from datetime import datetime
+
+
 
 
 def get_previous_titles():
@@ -188,6 +198,23 @@ def run_pipeline():
         [line for line in blog_lines if line.strip()]
     ).strip()
 
+    print()
+    print("BLOG CONTENT")
+    print("--------------------------------")
+    print(blog_content)
+    print("--------------------------------")
+    print()
+
+    print("Generating SEO...")
+
+    seo_data = generate_seo(
+        title,
+        category,
+        blog_content
+    )
+
+    print(seo_data)
+
     if not source_url:
         source_url = research_source_url
 
@@ -246,9 +273,17 @@ def run_pipeline():
         image_url
     )
 
+    remember_title(title)
+    remember_category(category)
+
     print("Saved Successfully")
     print("Pipeline Completed")
 
+    print("Updating RSS feed...")
+    generate_rss()
+
+    print("Updating sitemap...")
+    generate_sitemap()
 
 if __name__ == "__main__":
     run_pipeline()
