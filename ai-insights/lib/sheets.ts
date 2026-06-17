@@ -22,7 +22,7 @@ export async function getInsights() {
 
     const rows = await sheet.getRows();
 
-    const latestRows = rows.reverse();
+    const latestRows = [...rows].reverse();
 
     return latestRows.map((row, index) => ({
         id: index + 1,

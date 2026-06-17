@@ -1,8 +1,10 @@
+export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import { getInsights } from "../lib/sheets";
 
 export default async function Home() {
+
   const insights = await getInsights();
 
   const featured = insights[0];
@@ -120,8 +122,6 @@ export default async function Home() {
 
       </section>
 
-      {/* FOOTER */}
-
       <footer className="mt-24 py-12 text-center text-zinc-500 border-t border-zinc-200">
 
         <p className="text-lg font-medium">
@@ -137,6 +137,5 @@ export default async function Home() {
     </main>
   );
 }
-
 
 
