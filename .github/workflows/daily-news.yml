@@ -23,6 +23,16 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Check NEWS API Key
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: |
+          if [ -z "$NEWS_API_KEY" ]; then
+            echo "NEWS_API_KEY is EMPTY"
+          else
+            echo "NEWS_API_KEY is PRESENT"
+          fi
+
       - name: Create .env
         run: |
           echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" >> .env
