@@ -29,6 +29,15 @@ export default async function BlogPage({
         );
     }
 
+    // Dynamic reading time
+    const words =
+        article.content?.split(/\s+/).length || 0;
+
+    const readTime = Math.max(
+        1,
+        Math.ceil(words / 130)
+    );
+
     return (
         <main className="min-h-screen bg-white">
 
@@ -42,31 +51,10 @@ export default async function BlogPage({
                     />
                 )}
 
-                {/* Category */}
-                <div className="mt-10 flex justify-center">
-                    <div
-                        className="
-            px-6
-            py-2
-            rounded-full
-            border
-            border-orange-200
-            bg-orange-50
-            text-orange-600
-            text-xs
-            font-semibold
-            tracking-[0.2em]
-            uppercase
-            "
-                    >
-                        {article.category}
-                    </div>
-                </div>
-
                 {/* Title */}
                 <h1
                     className="
-          mt-10
+          mt-14
           text-center
           text-[4rem]
           leading-[1.05]
@@ -97,7 +85,7 @@ export default async function BlogPage({
 
                     <div className="flex items-center gap-2">
                         <Clock size={13} />
-                        <span>8 min read</span>
+                        <span>{readTime} min read</span>
                     </div>
 
                     <div>
@@ -108,8 +96,8 @@ export default async function BlogPage({
                 {/* Divider */}
                 <div className="mt-14 border-t border-zinc-200"></div>
 
-                {/* Article Body */}
-                <div className="prose max-w-2xl mx-auto mt-20">
+                {/* Body */}
+                <div className="prose max-w-5xl mx-auto mt-20">
 
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {article.content}
@@ -117,7 +105,7 @@ export default async function BlogPage({
 
                 </div>
 
-                {/* Source Button */}
+                {/* Source */}
                 <div className="mt-16">
 
                     <a
@@ -142,10 +130,8 @@ export default async function BlogPage({
 
                 </div>
 
-                {/* Related Articles */}
                 <RelatedArticles />
 
-                {/* Newsletter */}
                 <NewsletterBox />
 
             </article>

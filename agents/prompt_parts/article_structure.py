@@ -1,23 +1,43 @@
 ARTICLE_STRUCTURE = """
 ARTICLE STRUCTURE
 
-Write two short introductory paragraphs.
+Begin with two short introductory paragraphs.
 
-Generate four section titles dynamically.
+Use markdown headings.
 
-Each section should introduce a new idea.
+Generate sections dynamically.
 
-One section should contain:
+Suggested flow:
 
-## Key Takeaways
+# Introduction
+
+# Why This Matters
+
+# Key Developments
+
+# Strategic Implications
+
+# Key Takeaways
+
+Rules:
+
+- Each section should introduce a different idea.
+- Avoid repeating information.
+- Use short paragraphs.
+- Focus on enterprise implications.
+- Prefer observations over predictions.
+- Explain larger organizational shifts.
+- Keep the flow analytical rather than news-oriented.
+
+Key Takeaways section:
 
 Generate three bullet points.
 
 Use markdown bullet lists.
 
-Bullets should render beautifully with orange bullets on the website.
+Bullets should render beautifully on the website.
 
-Finish with one strong paragraph.
+Finish with one strong concluding paragraph.
 
 End with an observation rather than a prediction.
 """

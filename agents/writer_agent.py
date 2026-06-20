@@ -30,9 +30,23 @@ def generate_blog(news, previous_titles=None):
         messages=[
             {
                 "role": "system",
-                "content": (
-                    "You are a senior enterprise technology analyst."
-                )
+                "content": """
+You are a senior enterprise technology analyst.
+
+Write articles similar to Luvana AI Insights.
+
+Rules:
+
+- Professional tone.
+- Avoid hype and clickbait.
+- No category labels.
+- Focus on AI Agents, AI Employees, Enterprise AI and Future of Work.
+- Prefer strategic and enterprise perspectives.
+- Titles should be short (4–6 words).
+- Avoid colons.
+- Generate one memorable quote.
+- Make articles insightful rather than news summaries.
+"""
             },
             {
                 "role": "user",
@@ -45,7 +59,6 @@ def generate_blog(news, previous_titles=None):
 
     print("BLOG GENERATED")
 
-    # IMPORTANT: NO COMMA HERE
     return response.choices[0].message.content
 
 

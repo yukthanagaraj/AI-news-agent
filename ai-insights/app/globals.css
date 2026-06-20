@@ -56,62 +56,64 @@ img {
   color: #111827;
 }
 
+/* =========================
+   PROSE
+========================= */
+
 .prose {
   color: #374151;
   max-width: none;
 }
 
+/* =========================
+   HEADINGS
+========================= */
+
 .prose h1 {
   font-size: clamp(2.8rem, 6vw, 4.5rem);
-
   font-weight: 700;
-
   line-height: 1.05;
-
   letter-spacing: -0.03em;
-
   color: #111827;
-
   margin-bottom: 2rem;
 }
 
 .prose h2 {
   font-size: 2rem;
   font-weight: 700;
-
   margin-top: 3rem;
   margin-bottom: 1rem;
-
   color: #111827;
-
   letter-spacing: -.02em;
 }
 
 .prose h3 {
   font-size: 1.55rem;
   font-weight: 700;
-
   margin-top: 2.8rem;
   margin-bottom: 1rem;
-
   color: #111827;
-
   letter-spacing: -.02em;
 }
 
+/* =========================
+   PARAGRAPHS
+========================= */
+
 .prose p {
   font-size: 1rem;
-
   line-height: 1.9;
-
   color: #52525b;
-
   margin-bottom: 1.3rem;
 }
 
 .prose strong {
   color: #111827;
 }
+
+/* =========================
+   LISTS
+========================= */
 
 .prose ul {
   background: white;
@@ -120,43 +122,15 @@ img {
   padding: 1.5rem 2rem;
   margin-top: 1rem;
   margin-bottom: 2rem;
-
   list-style: none;
-}
-
-.prose img {
-  width: 100%;
-
-  border-radius: 1.5rem;
-
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, .08);
-}
-
-.prose a {
-  color: #ea580c;
-
-  font-weight: 500;
-
-  transition: .2s;
-}
-
-.prose a:hover {
-  color: #c2410c;
 }
 
 .prose li {
   position: relative;
-
   padding-left: 1.4rem;
-
   font-size: .98rem;
   line-height: 1.8;
   color: #52525b;
-
   margin-bottom: .9rem;
 }
 
@@ -180,78 +154,119 @@ img {
   border-radius: 50%;
 }
 
-.prose blockquote {
+/* =========================
+   IMAGES
+========================= */
 
-  border-left: 4px solid #f97316;
+.prose img {
+  width: 100%;
 
-  background: #fff7ed;
-
-  padding: 1.4rem 1.8rem;
-
-  border-radius: 1rem;
+  border-radius: 1.5rem;
 
   margin-top: 2rem;
   margin-bottom: 2rem;
 
-  font-size: 1.05rem;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, .08);
+}
 
-  line-height: 1.9;
+/* =========================
+   LINKS
+========================= */
+
+.prose a {
+  color: #ea580c;
+  font-weight: 500;
+  transition: .2s;
+}
+
+.prose a:hover {
+  color: #c2410c;
+}
+
+/* =========================
+   QUOTES
+========================= */
+
+.prose blockquote {
+
+  position: relative;
+
+  margin-top: 7rem;
+  margin-bottom: 7rem;
+
+  padding-left: 3rem;
+
+  background: transparent;
+}
+
+.prose blockquote::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: -.75rem;
+
+  bottom: -.75rem;
+
+  width: 6px;
+
+  border-radius: 999px;
+
+  background: #f97316;
+}
+
+.prose blockquote p {
+
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+
+  font-size: clamp(2.6rem, 4vw, 3.5rem);
+
+  line-height: 1.35;
+
+  letter-spacing: -0.03em;
 
   font-style: italic;
 
-  color: #18181b;
+  font-weight: 600;
+
+  color: #111827;
+
+  margin-bottom: 1rem;
 }
 
-.prose table {
-  overflow: hidden;
-
-  background: white;
+.prose blockquote p:last-child {
+  margin-bottom: 0;
 }
 
-.prose td,
-.prose th {
-  vertical-align: top;
+.prose blockquote p::before {
+  content: "“";
 }
 
-.prose table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  overflow: hidden;
-  border-radius: 1rem;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
-  font-size: .95rem;
+.prose blockquote p:last-child::after {
+  content: "”";
 }
 
-.prose thead {
-  background: #fff7ed;
-}
-
-.prose th {
-  color: #ea580c;
-  font-weight: 700;
-  padding: .9rem;
-  text-align: left;
-}
-
-.prose td {
-  padding: 1rem;
-  color: #52525b;
-  border-top: none;
-}
-
-.prose tbody tr:nth-child(even) {
-  background: #fafafa;
-}
+/* =========================
+   HR
+========================= */
 
 .prose hr {
   margin-top: 4rem;
   margin-bottom: 4rem;
+
   border-color: #e5e7eb;
 }
+
+/* =========================
+   CODE
+========================= */
 
 .prose code {
   background: #fff7ed;

@@ -4,17 +4,24 @@ import Link from "next/link";
 import { getInsights } from "../lib/sheets";
 
 export default async function Home() {
-
   const insights = await getInsights();
 
   const featured = insights[0];
+
+  const featuredWords =
+    featured?.content?.split(/\s+/).length || 0;
+
+  const featuredReadTime = Math.max(
+    1,
+    Math.ceil(featuredWords / 130)
+  );
 
   return (
     <main className="min-h-screen bg-white">
 
       <section className="max-w-7xl mx-auto px-6 py-12">
 
-        {/* HERO SECTION */}
+        {/* HERO */}
 
         <div className="rounded-3xl bg-gradient-to-r from-blue-50 via-violet-50 to-cyan-50 p-12 mb-16">
 
@@ -48,11 +55,15 @@ export default async function Home() {
                 TODAY'S INSIGHT
               </p>
 
-              <h2 className="text-5xl font-bold text-zinc-900 mt-4">
+              <h2 className="text-5xl font-bold text-zinc-900 mt-4 leading-tight">
                 {featured.title}
               </h2>
 
-              <p className="text-zinc-600 mt-6 text-lg">
+              <p className="text-zinc-400 mt-4 text-sm">
+                {featured.date} • {featuredReadTime} min read
+              </p>
+
+              <p className="text-zinc-600 mt-6 text-lg leading-8">
                 {featured.content?.slice(0, 300)}...
               </p>
 
@@ -72,51 +83,58 @@ export default async function Home() {
 
         <div className="grid md:grid-cols-2 gap-8">
 
-          {insights.slice(1).map((item) => (
+          {insights.slice(1).map((item) => {
 
-            <div
-              key={item.id}
-              className="bg-white border border-zinc-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            >
+            const words =
+              item.content?.split(/\s+/).length || 0;
 
-              {item.imageUrl && (
-                <img
-                  src={item.imageUrl}
-                  alt={item.title}
-                  className="w-full h-64 object-cover"
-                />
-              )}
+            const readTime = Math.max(
+              1,
+              Math.ceil(words / 130)
+            );
 
-              <div className="p-6">
+            return (
 
-                <p className="text-blue-600 font-medium">
-                  {item.category}
-                </p>
+              <div
+                key={item.id}
+                className="bg-white border border-zinc-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
 
-                <h2 className="text-3xl font-bold text-zinc-900 mt-3">
-                  {item.title}
-                </h2>
+                {item.imageUrl && (
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className="w-full h-64 object-cover"
+                  />
+                )}
 
-                <p className="text-zinc-600 mt-4">
-                  {item.content?.slice(0, 180)}...
-                </p>
+                <div className="p-6">
 
-                <p className="text-zinc-400 mt-4">
-                  {item.date}
-                </p>
+                  <h2 className="text-3xl font-bold text-zinc-900 leading-tight">
+                    {item.title}
+                  </h2>
 
-                <Link
-                  href={`/blog/${item.id}`}
-                  className="inline-block mt-6 text-blue-600 font-semibold"
-                >
-                  Read More →
-                </Link>
+                  <p className="text-zinc-400 mt-4 text-sm">
+                    {item.date} • {readTime} min read
+                  </p>
+
+                  <p className="text-zinc-600 mt-4 leading-8">
+                    {item.content?.slice(0, 180)}...
+                  </p>
+
+                  <Link
+                    href={`/blog/${item.id}`}
+                    className="inline-block mt-6 text-orange-600 font-semibold hover:text-orange-700"
+                  >
+                    Read Article →
+                  </Link>
+
+                </div>
 
               </div>
 
-            </div>
-
-          ))}
+            );
+          })}
 
         </div>
 
