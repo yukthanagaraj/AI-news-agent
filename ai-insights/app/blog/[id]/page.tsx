@@ -88,7 +88,7 @@ export default async function BlogPage({
                         <span>{readTime} min read</span>
                     </div>
 
-                    <div>
+                    <div className="metadata-author">
                         By Luvana AI Journal
                     </div>
                 </div>

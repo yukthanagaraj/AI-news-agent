@@ -279,3 +279,20 @@ img {
 
   font-size: .92rem;
 }
+
+/* =========================
+   AUTHOR BULLET
+========================= */
+
+.metadata-author::before {
+
+  content: "•";
+
+  color: #d4d4d8;
+
+  margin-right: 1rem;
+
+  font-size: 1rem;
+
+  font-weight: 400;
+}
