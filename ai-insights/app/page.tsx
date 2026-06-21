@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getInsights } from "../lib/sheets";
 
 export default async function Home() {
+
   const insights = await getInsights();
 
   const featured = insights[0];
@@ -26,12 +27,12 @@ export default async function Home() {
         <div className="rounded-3xl bg-gradient-to-r from-blue-50 via-violet-50 to-cyan-50 p-12 mb-16">
 
           <h1 className="text-8xl font-bold text-zinc-900">
-            AI Intelligence
+            AI Insights
           </h1>
 
-          <p className="text-zinc-600 text-xl mt-4">
-            Daily executive insights on autonomous systems,
-            enterprise transformation and intelligence infrastructure.
+          <p className="text-zinc-600 text-xl mt-4 leading-9">
+            Daily insights on AI agents, AI employees,
+            enterprise intelligence and the future of work.
           </p>
 
         </div>
@@ -51,7 +52,7 @@ export default async function Home() {
 
             <div className="p-8">
 
-              <p className="text-blue-600 font-semibold">
+              <p className="text-orange-600 font-semibold">
                 TODAY'S INSIGHT
               </p>
 
@@ -69,7 +70,7 @@ export default async function Home() {
 
               <Link
                 href={`/blog/${featured.id}`}
-                className="inline-block mt-8 px-6 py-3 rounded-xl bg-zinc-900 text-white font-semibold"
+                className="inline-block mt-8 px-6 py-3 rounded-xl bg-zinc-900 text-white font-semibold hover:bg-black transition"
               >
                 Read Article →
               </Link>
@@ -97,7 +98,18 @@ export default async function Home() {
 
               <div
                 key={item.id}
-                className="bg-white border border-zinc-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="
+                bg-white
+                border
+                border-zinc-200
+                rounded-3xl
+                overflow-hidden
+                shadow-sm
+                hover:shadow-2xl
+                hover:-translate-y-2
+                transition-all
+                duration-300
+                "
               >
 
                 {item.imageUrl && (
@@ -124,9 +136,15 @@ export default async function Home() {
 
                   <Link
                     href={`/blog/${item.id}`}
-                    className="inline-block mt-6 text-orange-600 font-semibold hover:text-orange-700"
+                    className="
+                    inline-block
+                    mt-6
+                    text-orange-600
+                    font-semibold
+                    hover:text-orange-700
+                    "
                   >
-                    Read Article →
+                    Read Insight →
                   </Link>
 
                 </div>
@@ -147,7 +165,8 @@ export default async function Home() {
         </p>
 
         <p className="mt-2">
-          Daily Intelligence for Modern Organizations
+          Research and analysis on AI agents,
+          digital labor and enterprise transformation.
         </p>
 
       </footer>
