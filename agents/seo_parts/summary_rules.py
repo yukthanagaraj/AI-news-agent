@@ -1,13 +1,21 @@
 SUMMARY_RULES = """
-META DESCRIPTION
+SUMMARY RULES
 
-Write one sentence.
+Generate one meta description.
 
-Maximum:
+Length:
 
-160 characters.
+150-160 characters.
 
-Example:
+Focus on:
 
-AI agents are evolving into enterprise coordination systems that unify fragmented organizational data.
+- AI Agents
+- AI Employees
+- Enterprise AI
+- Future of Work
+- Human AI Collaboration
+
+Sound analytical.
+
+Avoid hype.
 """

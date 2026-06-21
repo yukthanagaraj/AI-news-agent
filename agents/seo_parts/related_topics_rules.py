@@ -1,13 +1,18 @@
 RELATED_TOPICS_RULES = """
-Generate 3 related topics.
+RELATED TOPICS RULES
+
+Generate three related topics.
 
 Examples:
 
-AI Governance
+- AI Employees
+- Digital Workers
+- Future of Work
+- Human AI Collaboration
+- Enterprise Productivity
+- Autonomous Operations
 
-Autonomous Operations
+Avoid companies.
 
-Knowledge Systems
-
-Enterprise Transformation
+Focus on themes.
 """

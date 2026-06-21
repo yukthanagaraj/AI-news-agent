@@ -95,23 +95,19 @@ def fetch_ai_news(
 ):
 
     query = """
-(OpenAI OR Anthropic OR Microsoft
-OR Salesforce OR ServiceNow
-OR Workday OR SAP OR Oracle
-OR Notion OR Perplexity)
-
-AND
-
-("AI Agent" OR
+("AI Agents" OR
 "Agentic AI" OR
+"AI Employees" OR
+"Digital Workers" OR
 "Enterprise AI" OR
-"Digital Labor" OR
-"Future of Work" OR
 "Autonomous Operations" OR
+"Future of Work" OR
 "Enterprise Productivity" OR
-"Enterprise Software" OR
-"Workplace Automation" OR
-"Knowledge Work")
+"OpenAI" OR
+"Anthropic" OR
+"Microsoft Copilot" OR
+"Salesforce AI" OR
+"ServiceNow AI")
 """
 
     bad_domains = [
@@ -124,14 +120,14 @@ AND
         "researchgate.net",
         "naturalnews.com",
         "biztoc.com",
-        "cnx-software.com",
         "tomshardware.com",
-        "anandtech.com"
+        "anandtech.com",
+        "gsmarena.com"
     ]
 
     articles = []
 
-    for hours in [24, 48]:
+    for hours in [24, 48, 72]:
 
         cutoff = (
             datetime.utcnow() - timedelta(hours=hours)
@@ -162,7 +158,9 @@ AND
 
         random.shuffle(articles)
 
-        print(f"Found {len(articles)} articles in {hours}-hour window")
+        print(
+            f"Found {len(articles)} articles in {hours}-hour window"
+        )
 
         if articles:
             break
@@ -186,34 +184,58 @@ AND
             continue
 
         if source.lower() in [
+            "reddit",
             "hacker news",
-            "reddit"
+            "the next web"
         ]:
             print("Skipping community source")
             continue
 
         if any(word in title.lower() for word in [
-            "bitcoin",
-            "crypto",
-            "cryptocurrency",
-            "ethereum",
-            "token",
-            "rust",
+
+            # Hardware
+            "gpu",
+            "graphics card",
+            "cpu",
+            "chip",
+            "hardware",
+            "device",
+
+            # Robotics
+            "robot",
+            "robots",
+            "robotics",
+            "drone",
+            "drones",
+            "vlc",
+
+            # Libraries
+            "framework",
+            "library",
+            "sdk",
+            "release",
+            "version",
+
+            # Development
             "frontend",
             "backend",
             "github",
-            "framework",
-            "library",
-            "review",
-            "benchmark",
-            "pypi",
-            "release",
-            "version",
-            "gpu",
-            "graphics card",
+            "python",
+
+            # Consumer
             "smartphone",
-            "motherboard",
-            "camera"
+            "camera",
+
+            # Crypto
+            "bitcoin",
+            "crypto",
+            "ethereum",
+            "token",
+
+            # Benchmarks
+            "benchmark",
+            "review"
+
         ]):
             print("Skipping unwanted article")
             continue
@@ -244,9 +266,10 @@ AND
 
             print("ARTICLE EXTRACTION FAILED:", e)
 
-            full_text = article.get("description", "")
-
-        print("RESEARCH SOURCE URL =", url)
+            full_text = article.get(
+                "description",
+                ""
+            )
 
         return f"""
 Title: {title}
@@ -262,8 +285,10 @@ Date: {article.get('publishedAt', '')}
 Article Text:
 {full_text}
 
-Image Prompt: Futuristic enterprise workforce with digital workers collaborating with humans, autonomous workflows, enterprise productivity dashboards.
+Image Prompt:
+Futuristic enterprise workforce with AI employees, digital workers, human AI collaboration, autonomous workflows and enterprise productivity dashboards.
 """
 
     print("No suitable article found")
+
     return None

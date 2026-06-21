@@ -1,26 +1,24 @@
-from agents.research_agent import fetch_ai_news
-from agents.writer_agent import generate_blog
-from agents.sheets_agent import save_blog, get_sheet
-from agents.image_agent import generate_image
-from agents.seo_agent import generate_seo
-from agents.rss_generator import generate_rss
-from agents.sitemap_generator import generate_sitemap
-
-from agents.history_manager import (
-    remember_title,
-    remember_category
-)
-
 from datetime import datetime
 
-
+from agents.research_agent import fetch_ai_news
+from agents.writer_agent import generate_blog
+from agents.image_agent import generate_image
+from agents.seo_agent import generate_seo
+from agents.aeo_agent import generate_aeo
+from agents.quality_agent import quality_check
+from agents.sheets_agent import save_blog, get_sheet
+from agents.rss_generator import generate_rss
+from agents.sitemap_generator import generate_sitemap
+from agents.history_manager import remember_title
 
 
 def get_previous_titles():
+
     try:
+
         s = get_sheet()
 
-        records = s.col_values(3)
+        records = s.col_values(2)
 
         titles = [
             t for t in records[1:]
@@ -30,25 +28,35 @@ def get_previous_titles():
         return titles[-20:]
 
     except Exception as e:
-        print(f"Warning: Could not fetch previous titles: {e}")
+
+        print(
+            f"Warning: Could not fetch previous titles: {e}"
+        )
+
         return []
 
 
 def get_previous_urls():
+
     try:
+
         s = get_sheet()
 
-        records = s.col_values(6)
+        records = s.col_values(5)
 
         urls = [
-            url for url in records[1:]
-            if url.strip()
+            u for u in records[1:]
+            if u.strip()
         ] if len(records) > 1 else []
 
         return urls[-50:]
 
     except Exception as e:
-        print(f"Warning: Could not fetch previous urls: {e}")
+
+        print(
+            f"Warning: Could not fetch previous urls: {e}"
+        )
+
         return []
 
 
@@ -63,6 +71,7 @@ def parse_research_source_url(news_text):
         line = line.strip()
 
         if line.startswith("Source URL:"):
+
             return line.replace(
                 "Source URL:",
                 ""
@@ -73,15 +82,14 @@ def parse_research_source_url(news_text):
 
 def run_pipeline():
 
-    print("Fetching Previous Titles and Sources...")
+    print("Fetching Previous Titles...")
 
     previous_titles = get_previous_titles()
     previous_sources = get_previous_sources()
     previous_urls = get_previous_urls()
 
     print(
-        f"Found {len(previous_titles)} previous titles and "
-        f"{len(previous_sources)} sources to exclude"
+        f"Found {len(previous_titles)} previous titles"
     )
 
     print("Fetching News...")
@@ -93,14 +101,13 @@ def run_pipeline():
     )
 
     if not news:
+
         print("No suitable news article found")
+
         return
 
-    research_source_url = parse_research_source_url(news)
-
-    print(
-        "RESEARCH SOURCE URL =",
-        research_source_url
+    research_source_url = parse_research_source_url(
+        news
     )
 
     blog = generate_blog(
@@ -109,20 +116,22 @@ def run_pipeline():
     )
 
     if not blog:
+
         print(
             "ERROR: Writer Agent returned empty response"
         )
+
         return
 
     print("BLOG GENERATED")
 
-    category = ""
     title = ""
     image_prompt = ""
     source_url = ""
-    blog_content = ""
 
-    current_date = datetime.now().strftime("%Y-%m-%d")
+    current_date = datetime.now().strftime(
+        "%Y-%m-%d"
+    )
 
     lines = blog.split("\n")
 
@@ -136,23 +145,19 @@ def run_pipeline():
         stripped = line.strip()
 
         if capture_blog and (
-            stripped.startswith("Category:")
-            or stripped.startswith("Title:")
+            stripped.startswith("Title:")
             or stripped.startswith("Source URL:")
             or stripped.startswith("Image Prompt:")
         ):
             break
 
         if capture_blog:
-            blog_lines.append(stripped)
+
+            blog_lines.append(
+                stripped
+            )
+
             continue
-
-        if stripped.startswith("Category:"):
-
-            category = stripped.replace(
-                "Category:",
-                ""
-            ).strip()
 
         elif stripped.startswith("Title:"):
 
@@ -185,17 +190,27 @@ def run_pipeline():
             ).strip()
 
             if blog_inline:
-                blog_lines.append(blog_inline)
+
+                blog_lines.append(
+                    blog_inline
+                )
 
             capture_blog = True
 
         elif metadata_done and stripped:
 
             capture_blog = True
-            blog_lines.append(stripped)
+
+            blog_lines.append(
+                stripped
+            )
 
     blog_content = "\n\n".join(
-        [line for line in blog_lines if line.strip()]
+        [
+            line
+            for line in blog_lines
+            if line.strip()
+        ]
     ).strip()
 
     print()
@@ -209,28 +224,75 @@ def run_pipeline():
 
     seo_data = generate_seo(
         title,
-        category,
         blog_content
     )
 
     print(seo_data)
 
+    print("Generating AEO...")
+
+    aeo_data = generate_aeo(
+        title,
+        blog_content
+    )
+
+    print(aeo_data)
+
+    print("Running Quality Checks...")
+
+    combined_content = (
+        blog_content
+        + "\n\n"
+        + aeo_data
+    )
+
+    quality_data = quality_check(
+        title,
+        combined_content
+    )
+
+    print(quality_data)
+
+    if "Overall: FAIL" in quality_data:
+
+        print(
+            "Quality Agent rejected article."
+        )
+
+        return
+
     if not source_url:
+
         source_url = research_source_url
 
-    print("CATEGORY =", category)
     print("TITLE =", title)
 
-    if title.lower() in [t.lower() for t in previous_titles]:
+    if title.lower() in [
+        t.lower()
+        for t in previous_titles
+    ]:
 
-        print("Duplicate title detected:", title)
+        print(
+            "Duplicate title detected:",
+            title
+        )
 
         title = f"{title} Strategy"
 
-        print("Using alternative title:", title)
+        print(
+            "Using alternative title:",
+            title
+        )
 
-    print("IMAGE PROMPT =", image_prompt)
-    print("SOURCE URL =", source_url)
+    print(
+        "IMAGE PROMPT =",
+        image_prompt
+    )
+
+    print(
+        "SOURCE URL =",
+        source_url
+    )
 
     print("Generating Image...")
 
@@ -265,7 +327,6 @@ def run_pipeline():
 
     save_blog(
         current_date,
-        category,
         title,
         blog_content,
         image_prompt,
@@ -273,17 +334,21 @@ def run_pipeline():
         image_url
     )
 
-    remember_title(title)
-    remember_category(category)
+    remember_title(
+        title
+    )
 
     print("Saved Successfully")
-    print("Pipeline Completed")
 
     print("Updating RSS feed...")
+
     generate_rss()
 
     print("Updating sitemap...")
+
     generate_sitemap()
+
+    print("Pipeline Completed")
 
 if __name__ == "__main__":
     run_pipeline()

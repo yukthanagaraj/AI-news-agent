@@ -34,61 +34,44 @@
 # """
 
 QUOTE_RULES = """
-QUOTE RULES
-
-Generate one memorable standalone quote.
+Generate one memorable quote.
 
 Rules:
 
-- Exactly two sentences.
-- Each sentence should appear on its own line.
-- Leave one blank line between them.
+- Exactly two lines.
+- Put a blank line between the lines.
 - Editorial tone.
 - Thought-provoking.
-- Bold statement.
 - No company names.
-- No hype.
-- Maximum 8 words per sentence.
-- Suitable for large italic typography.
-- Similar to Luvana AI Insights.
+- Suitable for italic formatting.
 
 Format:
 
 > First sentence.
+
 >
+
 > Second sentence.
 
 Examples:
 
 > Software was billed on availability.
+
 >
+
 > AI Employees will be billed on execution.
 
 > Intelligence is abundant.
+
 >
+
 > Execution is scarce.
 
 > AI agents automate tasks.
+
 >
+
 > AI employees own outcomes.
 
-> Knowledge work becomes programmable.
->
-> Outcomes become measurable.
-
-> Trust becomes infrastructure.
->
-> Execution becomes leverage.
-
-IMPORTANT
-
-Never output:
-
-> First sentence. Second sentence.
-
-Always output:
-
-> First sentence.
->
-> Second sentence.
+The quote must always appear inside the article.
 """

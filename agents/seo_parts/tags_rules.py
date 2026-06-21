@@ -1,15 +1,18 @@
 TAGS_RULES = """
-Generate 3 to 5 tags.
+TAGS RULES
 
-Examples:
+Generate 5 keywords.
 
-AI Agents
+Prefer:
 
-Enterprise Intelligence
+- AI Agents
+- Agentic AI
+- AI Employees
+- Enterprise AI
+- Digital Workers
+- Future of Work
+- Human AI Collaboration
+- Autonomous Operations
 
-Digital Labor
-
-Human-AI Collaboration
-
-Knowledge Systems
+Avoid company names.
 """

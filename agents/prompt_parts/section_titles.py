@@ -1,9 +1,10 @@
 SECTION_TITLES = """
-Never overuse the same section titles.
+Never use:
 
-Avoid repetitive headings across articles.
-
-Prefer thoughtful, editorial-style section names.
+- Strategic Implications
+- Why It Matters
+- Closing Observation
+- What Changes
 
 Examples:
 
@@ -27,61 +28,7 @@ Examples:
 
 ## Work Changes Shape
 
-## Organizations Adapt Differently
-
-## The New Operating Model
-
-## From Tools To Teammates
-
-## Execution Becomes Advantage
-
-## The Coordination Problem
-
-## Human Plus AI
-
-## Where Autonomy Matters
-
-## Beyond Automation
-
-## Why Organizations Care
-
-## The Bigger Picture
-
-## Shifting Economics
-
-## Changing Workflows
-
-## Enterprise Perspective
-
-## Competitive Pressure
-
-## Operational Consequences
-
-## Market Context
-
-## The New Constraint
-
-## Emerging Patterns
-
-## The Next Layer
-
-## Rethinking Productivity
-
 Generate different section titles for every article.
 
-Keep section titles concise.
-
-Avoid:
-
-## Overview
-
-## Summary
-
-## Background
-
-## Analysis
-
-## Discussion
-
-## Conclusion
+Avoid repeating section names.
 """

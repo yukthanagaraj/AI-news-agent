@@ -1,18 +1,16 @@
 SLUG_RULES = """
 SLUG RULES
 
-- lowercase
-- hyphen separated
-- no punctuation
-- no stop words
+Generate a lowercase slug.
+
+Rules:
+
+- Use hyphens.
+- No punctuation.
+- 3 to 6 words.
+- Based on the article title.
 
 Example:
 
-Title:
-
-Agents Unify Data
-
-Slug:
-
-agents-unify-data
+ai-agents-secure-execution
 """

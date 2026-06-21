@@ -41,7 +41,6 @@ def get_sheet():
 
 def save_blog(
     date,
-    category,
     title,
     blog_content,
     image_prompt,
@@ -54,7 +53,6 @@ def save_blog(
     sheet.append_row(
         [
             date,
-            category,
             title,
             blog_content,
             image_prompt,

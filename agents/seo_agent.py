@@ -17,7 +17,6 @@ client = Groq(
 
 def generate_seo(
     title,
-    category,
     article
 ):
 
@@ -25,10 +24,6 @@ def generate_seo(
 TITLE
 
 {title}
-
-CATEGORY
-
-{category}
 
 ARTICLE
 
@@ -44,17 +39,33 @@ ARTICLE
 
 {RELATED_TOPICS_RULES}
 
+IMPORTANT
+
+Focus on:
+
+- AI Agents
+- Agentic AI
+- AI Employees
+- Enterprise AI
+- Digital Workers
+- Human + AI Collaboration
+- Future of Work
+
 OUTPUT ONLY:
 
 Slug: <slug>
 
+Meta Title: <meta title>
+
 Meta Description: <description>
 
-Tags:
+Keywords:
 
-- tag1
-- tag2
-- tag3
+- keyword1
+- keyword2
+- keyword3
+- keyword4
+- keyword5
 
 Related Topics:
 
@@ -67,12 +78,19 @@ Related Topics:
         model="llama-3.3-70b-versatile",
         messages=[
             {
+                "role": "system",
+                "content":
+                "You are an SEO strategist for an enterprise AI publication."
+            },
+            {
                 "role": "user",
                 "content": prompt
             }
         ],
-        temperature=0.5,
-        max_tokens=300
+        temperature=0.3,
+        max_tokens=400
     )
+
+    print("SEO GENERATED")
 
     return response.choices[0].message.content

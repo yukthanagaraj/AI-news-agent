@@ -1,18 +1,25 @@
 SEO_RULES = """
-SEO REQUIREMENTS
+SEO RULES
 
 Generate:
 
-1. SEO Slug
-2. Meta Description
-3. Tags
-4. Related Topics
+- Meta Title
+- Meta Description
 
-Avoid generic keywords.
+Meta title:
 
-Prefer specific enterprise AI concepts.
+- 3 to 6 words.
+- Similar to article title.
+- No clickbait.
+- No colons.
 
-Maximum meta description length:
+Meta description:
 
-160 characters.
+- 150 to 160 characters.
+- Explain the organizational implication.
+- Focus on AI Agents, AI Employees and Enterprise AI.
+
+Avoid hype.
+
+Sound like Luvana AI Insights.
 """
