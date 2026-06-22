@@ -261,7 +261,7 @@ def run_pipeline():
         "Continuing pipeline..."
     )
 
-    return
+
 
     if not source_url:
 
