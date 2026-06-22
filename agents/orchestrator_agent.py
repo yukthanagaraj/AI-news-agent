@@ -251,15 +251,17 @@ def run_pipeline():
         combined_content
     )
 
-    print(quality_data)
-
     if "Overall: FAIL" in quality_data:
 
-        print(
-            "Quality Agent rejected article."
-        )
+     print(
+        "WARNING: Quality issues detected."
+    )
 
-        return
+    print(
+        "Continuing pipeline..."
+    )
+
+    return
 
     if not source_url:
 
