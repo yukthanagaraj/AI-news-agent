@@ -8,7 +8,7 @@ Write like:
 - Stratechery
 - Luvana AI Journal
 
-Use short paragraphs.
+Use short and medium paragraphs.
 
 Use varied sentence lengths.
 
@@ -41,4 +41,29 @@ Prefer organizational implications.
 Keep the tone thoughtful and analytical.
 
 Use markdown formatting.
+
+SEO REQUIREMENTS
+
+Naturally use the following keywords throughout the article:
+
+- AI Agents
+- Agentic AI
+- AI Employees
+- Digital Workers
+- Enterprise AI
+- Human AI Collaboration
+- Future of Work
+- Autonomous Operations
+- Enterprise Productivity
+
+Rules:
+
+- Mention the primary keyword within the first 150 words.
+- Use SEO keywords naturally throughout the article.
+- Do not stuff keywords unnaturally.
+- Include keywords in headings where appropriate.
+- Include keywords in the conclusion.
+- Ensure keywords appear multiple times across the article.
+- Write for both human readers and search engines.
+- Maintain readability while optimizing for SEO.
 """

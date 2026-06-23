@@ -155,4 +155,30 @@ RULES
 - Make the article feel like an AI insights publication rather than a news blog.
 - Image prompts should describe editorial illustrations.
 - Avoid text inside images.
+RULES
+
+- No category labels.
+- Do not generate image URLs.
+- Generate only the image prompt.
+- Title should be 4–6 words.
+- Avoid colons in titles.
+- Generate one memorable quote.
+- Quote should be maximum two lines.
+- Use markdown headings.
+- Professional tone.
+- Avoid hype and clickbait.
+- Focus on AI Agents, AI Employees, Enterprise AI and Future of Work.
+- Make the article feel like an AI insights publication rather than a news blog.
+- Image prompts should describe editorial illustrations.
+- Avoid text inside images.
+- Article length should be 1000–1500 words.
+- Every section should contain 3–4 paragraphs.
+- Use SEO keywords naturally throughout the article.
+- Include AI Agents, AI Employees, Enterprise AI, Digital Workers, Human AI Collaboration, and Future of Work throughout the article.
+- Include one markdown blockquote inside the Blog content.
+- Use > syntax for the quote.
+- Place the quote after the Introduction section.
+- Quote may be one or two lines.
+- Quote should reinforce the article's main insight.
+
 """

@@ -46,6 +46,11 @@ Rules:
 - Avoid colons.
 - Generate one memorable quote.
 - Make articles insightful rather than news summaries.
+- Articles must be between 1200 and 1500 words.
+- Every major section must contain 3–4 detailed paragraphs.
+- Never generate short sections.
+- Include SEO keywords naturally throughout the article.
+- Include one markdown quote block inside the article.
 """
             },
             {
@@ -53,8 +58,8 @@ Rules:
                 "content": prompt
             }
         ],
-        temperature=0.9,
-        max_tokens=2000
+        temperature=0.7,
+        max_tokens=4000
     )
 
     print("BLOG GENERATED")
