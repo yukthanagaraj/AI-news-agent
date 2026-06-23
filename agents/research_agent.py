@@ -1,81 +1,3 @@
-# from groq import Groq
-# from dotenv import load_dotenv
-# import os
-
-# load_dotenv()
-
-# client = Groq(
-#     api_key=os.getenv("GROQ_API_KEY")
-# )
-
-# def fetch_ai_news(previous_titles=None, previous_sources=None):
-
-#     exclusion_block = ""
-#     exclusions = []
-
-#     if previous_titles:
-#         exclusion_list = "\n".join(
-#             f"- {title}" for title in previous_titles
-#         )
-#         exclusions.append(f"Do NOT repeat any of these previously covered topics:\n{exclusion_list}")
-
-#     if previous_sources:
-#         sources_list = ", ".join(previous_sources)
-#         exclusions.append(f"Do NOT use any of these recently used news sources to vary the reporting: {sources_list}")
-
-#     if exclusions:
-#         joined_exclusions = "\n\n".join(exclusions)
-#         exclusion_block = f"""
-# IMPORTANT EXCLUSIONS:
-# {joined_exclusions}
-
-# Pick a completely different topic and a different source.
-# """
-
-#     prompt = f"""
-# Fetch ONE latest unique tech, business, SaaS, or scientific news topic (e.g. related to future of work, automation, operations, biotechnology, databases, security, or technology shifts) from the last 24 hours.
-
-# Return ONLY in this format:
-
-# Title: <news title>
-
-# Summary: <short summary>
-
-# Source: <source name>
-
-# Date: <date>
-
-# Image: <image prompt>
-
-# Rules:
-
-# - Make sure the topic is fresh and different from common repeated tech news.
-# - The title and topic do NOT always need to focus on or contain the word "AI". Focus on broader technology, software, and operational shifts.
-# - Use a REAL source name.
-# - Examples: Reuters, Bloomberg, TechCrunch, Wired, MIT Technology Review, The Verge, VentureBeat, Nature, Science Daily, TechSoft, etc.
-# - Do NOT always use the same source.
-# - Vary the source whenever appropriate.
-# - Source must never be empty.
-# - Image must never be empty.
-# - Keep summary under 100 words.
-
-# {exclusion_block}
-# """
-
-#     response = client.chat.completions.create(
-#         model="llama-3.3-70b-versatile",
-#         messages=[
-#             {
-#                 "role": "user",
-#                 "content": prompt
-#             }
-#         ],
-#         temperature=0.9,
-#         max_tokens=500
-#     )
-
-#     return response.choices[0].message.content
-
 import os
 import random
 import requests
@@ -101,13 +23,11 @@ def fetch_ai_news(
 "Digital Workers" OR
 "Enterprise AI" OR
 "Autonomous Operations" OR
+"Human AI Collaboration" OR
 "Future of Work" OR
 "Enterprise Productivity" OR
-"OpenAI" OR
-"Anthropic" OR
-"Microsoft Copilot" OR
-"Salesforce AI" OR
-"ServiceNow AI")
+"AI Workforce" OR
+"AI Automation")
 """
 
     bad_domains = [
@@ -123,6 +43,73 @@ def fetch_ai_news(
         "tomshardware.com",
         "anandtech.com",
         "gsmarena.com"
+    ]
+
+    required_keywords = [
+        "ai agent",
+        "ai agents",
+        "agentic ai",
+        "enterprise ai",
+        "ai employee",
+        "ai employees",
+        "digital worker",
+        "digital workers",
+        "autonomous operations",
+        "future of work",
+        "human ai collaboration",
+        "enterprise productivity"
+    ]
+
+    unwanted_keywords = [
+        # Hardware
+        "gpu",
+        "graphics card",
+        "cpu",
+        "chip",
+        "hardware",
+        "device",
+
+        # Robotics
+        "robot",
+        "robots",
+        "robotics",
+        "drone",
+        "drones",
+        "vlc",
+
+        # Libraries
+        "framework",
+        "library",
+        "sdk",
+        "release",
+        "version",
+
+        # Development
+        "frontend",
+        "backend",
+        "github",
+        "python",
+
+        # Consumer
+        "smartphone",
+        "camera",
+        "iphone",
+        "android",
+
+        # Crypto
+        "bitcoin",
+        "crypto",
+        "ethereum",
+        "token",
+
+        # Benchmarks
+        "benchmark",
+        "review",
+
+        # Politics
+        "election",
+        "political",
+        "campaign"
     ]
 
     articles = []
@@ -175,14 +162,30 @@ def fetch_ai_news(
         source = article.get("source", {}).get("name", "")
         url = article.get("url", "")
 
+        content_to_check = (
+            title + " " +
+            article.get("description", "")
+        ).lower()
+
+        # Check for required keywords
+        if not any(
+            keyword in content_to_check
+            for keyword in required_keywords
+        ):
+            print("Skipping non-agentic article")
+            continue
+
+        # Skip if URL already used
         if previous_urls and url in previous_urls:
             print("Skipping used URL")
             continue
 
+        # Skip if title already used
         if previous_titles and title in previous_titles:
             print("Skipping used title")
             continue
 
+        # Skip community sources
         if source.lower() in [
             "reddit",
             "hacker news",
@@ -191,55 +194,12 @@ def fetch_ai_news(
             print("Skipping community source")
             continue
 
-        if any(word in title.lower() for word in [
-
-            # Hardware
-            "gpu",
-            "graphics card",
-            "cpu",
-            "chip",
-            "hardware",
-            "device",
-
-            # Robotics
-            "robot",
-            "robots",
-            "robotics",
-            "drone",
-            "drones",
-            "vlc",
-
-            # Libraries
-            "framework",
-            "library",
-            "sdk",
-            "release",
-            "version",
-
-            # Development
-            "frontend",
-            "backend",
-            "github",
-            "python",
-
-            # Consumer
-            "smartphone",
-            "camera",
-
-            # Crypto
-            "bitcoin",
-            "crypto",
-            "ethereum",
-            "token",
-
-            # Benchmarks
-            "benchmark",
-            "review"
-
-        ]):
+        # Skip articles with unwanted keywords
+        if any(word in title.lower() for word in unwanted_keywords):
             print("Skipping unwanted article")
             continue
 
+        # Skip articles from bad domains
         if any(domain in url for domain in bad_domains):
             print("Skipping bad source")
             continue
@@ -252,24 +212,15 @@ def fetch_ai_news(
         full_text = ""
 
         try:
-
             article_obj = Article(url)
-
             article_obj.download()
             article_obj.parse()
-
             full_text = article_obj.text[:8000]
-
             print("ARTICLE EXTRACTED")
 
         except Exception as e:
-
             print("ARTICLE EXTRACTION FAILED:", e)
-
-            full_text = article.get(
-                "description",
-                ""
-            )
+            full_text = article.get("description", "")
 
         return f"""
 Title: {title}

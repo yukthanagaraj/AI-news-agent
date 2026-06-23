@@ -128,8 +128,6 @@ Output ONLY in the following format:
 
 Title: <title>
 
-Quote: <quote>
-
 Source URL: <source url>
 
 Image Prompt: <detailed image prompt>
@@ -146,8 +144,6 @@ RULES
 - Generate only the image prompt.
 - Title should be 4–6 words.
 - Avoid colons in titles.
-- Generate one memorable quote.
-- Quote should be maximum two lines.
 - Use markdown headings.
 - Professional tone.
 - Avoid hype and clickbait.
@@ -155,30 +151,65 @@ RULES
 - Make the article feel like an AI insights publication rather than a news blog.
 - Image prompts should describe editorial illustrations.
 - Avoid text inside images.
-RULES
 
-- No category labels.
-- Do not generate image URLs.
-- Generate only the image prompt.
-- Title should be 4–6 words.
-- Avoid colons in titles.
-- Generate one memorable quote.
-- Quote should be maximum two lines.
-- Use markdown headings.
-- Professional tone.
-- Avoid hype and clickbait.
-- Focus on AI Agents, AI Employees, Enterprise AI and Future of Work.
-- Make the article feel like an AI insights publication rather than a news blog.
-- Image prompts should describe editorial illustrations.
-- Avoid text inside images.
+ARTICLE REQUIREMENTS
+
 - Article length should be 1000–1500 words.
-- Every section should contain 3–4 paragraphs.
+- Minimum article length should be 1000 words.
+- Every major section should contain 3–4 paragraphs.
+- Generate 6–8 meaningful sections.
+- Use strategic analysis instead of news summarization.
+- Explain enterprise impact and business implications.
+- Include actionable insights for executives and organizations.
+
+SEO REQUIREMENTS
+
 - Use SEO keywords naturally throughout the article.
-- Include AI Agents, AI Employees, Enterprise AI, Digital Workers, Human AI Collaboration, and Future of Work throughout the article.
-- Include one markdown blockquote inside the Blog content.
-- Use > syntax for the quote.
-- Place the quote after the Introduction section.
-- Quote may be one or two lines.
-- Quote should reinforce the article's main insight.
+- Include AI Agents throughout the article.
+- Include AI Employees throughout the article.
+- Include Enterprise AI throughout the article.
+- Include Digital Workers throughout the article.
+- Include Human AI Collaboration throughout the article.
+- Include Future of Work throughout the article.
+- Include Autonomous Operations where relevant.
+- Include Enterprise Productivity where relevant.
+- Use keywords naturally and avoid keyword stuffing.
+
+QUOTE REQUIREMENTS
+
+* Generate exactly one memorable quote.
+* Include exactly one markdown blockquote inside the Blog content.
+* Use markdown > syntax.
+* Place the quote immediately after the second introductory paragraph.
+* The quote must appear before the first major section heading.
+* The quote must appear only once in the entire article.
+* Quote should be short, memorable, and editorial in tone.
+* Quote should reinforce the article's central insight.
+* Quote should be a single sentence.
+* Quote should contain between 8 and 15 words.
+* Quote should fit within 1–3 visual lines on desktop screens.
+* Use a single markdown blockquote line.
+* Do not create multiple blockquotes.
+* Do not split the quote into multiple lines.
+* Do not insert blank lines inside the quote.
+* Do not break the quote into separate paragraphs.
+* Do not use lists, headings, or formatting inside the quote.
+* Do not place the quote after Key Takeaways.
+* Do not place the quote near the Conclusion.
+* Avoid generic statements.
+* Prefer strategic observations related to AI Agents, AI Employees, Enterprise AI, Digital Workers, Human AI Collaboration, or Future of Work.
+
+VALID EXAMPLE
+
+> AI agents are becoming the execution layer of modern enterprises.
+
+INVALID EXAMPLE
+
+> AI agents are becoming the execution layer
+
+>
+
+> of modern enterprises.
+
 
 """

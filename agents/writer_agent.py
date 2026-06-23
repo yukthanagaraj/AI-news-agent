@@ -51,6 +51,11 @@ Rules:
 - Never generate short sections.
 - Include SEO keywords naturally throughout the article.
 - Include one markdown quote block inside the article.
+- Minimum article length is 1200 words.
+- Never generate articles below 1200 words.
+- Every major section must contain at least 3 detailed paragraphs.
+- Do not create sections with only 1 or 2 paragraphs.
+- Expand enterprise implications with concrete analysis.
 """
             },
             {
@@ -58,7 +63,7 @@ Rules:
                 "content": prompt
             }
         ],
-        temperature=0.7,
+        temperature=1.0,
         max_tokens=4000
     )
 

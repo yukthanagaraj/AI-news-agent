@@ -3,6 +3,8 @@ ARTICLE STRUCTURE
 
 Begin with two short introductory paragraphs.
 
+Immediately after the introduction, insert one memorable quote.
+
 Use markdown headings.
 
 Generate 6–8 major sections.
@@ -27,44 +29,68 @@ Suggested flow:
 
 # Conclusion
 
-Rules:
+WORD COUNT REQUIREMENTS
 
-- Target article length: 1200–1500 words.
-- Minimum article length: 1200 words.
-- Never generate articles below 1200 words.
-- Every major section must contain 3–4 detailed paragraphs.
-- Do not create sections with only 1–2 paragraphs.
-- Expand analysis before moving to the next section.
-- Every paragraph should introduce a new insight.
-- Each section should introduce a different idea.
-- Avoid repeating information.
-- Focus on enterprise implications.
-- Prefer observations over predictions.
-- Explain larger organizational shifts.
-- Explain business impact and adoption trends.
-- Keep the flow analytical rather than news-oriented.
-- Include strategic insights throughout the article.
+* Target article length: 1200–1500 words.
+* Minimum article length: 1200 words.
+* Never generate articles below 1200 words.
+
+SECTION REQUIREMENTS
+
+* Every major section must contain exactly 3 or 4 detailed paragraphs.
+* Never create sections with fewer than 3 paragraphs.
+* Do not create sections with only 1 paragraph.
+* Do not create sections with only 2 paragraphs.
+* Every paragraph should contain 60–120 words.
+* Expand every section fully before moving to the next heading.
+* Each paragraph should introduce a new insight, perspective, or implication.
+* Each section should explore a different strategic theme.
+* Avoid repeating ideas across sections.
+* Focus on enterprise implications rather than news reporting.
+* Explain organizational shifts caused by the development.
+* Explain business impact and adoption trends.
+* Explain operational consequences for enterprises.
+* Explain workforce implications where relevant.
+* Explain how AI Agents, AI Employees, and Enterprise AI affect decision-making.
+* Include examples, observations, and strategic analysis where appropriate.
+* Keep the flow analytical rather than news-oriented.
+* Include actionable insights for executives and enterprise leaders.
+* Prefer observations over predictions.
+* Use transitions between sections to maintain narrative flow.
+* Every section should feel substantial and self-contained.
+* Do not rush to the next heading until the current section is fully developed.
+
+
 
 QUOTE REQUIREMENT
 
-- Include one memorable quote inside the article.
-- Use markdown blockquote syntax (>).
-- Quote may be one or two lines.
-- The quote should reinforce the article's main insight.
-- Place the quote naturally within the article.
+* Generate exactly one memorable quote.
+* Use markdown blockquote syntax (>).
+* Place the quote immediately after the second introductory paragraph.
+* The quote must appear before the first section heading.
+* Do not place the quote after Key Takeaways.
+* Do not place the quote near the Conclusion.
+* Quote should be short and impactful.
+* Quote should contain 8–15 words.
+* Quote should fit within 1–3 visual lines.
+* Quote should reinforce the article's main insight.
 
-Key Takeaways section:
+Example:
+
+> AI agents are becoming the execution layer of modern enterprises.
+
+KEY TAKEAWAYS REQUIREMENT
 
 Generate three bullet points.
 
 Use markdown bullet lists.
 
-Bullets should render beautifully on the website.
+Bullets should summarize the article's most important insights.
 
-Conclusion:
+CONCLUSION REQUIREMENT
 
-- Write 2–3 concluding paragraphs.
-- Summarize the strategic significance.
-- Reinforce enterprise implications.
-- End with an observation rather than a prediction.
-"""
+* Write 2–3 concluding paragraphs.
+* Summarize the strategic significance.
+* Reinforce enterprise implications.
+* End with an observation rather than a prediction.
+  """

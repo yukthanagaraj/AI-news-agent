@@ -189,63 +189,39 @@ img {
 ========================= */
 
 .prose blockquote {
-
   position: relative;
-
-  margin-top: 7rem;
-  margin-bottom: 7rem;
-
+  margin: 5rem 0;
   padding-left: 3rem;
-
-  background: transparent;
 }
 
 .prose blockquote::before {
-
   content: "";
-
   position: absolute;
-
   left: 0;
-
-  top: -.75rem;
-
-  bottom: -.75rem;
-
+  top: 0;
+  bottom: 0;
+  /* stretches full quote height */
   width: 6px;
-
   border-radius: 999px;
-
   background: #f97316;
 }
 
 .prose blockquote p {
-
-  font-family:
-    Inter,
-    system-ui,
-    sans-serif;
-
-  font-size: clamp(2.6rem, 4vw, 3.5rem);
-
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
   line-height: 1.35;
-
   letter-spacing: -0.03em;
-
   font-style: italic;
-
   font-weight: 600;
-
   color: #111827;
-
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
-.prose blockquote p:last-child {
-  margin-bottom: 0;
+.prose blockquote p+p {
+  margin-top: 0.5rem;
 }
 
-.prose blockquote p::before {
+.prose blockquote p:first-child::before {
   content: "“";
 }
 
