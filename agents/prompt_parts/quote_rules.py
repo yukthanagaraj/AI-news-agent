@@ -33,29 +33,26 @@
 # > Knowledge work is becoming programmable.
 # """
 
-QUOTE_CHECK_RULES = """
-QUOTE CHECK
+QUOTE_RULES = """
+QUOTE REQUIREMENTS
 
-PASS if:
+- Generate exactly one memorable quote.
+- Include one markdown blockquote inside the Blog content.
+- Use markdown > syntax.
+- Quote should be short and impactful.
+- Quote should be a single sentence.
+- Quote should contain 8–15 words.
+- Quote should fit within 1–3 visual lines on desktop.
+- Do not create multiple blockquotes.
+- Do not split the quote into separate quote sections.
+- Quote should reinforce the article's main insight.
+- Place the quote immediately after the second introductory paragraph.
+- The quote must appear before the first major section heading.
+- Do not place the quote after Key Takeaways.
+- Do not place the quote near the conclusion.
 
-* The article contains exactly one markdown blockquote.
-* The quote uses markdown > syntax.
-* The quote appears inside the Blog content.
-* The quote appears after the introduction.
-* The quote appears before the first major section heading.
-* The quote is a single sentence.
-* The quote contains between 8 and 20 words.
-* The quote reinforces the article's main insight.
-* The quote sounds editorial and memorable.
+Example:
 
-FAIL if:
-
-* No quote exists.
-* More than one quote exists.
-* The quote is repeated.
-* The quote appears inside Key Takeaways.
-* The quote appears inside the Conclusion.
-* The quote is longer than 20 words.
-* The quote is generic or unrelated to the article.
-  """
+> AI agents are becoming the execution layer of modern enterprises.
+"""
 
