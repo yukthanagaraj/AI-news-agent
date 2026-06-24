@@ -41,7 +41,8 @@ PASS if:
 * The article contains exactly one markdown blockquote.
 * The quote uses markdown > syntax.
 * The quote appears inside the Blog content.
-* The quote appears near the introduction.
+* The quote appears after the introduction.
+* The quote appears before the first major section heading.
 * The quote is a single sentence.
 * The quote contains between 8 and 20 words.
 * The quote reinforces the article's main insight.
@@ -57,3 +58,4 @@ FAIL if:
 * The quote is longer than 20 words.
 * The quote is generic or unrelated to the article.
   """
+
