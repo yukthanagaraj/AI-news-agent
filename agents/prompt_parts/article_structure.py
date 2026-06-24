@@ -94,18 +94,27 @@ Bullets should summarize the article's most important insights.
 Conclusion:
 
 * Write 2–3 concluding paragraphs.
-* Summarize the strategic significance.
-* Reinforce enterprise implications.
-* End with a present-day observation.
-* Never make predictions.
-* Never use phrases such as:
+* Do not summarize the article.
+* Do not repeat Key Takeaways.
+* Do not repeat AI Agents, AI Employees, or Future of Work excessively.
+* Focus on the broader organizational observation.
+* Explain what the development reveals about enterprise transformation.
+* End with a strategic observation rather than a prediction.
+* Never use:
 
   * "In the future"
   * "We can expect"
   * "Will transform"
   * "Will become"
-* Focus on what organizations should observe today.
+  * "Going forward"
+
+Preferred ending style:
+
+The most significant shift is not the technology itself, but the changing relationship between decision-making, execution, and organizational learning.
+
+The emerging advantage belongs to organizations that can integrate intelligence directly into operational workflows.
+
+The real competitive differentiator is increasingly the ability to coordinate human and machine capabilities as a single system.
+"""
 
 
-
-  """

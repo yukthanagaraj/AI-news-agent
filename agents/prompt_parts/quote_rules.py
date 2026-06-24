@@ -33,45 +33,27 @@
 # > Knowledge work is becoming programmable.
 # """
 
-QUOTE_RULES = """
-Generate one memorable quote.
+QUOTE_CHECK_RULES = """
+QUOTE CHECK
 
-Rules:
+PASS if:
 
-- Exactly two lines.
-- Put a blank line between the lines.
-- Editorial tone.
-- Thought-provoking.
-- No company names.
-- Suitable for italic formatting.
+* The article contains exactly one markdown blockquote.
+* The quote uses markdown > syntax.
+* The quote appears inside the Blog content.
+* The quote appears near the introduction.
+* The quote is a single sentence.
+* The quote contains between 8 and 20 words.
+* The quote reinforces the article's main insight.
+* The quote sounds editorial and memorable.
 
-Format:
+FAIL if:
 
-> First sentence.
-
->
-
-> Second sentence.
-
-Examples:
-
-> Software was billed on availability.
-
->
-
-> AI Employees will be billed on execution.
-
-> Intelligence is abundant.
-
->
-
-> Execution is scarce.
-
-> AI agents automate tasks.
-
->
-
-> AI employees own outcomes.
-
-The quote must always appear inside the article.
-"""
+* No quote exists.
+* More than one quote exists.
+* The quote is repeated.
+* The quote appears inside Key Takeaways.
+* The quote appears inside the Conclusion.
+* The quote is longer than 20 words.
+* The quote is generic or unrelated to the article.
+  """

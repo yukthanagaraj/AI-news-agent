@@ -63,7 +63,10 @@ CONTENT DEPTH RULES
 * Never generate articles below 1200 words.
 * Expand analysis before moving to the next section.
 * Prioritize depth over brevity.
-* Every section should contain detailed enterprise analysis.
+* Every major section should feel like a standalone insight.
+* Avoid summarizing the source article.
+* Focus on enterprise implications and strategic analysis.
+
 
 """
             },
