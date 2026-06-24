@@ -1,16 +1,10 @@
 TITLE_RULES = """
-TITLE RULES
-
-* 4 to 6 words.
-* No company names.
-* No clickbait.
-* No news headlines.
-* No colons.
-* No em dashes.
-* Sound like an executive insight.
-* Focus on AI Agents, AI Employees and Enterprise AI.
-* Prefer timeless ideas over breaking news.
-* Use concise, memorable wording.
+* Title must contain 4 to 6 words.
+* Never generate titles with fewer than 4 words.
+* Never generate titles with more than 6 words.
+* Count the words before generating the title.
+* If the title contains fewer than 4 words, rewrite it.
+* If the title contains more than 6 words, shorten it.
 
 TITLE UNIQUENESS RULES
 

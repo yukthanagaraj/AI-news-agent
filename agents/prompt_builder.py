@@ -139,10 +139,13 @@ Blog:
 
 RULES
 
+* Title must contain exactly 4–6 words.
+* Validate title length before final output.
+* Do not output titles with 1–3 words.
+* Do not output titles with more than 6 words.
 - No category labels.
 - Do not generate image URLs.
 - Generate only the image prompt.
-- Title should be 4–6 words.
 - Avoid colons in titles.
 - Use markdown headings.
 - Professional tone.
