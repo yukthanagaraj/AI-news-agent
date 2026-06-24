@@ -46,7 +46,6 @@ Rules:
 - Avoid colons.
 - Generate one memorable quote.
 - Make articles insightful rather than news summaries.
-- Articles must be between 1200 and 1500 words.
 - Every major section must contain 3–4 detailed paragraphs.
 - Never generate short sections.
 - Include SEO keywords naturally throughout the article.
@@ -56,6 +55,16 @@ Rules:
 - Every major section must contain at least 3 detailed paragraphs.
 - Do not create sections with only 1 or 2 paragraphs.
 - Expand enterprise implications with concrete analysis.
+
+CONTENT DEPTH RULES
+
+* Minimum article length: 1200 words.
+* Target article length: 1200–1500 words.
+* Never generate articles below 1200 words.
+* Expand analysis before moving to the next section.
+* Prioritize depth over brevity.
+* Every section should contain detailed enterprise analysis.
+
 """
             },
             {
@@ -64,7 +73,7 @@ Rules:
             }
         ],
         temperature=1.0,
-        max_tokens=4000
+        max_tokens=5000
     )
 
     print("BLOG GENERATED")

@@ -86,11 +86,26 @@ Generate three bullet points.
 Use markdown bullet lists.
 
 Bullets should summarize the article's most important insights.
+* Generate Key Takeaways section exactly once.
+* Never repeat any section heading.
+* Every heading must be unique.
+* Do not generate duplicate sections.
 
-CONCLUSION REQUIREMENT
+Conclusion:
 
 * Write 2–3 concluding paragraphs.
 * Summarize the strategic significance.
 * Reinforce enterprise implications.
-* End with an observation rather than a prediction.
+* End with a present-day observation.
+* Never make predictions.
+* Never use phrases such as:
+
+  * "In the future"
+  * "We can expect"
+  * "Will transform"
+  * "Will become"
+* Focus on what organizations should observe today.
+
+
+
   """
