@@ -8,20 +8,29 @@ TITLE_RULES = """
 
 TITLE UNIQUENESS RULES
 
-* Never reuse previous title structures.
-* Avoid generic titles.
-* Avoid titles that directly mention:
+- Prefer strategic observations over technology descriptions.
+- Prefer business implications over product features.
+- Avoid generic titles containing:
+  - AI
+  - Agents
+  - Enterprise
+  - Future
+  unless required.
+- Generate titles that sound like executive insights.
 
-  * AI Agents
-  * AI Employees
-  * Future of Work
-  * Enterprise AI
-* Prefer strategic observations over descriptions.
-* Prefer business implications over technology descriptions.
-* Prefer timeless insights over news summaries.
-* Every title should feel like a journal headline rather than a blog title.
-* Use abstract but meaningful business language.
-* Titles should create curiosity without using clickbait.
+Examples:
+
+Control Becomes Competitive Advantage
+
+Coordination Finds New Intelligence
+
+Execution Gains Strategic Context
+
+Automation Changes Enterprise Economics
+
+Context Becomes Competitive Advantage
+
+Decisions Gain Organizational Memory
 
 Avoid:
 

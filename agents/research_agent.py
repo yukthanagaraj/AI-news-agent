@@ -25,9 +25,7 @@ def fetch_ai_news(
 "Autonomous Operations" OR
 "Human AI Collaboration" OR
 "Future of Work" OR
-"Enterprise Productivity" OR
-"AI Workforce" OR
-"AI Automation")
+"Enterprise Productivity")
 """
 
     bad_domains = [
@@ -42,7 +40,18 @@ def fetch_ai_news(
         "biztoc.com",
         "tomshardware.com",
         "anandtech.com",
-        "gsmarena.com"
+        "gsmarena.com",
+        "financialpost.com",
+        "businesswire.com",
+        "prnewswire.com",
+        "globenewswire.com",
+        "benzinga.com",
+        "einnews.com",
+        "yahoo.com",
+       "finance.yahoo.com",
+       "seekingalpha.com",
+       "fool.com",
+       "marketscreener.com"
     ]
 
     required_keywords = [
@@ -59,6 +68,20 @@ def fetch_ai_news(
         "human ai collaboration",
         "enterprise productivity"
     ]
+
+    trusted_sources = [
+    "Reuters",
+    "VentureBeat",
+    "TechCrunch",
+    "The Verge",
+    "Wired",
+    "MIT Technology Review",
+    "Forbes",
+    "Fast Company",
+    "Business Insider",
+    "ComputerWeekly.com",
+    "ZDNet"
+]
 
     unwanted_keywords = [
         # Hardware
@@ -160,6 +183,19 @@ def fetch_ai_news(
 
         title = article.get("title", "")
         source = article.get("source", {}).get("name", "")
+
+        if source not in trusted_sources:
+            print("Skipping low-quality source")
+            continue
+
+        if "business wire" in source.lower():
+            print("Skipping press release")
+            continue
+
+        if "press release" in title.lower():
+            print("Skipping press release")
+            continue
+
         url = article.get("url", "")
 
         content_to_check = (
@@ -220,7 +256,7 @@ def fetch_ai_news(
 
         except Exception as e:
             print("ARTICLE EXTRACTION FAILED:", e)
-            full_text = article.get("description", "")
+            continue
 
         return f"""
 Title: {title}
