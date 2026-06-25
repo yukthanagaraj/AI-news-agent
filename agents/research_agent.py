@@ -69,21 +69,7 @@ def fetch_ai_news(
         "enterprise productivity"
     ]
 
-    # trusted_sources = [
-    #     "Reuters",
-    #     "VentureBeat",
-    #     "TechCrunch",
-    #     "The Verge",
-    #     "Wired",
-    #     "MIT Technology Review",
-    #     "Forbes",
-    #     "Fast Company",
-    #     "Business Insider",
-    #     "ComputerWeekly.com",
-    #     "ZDNet",
-    #     "InfoWorld"
-    # ]
-
+   
     unwanted_keywords = [
         # Hardware
         "gpu",
@@ -185,9 +171,7 @@ def fetch_ai_news(
         title = article.get("title", "")
         source = article.get("source", {}).get("name", "")
 
-        # if source not in trusted_sources:
-        #     print("Skipping low-quality source")
-        #     continue
+        
 
         if "business wire" in source.lower():
             print("Skipping press release")
