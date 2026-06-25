@@ -241,11 +241,12 @@ def fetch_ai_news(
 
         except Exception as e:
             print("ARTICLE EXTRACTION FAILED:", e)
-            full_text = article.get("description", "")
+
+            full_text = article.get("description") or ""
 
         if len(full_text.strip()) < 120:
-            print("Description too short. Skipping article.")
-            continue
+           print("Description too short. Skipping article.")
+           continue
 
         print("Using NewsAPI description as fallback.")
 
