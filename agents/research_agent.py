@@ -48,10 +48,10 @@ def fetch_ai_news(
         "benzinga.com",
         "einnews.com",
         "yahoo.com",
-       "finance.yahoo.com",
-       "seekingalpha.com",
-       "fool.com",
-       "marketscreener.com"
+        "finance.yahoo.com",
+        "seekingalpha.com",
+        "fool.com",
+        "marketscreener.com"
     ]
 
     required_keywords = [
@@ -70,18 +70,19 @@ def fetch_ai_news(
     ]
 
     trusted_sources = [
-    "Reuters",
-    "VentureBeat",
-    "TechCrunch",
-    "The Verge",
-    "Wired",
-    "MIT Technology Review",
-    "Forbes",
-    "Fast Company",
-    "Business Insider",
-    "ComputerWeekly.com",
-    "ZDNet"
-]
+        "Reuters",
+        "VentureBeat",
+        "TechCrunch",
+        "The Verge",
+        "Wired",
+        "MIT Technology Review",
+        "Forbes",
+        "Fast Company",
+        "Business Insider",
+        "ComputerWeekly.com",
+        "ZDNet",
+        "InfoWorld"
+    ]
 
     unwanted_keywords = [
         # Hardware
@@ -256,7 +257,13 @@ def fetch_ai_news(
 
         except Exception as e:
             print("ARTICLE EXTRACTION FAILED:", e)
+            full_text = article.get("description", "")
+
+        if len(full_text.strip()) < 120:
+            print("Description too short. Skipping article.")
             continue
+
+        print("Using NewsAPI description as fallback.")
 
         return f"""
 Title: {title}
