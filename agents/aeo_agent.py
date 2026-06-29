@@ -1,3 +1,4 @@
+
 import os
 from groq import Groq
 from dotenv import load_dotenv
@@ -33,11 +34,36 @@ ARTICLE
 
 {SCHEMA_RULES}
 
-OUTPUT ONLY:
+OBJECTIVE
+
+Generate complete Answer Engine Optimization (AEO) content for an Enterprise AI publication.
+
+Optimize for:
+
+- Google AI Overviews
+- ChatGPT
+- Claude
+- Gemini
+- Perplexity
+- Microsoft Copilot
+
+OUTPUT ONLY
+
+## Executive Summary
+
+<2-3 sentence summary>
 
 ## Quick Answer
 
-<answer>
+<40-80 word answer>
+
+## Key Facts
+
+- Fact 1
+- Fact 2
+- Fact 3
+- Fact 4
+- Fact 5
 
 ## FAQs
 
@@ -53,6 +79,18 @@ Answer
 
 Answer
 
+### Question 4
+
+Answer
+
+### Question 5
+
+Answer
+
+## AI Overview Summary
+
+<Short summary suitable for AI-generated answers>
+
 ## Schema
 
 <Article schema>
@@ -65,18 +103,34 @@ Answer
         messages=[
             {
                 "role": "system",
-                "content":
-                "You are an Answer Engine Optimization strategist for an enterprise AI publication."
+                "content": """
+You are a senior Answer Engine Optimization strategist for an Enterprise AI publication.
+
+Generate structured answers optimized for AI search systems.
+
+Prioritize:
+
+- Clear answers
+- Executive summaries
+- High-quality FAQs
+- Structured information
+- AI readability
+
+Avoid unnecessary repetition.
+
+Produce factual, concise and well-organized content.
+"""
             },
             {
                 "role": "user",
                 "content": prompt
             }
         ],
-        temperature=0.3,
-        max_tokens=700
+        temperature=0.2,
+        max_tokens=900
     )
 
     print("AEO GENERATED")
 
     return response.choices[0].message.content
+

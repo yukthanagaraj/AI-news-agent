@@ -41,13 +41,19 @@ export default async function BlogPage({
     return (
         <main className="min-h-screen bg-white">
 
-            <article className="max-w-4xl mx-auto px-8 py-20">
+            <article className="max-w-5xl mx-auto px-8 py-24">
 
                 {article.imageUrl && (
                     <img
                         src={article.imageUrl}
                         alt={article.title}
-                        className="w-full h-[520px] object-cover rounded-[2rem] shadow-lg"
+                        className="
+                        w-full
+                        aspect-[16/9]
+                        object-cover
+                        rounded-[2rem]
+                        shadow-2xl
+                        "
                     />
                 )}
 
@@ -56,7 +62,7 @@ export default async function BlogPage({
                     className="
           mt-14
           text-center
-          text-[4rem]
+          text-[clamp(3rem,6vw,4.8rem)]
           leading-[1.05]
           tracking-[-0.05em]
           font-bold
@@ -74,8 +80,10 @@ export default async function BlogPage({
           items-center
           justify-center
           gap-8
-          text-zinc-400
-          text-[15px]
+          text-zinc-500
+          tracking-[0.12em]
+          uppercase
+          text-[13px]
           "
                 >
                     <div className="flex items-center gap-2">
@@ -93,13 +101,45 @@ export default async function BlogPage({
                     </div>
                 </div>
 
-                {/* Divider */}
-                <div className="mt-14 border-t border-zinc-200"></div>
 
                 {/* Body */}
-                <div className="prose max-w-5xl mx-auto mt-20">
+                <div className="prose max-w-4xl mx-auto mt-24">
 
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                            h2: ({ children }) => (
+                                <h2 className="font-bold text-zinc-950">
+                                    {children}
+                                </h2>
+                            ),
+
+                            h3: ({ children }) => (
+                                <h3 className="font-bold text-zinc-950">
+                                    {children}
+                                </h3>
+                            ),
+
+                            ul: ({ children }) => (
+                                <ul className="my-8 space-y-4">
+                                    {children}
+                                </ul>
+                            ),
+
+                            li: ({ children }) => (
+                                <li className="leading-8">
+                                    {children}
+                                </li>
+                            ),
+
+
+                            blockquote: ({ children }) => (
+                                <blockquote>
+                                    {children}
+                                </blockquote>
+                            )
+                        }}
+                    >
                         {article.content}
                     </ReactMarkdown>
 
@@ -118,7 +158,11 @@ export default async function BlogPage({
             px-7
             py-4
             rounded-full
-            bg-orange-100
+            bg-orange-50
+            border
+            border-orange-200
+            hover:-translate-y-1
+            hover:shadow-lg
             text-orange-700
             font-semibold
             hover:bg-orange-200
@@ -130,9 +174,13 @@ export default async function BlogPage({
 
                 </div>
 
-                <RelatedArticles />
+                <div className="mt-24">
+                    <RelatedArticles />
+                </div>
 
-                <NewsletterBox />
+                <div className="mt-20">
+                    <NewsletterBox />
+                </div>
 
             </article>
 

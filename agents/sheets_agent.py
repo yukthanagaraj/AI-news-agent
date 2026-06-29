@@ -1,7 +1,9 @@
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-from dotenv import load_dotenv
 import os
+from datetime import datetime
+
+import gspread
+from dotenv import load_dotenv
+from oauth2client.service_account import ServiceAccountCredentials
 
 load_dotenv()
 
@@ -24,19 +26,39 @@ def get_sheet():
             scope
         )
 
-        client = gspread.authorize(
-            creds
-        )
+        client = gspread.authorize(creds)
 
-        sheet_id = os.getenv(
-            "GOOGLE_SHEET_ID"
-        )
+        sheet_id = os.getenv("GOOGLE_SHEET_ID")
 
-        _sheet = client.open_by_key(
-            sheet_id
-        ).sheet1
+        _sheet = client.open_by_key(sheet_id).sheet1
 
     return _sheet
+
+
+def format_date(date):
+
+    if not date:
+        return datetime.now().strftime("%d %B, %Y")
+
+    try:
+        # NewsAPI format
+        return datetime.strptime(
+            date,
+            "%Y-%m-%dT%H:%M:%SZ"
+        ).strftime("%d %B, %Y")
+    except ValueError:
+        pass
+
+    try:
+        # YYYY-MM-DD format
+        return datetime.strptime(
+            date,
+            "%Y-%m-%d"
+        ).strftime("%d %B, %Y")
+    except ValueError:
+        pass
+
+    return date
 
 
 def save_blog(
@@ -50,9 +72,11 @@ def save_blog(
 
     sheet = get_sheet()
 
+    formatted_date = format_date(date)
+
     sheet.append_row(
         [
-            date,
+            formatted_date,
             title,
             blog_content,
             image_prompt,

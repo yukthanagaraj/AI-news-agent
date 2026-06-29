@@ -1,57 +1,156 @@
 TITLE_RULES = """
-* Title must contain 4 to 6 words.
-* Never generate titles with fewer than 4 words.
-* Never generate titles with more than 6 words.
-* Count the words before generating the title.
-* If the title contains fewer than 4 words, rewrite it.
-* If the title contains more than 6 words, shorten it.
+TITLE OBJECTIVE
 
-TITLE UNIQUENESS RULES
+Generate ONE premium executive editorial title.
 
-- Prefer strategic observations over technology descriptions.
-- Prefer business implications over product features.
-- Avoid generic titles containing:
-  - AI
-  - Agents
-  - Enterprise
-  - Future
-  unless required.
-- Generate titles that sound like executive insights.
+The title should read like an insight from an Enterprise AI publication rather than a news headline.
+
+Use the news only as inspiration.
+
+Describe the larger enterprise transformation, not the news event.
+
+==================================================
+TITLE PHILOSOPHY
+================
+
+Every title should communicate an enterprise shift.
+
+Focus on:
+
+• Business transformation
+• Enterprise execution
+• Organizational redesign
+• Competitive advantage
+• Operational intelligence
+• Workforce evolution
+• Decision intelligence
+• Enterprise coordination
+• AI-native organizations
+
+Readers should become curious about the business implication rather than the news itself.
+
+==================================================
+TITLE LENGTH
+============
+
+• Exactly 6 to 8 words.
+• Validate the word count before returning.
+• Rewrite until the requirement is satisfied.
+
+==================================================
+EDITORIAL STYLE
+===============
+
+Write titles that sound like executive observations.
+
+Prefer titles that describe:
+
+• A strategic shift
+• A business transition
+• A changing enterprise capability
+• A new operating model
+• An emerging competitive advantage
+
+Avoid describing technology alone.
+
+Always emphasize enterprise outcomes.
+
+==================================================
+SEO KEYWORDS
+============
+
+Naturally include ONE or TWO when appropriate.
 
 Examples:
 
-Control Becomes Competitive Advantage
+• Agentic AI
+• AI Agents
+• Enterprise AI
+• AI Employees
+• Digital Workers
+• Enterprise Automation
+• Operational Intelligence
+• Human-AI Collaboration
+• Enterprise Productivity
+• Future of Work
 
-Coordination Finds New Intelligence
+Never force keywords.
 
-Execution Gains Strategic Context
+==================================================
+AVOID
+=====
 
-Automation Changes Enterprise Economics
+Never use:
 
-Context Becomes Competitive Advantage
+• Company names
+• CEO names
+• Product names
+• Funding announcements
+• Acquisitions
+• News headlines
+• Clickbait
+• Questions
+• Colons
+• Quotation marks
+• Marketing language
 
-Decisions Gain Organizational Memory
+Avoid titles such as:
 
-Avoid:
+AI Agents Improve Productivity
 
-* AI Agents Transform Work
-* AI Employees Redefine Work
-* Agents Shape Enterprise Future
-* Future Of Work
-* Enterprise Transformation
+OpenAI Launches New Model
 
-Preferred style:
+Microsoft Expands AI Platform
 
-* Control Becomes Competitive
-* Coordination Finds Intelligence
-* Execution Gains Context
-* Automation Changes Economics
-* Access Shapes Advantage
-* Context Becomes Strategy
-* Intelligence Meets Operations
-* Workflows Learn Faster
-* Decisions Gain Memory
-* Software Learns Execution
-  """
+Enterprise Software Uses AI
+
+==================================================
+GOOD EXAMPLES
+=============
+
+Enterprise Software Enters Autonomous Operations
+
+Operational Intelligence Becomes Competitive Advantage
+
+Execution Is Becoming Enterprise Infrastructure
+
+Digital Labor Reshapes Enterprise Operations
+
+Enterprise Coordination Enters A New Era
+
+AI Execution Redefines Business Operations
+
+Autonomous Workflows Transform Enterprise Execution
+
+Organizations Are Becoming AI Native
+
+Operational Intelligence Replaces Software Complexity
+
+AI Employees Expand Enterprise Capability
+
+==================================================
+FINAL VALIDATION
+================
+
+Before returning the title verify:
+
+✓ 6–8 words
+
+✓ Sounds editorial rather than descriptive
+
+✓ Describes an enterprise shift
+
+✓ Does not summarize the news
+
+✓ No company names
+
+✓ No product names
+
+✓ Executive tone
+
+✓ SEO friendly
+
+✓ Suitable for an Enterprise AI publication
+"""
 
 

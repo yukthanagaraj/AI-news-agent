@@ -1,134 +1,189 @@
 FRAMEWORK_RULES = """
-FRAMEWORK CARD RULES
+FRAMEWORK OBJECTIVE
 
-Avoid markdown tables completely.
+When the article discusses enterprise transformation, AI Agents, operational change, or business strategy, organize complex ideas into clear executive frameworks.
 
-Instead generate framework cards.
+Frameworks should improve readability.
 
-Structure:
+Never interrupt the flow of the article.
 
-### <title>
+Use frameworks only when they genuinely help explain the topic.
 
-- **Capability 1:**
-Short explanation.
+==================================================
+WHEN TO USE
+==================================================
 
-- **Capability 2:**
-Short explanation.
+Use a framework only if the article explains:
 
-- **Capability 3:**
-Short explanation.
+• Enterprise transformation
+• AI Agent capabilities
+• Organizational change
+• Business strategy
+• Competitive positioning
+• Human–AI collaboration
+• Operational intelligence
+• Enterprise automation
+• Digital workforce evolution
 
-Optional:
+Do NOT force a framework into every article.
 
-- **Capability 4**
-- **Capability 5**
+==================================================
+FRAMEWORK STYLE
+==================================================
+
+Introduce the framework naturally.
+
+Use a short introduction.
+
+Then present 3–6 concise capability blocks.
+
+Each capability should include:
+
+Capability Name
+
+↓
+
+One short explanation
+
+Example:
+
+### Enterprise Capabilities
+
+**Decision Intelligence**
+
+AI Agents accelerate enterprise decision-making by continuously analyzing operational data and recommending actions.
+
+**Workflow Automation**
+
+Routine operational tasks become autonomous, allowing teams to focus on strategic initiatives.
+
+**Organizational Learning**
+
+Enterprise knowledge compounds as AI systems continuously improve through execution and feedback.
+
+==================================================
+FRAMEWORK RULES
+==================================================
+
+Each capability:
+
+• 1 short heading
+• 2–4 sentences
+• Executive language
+• Business focused
+
+Do NOT use:
+
+• Markdown tables
+• Numbered lists
+• Long paragraphs
+• Technical implementation details
+
+==================================================
+GOOD FRAMEWORK TOPICS
+==================================================
+
+Enterprise AI Capabilities
+
+AI Agent Responsibilities
+
+Operational Changes
+
+Enterprise Readiness
+
+Competitive Advantages
+
+Executive Priorities
+
+Organizational Capabilities
+
+AI Adoption Stages
+
+Business Transformation Drivers
+
+Enterprise Risks
+
+==================================================
+AVOID
+==================================================
+
+Do NOT generate:
+
+Comparison tables
+
+Feature lists
+
+Product specifications
+
+Programming examples
+
+API documentation
+
+Tutorials
+
+Technical checklists
+
+==================================================
+AEO OPTIMIZATION
+==================================================
+
+Frameworks should naturally answer questions such as:
+
+What capabilities does Agentic AI provide?
+
+How do AI Agents change enterprise operations?
+
+What should enterprise leaders prioritize?
+
+How can organizations prepare?
+
+==================================================
+SEO OPTIMIZATION
+==================================================
+
+Use semantic enterprise keywords naturally.
 
 Examples:
 
-### Intelligence Layers
+Agentic AI
 
-- **Memory:**
-Persistent organizational context.
+AI Agents
 
-- **Agents:**
-Execution capabilities.
+Enterprise AI
 
-- **Tools:**
-External systems.
+AI Employees
 
-- **Decision Systems:**
-Workflow coordination.
+Digital Workers
 
----
+Enterprise Automation
 
-### Operational Priorities
+Operational Intelligence
 
-- **Context:**
-Institutional memory.
+Business Transformation
 
-- **Automation:**
-Routine work becomes autonomous.
+Human–AI Collaboration
 
-- **Adaptation:**
-Processes improve continuously.
+Competitive Advantage
 
----
+==================================================
+FINAL VALIDATION
+==================================================
 
-### Architectural Highlights
+Before generating a framework verify:
 
-- **Embedded Governance:**
-Policies move closer to execution.
+✓ It improves understanding.
 
-- **Continuous Oversight:**
-Monitoring becomes proactive.
+✓ It is business focused.
 
-- **Operational Transparency:**
-Audit trails become native.
+✓ It contains 3–6 capability blocks.
 
----
+✓ Each block introduces one unique idea.
 
-### AI Employee Model
+✓ No repetition.
 
-- **Reasoning:**
-Systems evaluate alternatives.
+✓ Executive tone.
 
-- **Execution:**
-Tasks are completed autonomously.
+✓ No tables.
 
-- **Memory:**
-Context persists over time.
-
-- **Coordination:**
-Humans and agents collaborate.
-
----
-
-### Enterprise Priorities
-
-- **Trust:**
-Governance becomes essential.
-
-- **Speed:**
-Decision cycles shorten.
-
-- **Visibility:**
-Operations become measurable.
-
-- **Adaptability:**
-Organizations evolve continuously.
-
----
-
-### Human + AI Systems
-
-- **People:**
-Provide goals and oversight.
-
-- **Agents:**
-Handle execution.
-
-- **Tools:**
-Connect workflows.
-
-- **Feedback:**
-Improve outcomes over time.
-
-Generate different framework cards for every article.
-
-Use markdown bullet lists.
-
-These bullet points will be displayed beautifully on the website.
-
-Avoid markdown tables completely.
-
-Focus on:
-
-- AI Agents
-- AI Employees
-- Enterprise AI
-- Human + AI collaboration
-- Future of Work
-- Digital Labor
-
-Frameworks should feel like executive insights rather than technical documentation.
+✓ No technical jargon.
 """

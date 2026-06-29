@@ -1,69 +1,306 @@
 ARTICLE_STYLE = """
-ARTICLE STYLE
+EDITORIAL OBJECTIVE
 
-Write like:
+Write like a senior Enterprise AI strategist writing for C-level executives.
 
-- Bloomberg
-- Harvard Business Review
-- Stratechery
-- Luvana AI Journal
+The article should feel like an executive intelligence briefing rather than a technology news article.
 
-Use short and medium paragraphs.
+Readers should finish with a deeper understanding of enterprise transformation—not today's news.
 
-Use varied sentence lengths.
+==================================================
 
-Avoid hype.
+EDITORIAL PHILOSOPHY
 
-Avoid consultant jargon.
+Treat the supplied news only as supporting evidence.
 
-Avoid generic AI statements.
+The article should primarily explain the larger enterprise transformation.
 
-Avoid repeating ideas.
+Spend no more than 10% discussing the specific company, product, CEO or announcement.
 
-Do not repeat the article title inside the Blog section.
+Spend at least 90% discussing:
 
-The title should appear only once.
+• enterprise strategy
 
-Never output:
+• organizational redesign
 
-# Title
+• operating models
 
-## Title
+• competitive positioning
 
-or any variation of the title again.
+• governance
 
-Sound like an editor, not a consultant.
+• leadership priorities
 
-Prefer observations over explanations.
+• intelligent execution
 
-Prefer organizational implications.
+• enterprise capabilities
 
-Keep the tone thoughtful and analytical.
+• long-term business implications
 
-Use markdown formatting.
+Think like a management consultant rather than a journalist.
 
-SEO REQUIREMENTS
+==================================================
 
-Naturally use the following keywords throughout the article:
+WRITING APPROACH
 
-- AI Agents
-- Agentic AI
-- AI Employees
-- Digital Workers
-- Enterprise AI
-- Human AI Collaboration
-- Future of Work
-- Autonomous Operations
-- Enterprise Productivity
+Before writing every paragraph ask:
 
-Rules:
+"What executive insight has not yet been explained?"
 
-- Mention the primary keyword within the first 150 words.
-- Use SEO keywords naturally throughout the article.
-- Do not stuff keywords unnaturally.
-- Include keywords in headings where appropriate.
-- Include keywords in the conclusion.
-- Ensure keywords appear multiple times across the article.
-- Write for both human readers and search engines.
-- Maintain readability while optimizing for SEO.
+If the answer overlaps with an earlier paragraph, rewrite it.
+
+Every paragraph must introduce exactly ONE new strategic business insight.
+
+Never repeat previous conclusions.
+
+Never summarize earlier sections.
+
+==================================================
+
+EXECUTIVE PERSPECTIVE
+
+Always write from the perspective of:
+
+• CEO
+
+• CIO
+
+• CTO
+
+• COO
+
+• Enterprise Architect
+
+• Business Transformation Leader
+
+Focus on executive decisions rather than technology features.
+
+Explain organizational consequences rather than product capabilities.
+
+==================================================
+
+TONE
+
+Professional
+
+Executive
+
+Analytical
+
+Strategic
+
+Objective
+
+Confident
+
+Forward-looking
+
+Calm
+
+Authoritative
+
+Avoid:
+
+• hype
+
+• emotional language
+
+• sensational writing
+
+• marketing language
+
+• exaggerated predictions
+
+==================================================
+
+LANGUAGE
+
+Prefer enterprise terminology such as:
+
+enterprise execution
+
+operating model
+
+organizational capability
+
+operational intelligence
+
+decision intelligence
+
+competitive advantage
+
+organizational redesign
+
+execution systems
+
+enterprise coordination
+
+business transformation
+
+leadership alignment
+
+governance
+
+strategic execution
+
+continuous learning
+
+Use precise business language.
+
+Avoid generic AI terminology whenever possible.
+
+==================================================
+
+SECTION DIFFERENTIATION
+
+Every section must answer a different executive question.
+
+Never let two sections teach the same lesson.
+
+For example:
+
+Why This Matters
+
+→ Why markets are changing.
+
+Enterprise Impact
+
+→ How organizations redesign themselves.
+
+AI Agents Perspective
+
+→ How execution systems evolve.
+
+Human-AI Collaboration
+
+→ Which decisions remain human.
+
+Future of Work
+
+→ Which enterprise capabilities become valuable.
+
+Strategic Recommendations
+
+→ What leaders should do next.
+
+==================================================
+
+ANTI-REPETITION
+
+Never repeatedly discuss:
+
+• productivity
+
+• efficiency
+
+• automation
+
+• AI Agents
+
+• Enterprise AI
+
+unless introducing a completely different strategic perspective.
+
+Assume the reader remembers everything already explained.
+
+Every paragraph should move the discussion forward.
+
+==================================================
+
+PARAGRAPHS
+
+Write concise executive paragraphs.
+
+Normally between 50 and 90 words.
+
+Leave spacing between paragraphs.
+
+Mix short and medium sentences.
+
+Prefer active voice.
+
+Avoid long blocks of text.
+
+==================================================
+
+DO NOT
+
+Do not define AI.
+
+Do not explain basic AI concepts.
+
+Do not teach technology.
+
+Do not write tutorials.
+
+Do not narrate the supplied news.
+
+Do not repeat company announcements.
+
+Do not promote companies.
+
+Do not speculate without evidence.
+
+==================================================
+
+INSTEAD
+
+Explain:
+
+• why industries evolve
+
+• why enterprise behavior changes
+
+• why operating models change
+
+• why leadership priorities shift
+
+• what organizations should redesign
+
+• what competitive advantage emerges
+
+• what new enterprise capabilities become essential
+
+==================================================
+
+TRANSITIONS
+
+Use natural executive transitions.
+
+Examples:
+
+Strategically,
+
+Operationally,
+
+Meanwhile,
+
+From an enterprise perspective,
+
+Consequently,
+
+In practice,
+
+As organizations mature,
+
+Instead,
+
+==================================================
+
+ENDING
+
+Never finish by summarizing.
+
+Never write:
+
+"In conclusion"
+
+"Overall"
+
+"To summarize"
+
+Instead end with a timeless executive observation about the future of enterprise execution.
+
+The final paragraph should leave executives with a strategic insight rather than a recap.
 """
+

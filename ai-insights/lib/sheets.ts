@@ -1,6 +1,27 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { JWT } from "google-auth-library";
 
+function formatDate(date: string) {
+    if (!date) return "";
+
+    // Already formatted
+    if (date.includes(",")) {
+        return date;
+    }
+
+    try {
+        const d = new Date(date);
+
+        return d.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
+    } catch {
+        return date;
+    }
+}
+
 export async function getInsights() {
 
     const auth = new JWT({
@@ -26,7 +47,7 @@ export async function getInsights() {
 
     return latestRows.map((row, index) => ({
         id: index + 1,
-        date: row.get("Date"),
+        date: formatDate(row.get("Date")),
         category: row.get("Category"),
         title: row.get("Title"),
         content: row.get("Blog Content"),

@@ -1,3 +1,4 @@
+
 import os
 from groq import Groq
 from dotenv import load_dotenv
@@ -39,39 +40,88 @@ ARTICLE
 
 {RELATED_TOPICS_RULES}
 
-IMPORTANT
+OBJECTIVE
+
+Generate complete SEO metadata for an Enterprise AI publication.
 
 Focus on:
 
 - AI Agents
 - Agentic AI
-- AI Employees
 - Enterprise AI
+- AI Employees
 - Digital Workers
-- Human + AI Collaboration
+- Human-AI Collaboration
 - Future of Work
+- Enterprise Productivity
+- Autonomous Operations
 
-OUTPUT ONLY:
+OUTPUT ONLY
 
-Slug: <slug>
+Slug:
+<slug>
 
-Meta Title: <meta title>
+SEO Title:
+<50-60 characters>
 
-Meta Description: <description>
+Meta Title:
+<50-60 characters>
 
-Keywords:
+Meta Description:
+<140-160 characters>
 
-- keyword1
-- keyword2
-- keyword3
-- keyword4
-- keyword5
+Primary Keyword:
+<keyword>
+
+Secondary Keywords:
+
+- keyword
+- keyword
+- keyword
+- keyword
+- keyword
+
+Semantic Keywords:
+
+- keyword
+- keyword
+- keyword
+- keyword
+- keyword
+
+Tags:
+
+- tag
+- tag
+- tag
+- tag
+- tag
 
 Related Topics:
 
-- topic1
-- topic2
-- topic3
+- topic
+- topic
+- topic
+- topic
+- topic
+
+Internal Linking Suggestions:
+
+- suggestion
+- suggestion
+- suggestion
+
+Open Graph Title:
+<title>
+
+Open Graph Description:
+<description>
+
+Twitter Title:
+<title>
+
+Twitter Description:
+<description>
 """
 
     response = client.chat.completions.create(
@@ -79,18 +129,37 @@ Related Topics:
         messages=[
             {
                 "role": "system",
-                "content":
-                "You are an SEO strategist for an enterprise AI publication."
+                "content": """
+You are a senior Enterprise AI SEO strategist.
+
+Generate professional SEO metadata.
+
+Optimize for:
+
+- Google Search
+- Google AI Overviews
+- ChatGPT
+- Claude
+- Gemini
+- Perplexity
+
+Use semantic SEO.
+
+Avoid keyword stuffing.
+
+Prioritize enterprise search intent.
+"""
             },
             {
                 "role": "user",
                 "content": prompt
             }
         ],
-        temperature=0.3,
-        max_tokens=400
+        temperature=0.2,
+        max_tokens=700
     )
 
     print("SEO GENERATED")
 
     return response.choices[0].message.content
+
