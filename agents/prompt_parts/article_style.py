@@ -263,6 +263,42 @@ Explain:
 
 ==================================================
 
+DEPTH OF ANALYSIS
+
+Never stop after explaining WHAT organizations should do.
+
+Always explain WHY it matters.
+
+Relate every recommendation to at least one of the following:
+
+• enterprise economics
+
+• operating model transformation
+
+• competitive advantage
+
+• organizational capability
+
+• executive decision making
+
+• capital allocation
+
+• enterprise resilience
+
+• long-term business strategy
+
+Every recommendation should explain its strategic business consequence.
+
+Do not simply recommend governance, AI adoption or automation.
+
+Instead explain how those changes reshape enterprise competitiveness and long-term organizational performance.
+
+Readers should understand the business consequence—not just the recommendation.
+
+==================================================
+
+==================================================
+
 TRANSITIONS
 
 Use natural executive transitions.

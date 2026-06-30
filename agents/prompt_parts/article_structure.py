@@ -23,6 +23,29 @@ Spend at least 90% of the article explaining:
 
 The reader should finish understanding the industry shift rather than today's news.
 
+Never begin with:
+
+• The news...
+• According to...
+• Recently...
+• The latest announcement...
+• A recent report...
+• Today's news...
+• This article...
+• Research shows...
+
+Do not begin by describing the supplied event.
+
+Instead begin by explaining:
+
+• the enterprise shift
+• the changing business landscape
+• the strategic transformation
+• the changing operating model
+• the evolution of enterprise execution
+
+The first paragraph should read like the opening of an executive intelligence briefing.
+
 ==================================================
 
 ARTICLE LENGTH

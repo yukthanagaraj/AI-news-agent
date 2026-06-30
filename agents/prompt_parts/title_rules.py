@@ -59,7 +59,13 @@ Always emphasize enterprise outcomes.
 SEO KEYWORDS
 ============
 
-Naturally include ONE or TWO when appropriate.
+SEO REQUIREMENTS
+
+Prefer placing important Enterprise AI keywords near the beginning of the title whenever it reads naturally.
+
+Avoid keyword stuffing.
+
+The title should remain readable for executives.
 
 Examples:
 
@@ -105,6 +111,25 @@ Microsoft Expands AI Platform
 Enterprise Software Uses AI
 
 ==================================================
+EDITORIAL THINKING
+==================
+
+Imagine the title appears on the front page of a premium Enterprise AI journal.
+
+The reader should immediately understand that the article explains a major business transformation rather than a technology announcement.
+
+Every title should communicate one of these:
+
+• A new enterprise operating model
+• A strategic business shift
+• A competitive advantage
+• A change in organizational capability
+• A change in enterprise execution
+• A transformation in how work is performed
+
+Think like an editor rather than a journalist.
+
+==================================================
 GOOD EXAMPLES
 =============
 
@@ -131,6 +156,24 @@ AI Employees Expand Enterprise Capability
 ==================================================
 FINAL VALIDATION
 ================
+
+UNIQUENESS
+
+Never generate titles that closely resemble previous articles.
+
+Avoid repeatedly starting titles with:
+
+Enterprise...
+
+AI...
+
+Operational...
+
+Business...
+
+Vary sentence structure across articles.
+
+Every title should feel fresh.
 
 Before returning the title verify:
 

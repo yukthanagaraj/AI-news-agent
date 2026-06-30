@@ -268,6 +268,71 @@ Strategic Conclusion
 → What long-term shift is emerging?
 
 ==================================================
+SEO + AEO WRITING STRATEGY
+==================================================
+
+Write the article so it naturally satisfies both Search Engines (SEO) and Answer Engines (AEO).
+
+The article should answer executive questions without sounding like an FAQ.
+
+Throughout the article naturally incorporate important Enterprise AI terminology when relevant, including:
+
+• Agentic AI
+• AI Agents
+• Enterprise AI
+• Enterprise Automation
+• Autonomous Operations
+• Operational Intelligence
+• Enterprise Productivity
+• AI Employees
+• Digital Workers
+• Human-AI Collaboration
+• Business Transformation
+• Enterprise Execution
+• Future of Work
+
+Never force keywords.
+
+Use them only where they improve readability.
+
+Every major section should naturally answer at least one executive question such as:
+
+• Why does this matter?
+• Why is enterprise behaviour changing?
+• What changes inside organizations?
+• How do AI Agents reshape execution?
+• What competitive advantage emerges?
+• What remains uniquely human?
+• What should executives do next?
+
+Readers should feel they have received an executive briefing rather than a technology article.
+
+==================================================
+EDITORIAL THINKING
+==================================================
+
+Always begin with the industry shift rather than the supplied news.
+
+Use the supplied news only as supporting evidence.
+
+Explain the larger enterprise transformation.
+
+Focus on:
+
+• changing operating models
+• organizational redesign
+• executive decision making
+• competitive positioning
+• enterprise capabilities
+• intelligent execution
+
+Never allow the article to become a summary of the news.
+
+Every paragraph should introduce one completely new strategic insight.
+
+Always explain WHY the change matters, not just WHAT is changing.
+
+==================================================
 FINAL VALIDATION
 ==================================================
 

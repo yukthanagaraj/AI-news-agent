@@ -71,6 +71,29 @@ TRUSTED_NEWS_SOURCES = [
     "SD Times"
 ]
 
+PREMIUM_SOURCES = {
+    "Reuters",
+    "TechCrunch",
+    "VentureBeat",
+    "MIT Technology Review",
+    "Business Insider",
+    "Forbes",
+    "Wired",
+    "The Verge",
+    "Fast Company",
+    "InfoQ",
+    "ComputerWeekly",
+    "TechRepublic",
+}
+
+SECONDARY_SOURCES = {
+    "Slashdot",
+    "The New Stack",
+    "DevOps.com",
+    "SD Times",
+    "RedMonk",
+}
+
 BAD_DOMAINS = [
     "pypi.org",
     "github.com",
@@ -173,7 +196,6 @@ MEDIUM_PRIORITY_KEYWORDS = [
 LOW_PRIORITY_KEYWORDS = [
     "llm",
     "language model",
-    "artificial intelligence",
     "generative ai",
     "machine learning"
 ]
@@ -304,6 +326,9 @@ def normalize_title(title: str) -> str:
     .replace(",", "")
     .replace("(", "")
     .replace(")", "")
+    .replace(".", "")
+    .replace("!", "")
+    .replace("?", "")
     .strip()
 )
     # Remove extra whitespace
@@ -336,7 +361,9 @@ def fetch_ai_news(
     
     Implements multiple filtering layers:
     - Keyword-based relevance filtering with confidence scoring
-    - Trusted news source bonus (not hard rejection)
+    - Tiered trusted news source bonuses (Premium vs Secondary)
+    - Freshness bonus for recent articles
+    - Short title penalty
     - Duplicate detection with normalization
     - Bad domain blocking
     - Package release detection
@@ -402,6 +429,7 @@ def fetch_ai_news(
         source = article.get("source", {}).get("name", "")
         url = article.get("url", "")
         description = article.get("description") or ""
+        published = article.get("publishedAt", "")
 
         # FILTER 1: Skip press releases
         if "business wire" in source.lower():
@@ -435,11 +463,14 @@ def fetch_ai_news(
             for keyword in LOW_PRIORITY_KEYWORDS
         )
 
-        # FILTER 4: Apply source bonus for trusted sources (conditional)
-        trusted = any(
-            trusted_source.lower() in source.lower()
-            for trusted_source in TRUSTED_NEWS_SOURCES
-        )
+        # FILTER 4: Apply tiered source bonus (Premium vs Secondary)
+        source_bonus = 0
+
+        if any(s.lower() in source.lower() for s in PREMIUM_SOURCES):
+            source_bonus = 3
+
+        elif any(s.lower() in source.lower() for s in SECONDARY_SOURCES):
+            source_bonus = 1
         
         base_score = (
             high_matches * 4
@@ -447,12 +478,29 @@ def fetch_ai_news(
             + low_matches
         )
         
-        # Apply trusted source bonus only if base score is good enough
-        source_bonus = 0
-        if trusted:
-             source_bonus = 2
-        
         total_score = base_score + source_bonus
+
+        # Apply short title penalty
+        if len(title.split()) < 5:
+            total_score -= 2
+
+        # Apply freshness bonus
+        if published:
+            try:
+                age_hours = (
+                    datetime.utcnow() -
+                    datetime.fromisoformat(
+                        published.replace("Z", "+00:00")
+                    ).replace(tzinfo=None)
+                ).total_seconds() / 3600
+
+                if age_hours <= 12:
+                    total_score += 2
+
+                elif age_hours <= 24:
+                    total_score += 1
+            except Exception as e:
+                print(f"Could not parse publish date: {e}")
         
         print(f"TITLE: {title}")
         print(f"Score: {total_score} (High: {high_matches}, Medium: {medium_matches}, Low: {low_matches}, Source Bonus: {source_bonus})")
@@ -551,7 +599,26 @@ Article Text:
 {full_text}
 
 Business Context:
-This article focuses on enterprise adoption of Agentic AI, AI Agents, Enterprise AI, Digital Workers, Human–AI Collaboration, Developer Productivity, and the Future of Work. Generate an executive analysis explaining strategic implications rather than simply summarizing the news.
+
+Treat the supplied article only as supporting evidence.
+
+Explain:
+
+• enterprise strategy
+
+• operational redesign
+
+• organizational capability
+
+• competitive positioning
+
+• executive decision making
+
+• future operating models
+
+Avoid summarizing the article.
+
+Focus on why the enterprise landscape is changing.
 
 Image Prompt:
 Enterprise AI agents collaborating with human professionals, digital workers, intelligent automation, enterprise dashboards, modern business operations, futuristic corporate environment.

@@ -117,11 +117,14 @@ img {
 /* =========================
    LISTS
 ========================= */
-
 .prose ul {
-  margin: 2rem 0;
-  padding-left: 1rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.75rem 2rem;
+  margin: 2.5rem 0;
   list-style: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 .prose li {
@@ -137,7 +140,7 @@ img {
   margin-bottom: 0;
 }
 
-.prose li::before {
+/* .prose li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -146,6 +149,17 @@ img {
   height: 5px;
   background: #f97316;
   border-radius: 50%;
+} */
+
+.prose li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.82rem;
+  width: 5px;
+  height: 5px;
+  background: #f97316;
+  border-radius: 999px;
 }
 
 .prose {
