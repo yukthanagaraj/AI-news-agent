@@ -83,6 +83,46 @@ Examples:
 Never force keywords.
 
 ==================================================
+SEO TITLE OPTIMIZATION
+======================
+
+When it reads naturally, prefer including one high-value Enterprise AI keyword near the beginning of the title.
+
+Priority keywords:
+
+• Agentic AI
+• Enterprise AI
+• AI Agents
+• Operational Intelligence
+• Enterprise Execution
+• Digital Workers
+
+The title should describe the larger enterprise transformation rather than a specific technology announcement.
+
+Prefer titles that communicate:
+
+• Enterprise transformation
+• Strategic business change
+• Organizational evolution
+• Competitive advantage
+• Operational intelligence
+• Enterprise execution
+
+Examples:
+
+• Enterprise Execution Enters the Agentic AI Era
+
+• Operational Intelligence Redefines Enterprise Strategy
+
+• AI Agents Reshape Enterprise Execution Models
+
+• Enterprise AI Accelerates Organizational Transformation
+
+Avoid forcing keywords when they reduce readability.
+
+Executive clarity is always more important than keyword density.
+
+==================================================
 AVOID
 =====
 

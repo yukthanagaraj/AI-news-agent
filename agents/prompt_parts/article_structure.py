@@ -46,6 +46,39 @@ Instead begin by explaining:
 
 The first paragraph should read like the opening of an executive intelligence briefing.
 
+INTRODUCTION DEPTH
+
+The first paragraph should explain:
+
+• Why enterprise operating models are changing
+• Why executives are rethinking execution
+• Why competitive dynamics are shifting
+
+Do not introduce AI technology immediately.
+
+Begin with the business transformation.
+
+Mention Agentic AI or the supplied news only in the second paragraph as supporting evidence.
+
+Every recommendation should answer two questions:
+
+1. What should leaders do?
+
+2. Why does this create long-term strategic advantage?
+
+Never stop after describing an action.
+
+Always explain the business consequence.
+
+Whenever possible, relate recommendations to:
+
+• Enterprise economics
+• Competitive differentiation
+• Organizational resilience
+• Capital efficiency
+• Decision quality
+• Long-term market positioning
+
 ==================================================
 
 ARTICLE LENGTH
