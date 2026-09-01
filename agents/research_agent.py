@@ -1,33 +1,101 @@
 import os
+import random
+import re
 import requests
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
+from difflib import SequenceMatcher
 from newspaper import Article
+
+from agents.history_manager import (
+    get_used_topics,
+    remember_topic,
+    get_used_clusters,
+    remember_cluster,
+)
 
 load_dotenv()
 
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
+import requests as _requests_lib
+from bs4 import BeautifulSoup
+
+
+
+
 # ============================================================================
 # CONSTANTS
 # ============================================================================
 
-ENTERPRISE_AI_QUERY = (
-    '"Agentic AI" OR '
-    '"AI Agents" OR '
-    '"Enterprise AI" OR '
-    '"Enterprise Software" OR '
-    '"Enterprise Automation" OR '
-    '"Autonomous Operations" OR '
-    '"Digital Workers" OR '
-    '"Future of Work" OR '
-    '"Human-AI Collaboration" OR '
-    '"AI Coding Agents" OR '
-    '"Developer Productivity" OR '
-    '"Business Transformation" OR '
-    '"Operational Intelligence" OR '
-    '"Enterprise Productivity"'
-)
+TOPIC_CLUSTERS = {
+
+    "AI Agents":
+        (
+            '"AI Agents" OR '
+            '"Agentic AI" OR '
+            '"Multi-Agent Systems" OR '
+            '"Autonomous AI"'
+        ),
+
+    "Enterprise AI":
+        (
+            '"Enterprise AI" OR '
+            '"Enterprise Automation" OR '
+            '"Enterprise Software" OR '
+            '"Business AI"'
+        ),
+
+    "AI Economics":
+        (
+            '"AI ROI" OR '
+            '"Enterprise Productivity" OR '
+            '"AI Investment" OR '
+            '"Business Value of AI" OR '
+            '"AI Adoption" OR '
+            '"Enterprise Automation"'
+        ),
+
+    "AI Governance":
+        (
+            '"AI Governance" OR '
+            '"Responsible AI" OR '
+            '"AI Compliance" OR '
+            '"AI Risk"'
+        ),
+
+    "Enterprise Infrastructure":
+        (
+            '"AI Infrastructure" OR '
+            '"Enterprise AI Platform" OR '
+            '"Retrieval Augmented Generation" OR '
+            '"Model Context Protocol" OR '
+            '"Enterprise Vector Database"'
+        ),
+
+    "Digital Workers":
+        (
+            '"Digital Workers" OR '
+            '"AI Employees" OR '
+            '"Autonomous Workforce"'
+        ),
+
+    "Future of Work":
+        (
+            '"Future of Work" OR '
+            '"Knowledge Workers" OR '
+            '"Human AI Collaboration"'
+        ),
+
+    "Enterprise Strategy":
+        (
+            '"Enterprise Strategy" OR '
+            '"Enterprise Transformation" OR '
+            '"Digital Transformation" OR '
+            '"Business Strategy" OR '
+            '"AI Strategy"'
+        ),
+}
 
 TRUSTED_NEWS_SOURCES = [
     "Reuters",
@@ -68,10 +136,15 @@ TRUSTED_NEWS_SOURCES = [
     "TechRepublic",
     "RedMonk",
     "DevOps.com",
-    "SD Times"
+    "SD Times",
+    "SiliconANGLE News",
+    "ComputerWeekly.com",
+    "Microsoft.com",
+    "Fortinet.com",
 ]
 
 PREMIUM_SOURCES = {
+
     "Reuters",
     "TechCrunch",
     "VentureBeat",
@@ -81,17 +154,50 @@ PREMIUM_SOURCES = {
     "Wired",
     "The Verge",
     "Fast Company",
-    "InfoQ",
-    "ComputerWeekly",
-    "TechRepublic",
-}
 
+    "ZDNet",
+    "Computer Weekly",
+    "ComputerWeekly",
+    "InfoQ",
+    "TechRepublic",
+    "CIO",
+    "InfoWorld",
+    "Computerworld",
+    "The Register",
+    "SiliconANGLE",
+    "The Decoder",
+    "Help Net Security",
+    "The Next Web",
+    "Search Engine Journal",
+    "Fortinet",
+    "Forrester",
+    "BusinessLine",
+    "The Economic Times",
+    "Economic Times",
+    "Mint",
+    "Fortune",
+    "Bloomberg",
+    "CNBC",
+}
+  
 SECONDARY_SOURCES = {
+
     "Slashdot",
     "The New Stack",
     "DevOps.com",
     "SD Times",
     "RedMonk",
+
+    "TechRadar",
+    "Silicon Republic",
+    "CIO Dive",
+    "AI Business",
+    "Unite.AI",
+    "Tech Times",
+    "Stack Overflow Blog",
+    "JetBrains",
+    "CNX Software",
+
 }
 
 BAD_DOMAINS = [
@@ -117,7 +223,9 @@ BAD_DOMAINS = [
     "finance.yahoo.com",
     "seekingalpha.com",
     "fool.com",
-    "marketscreener.com"
+    "marketscreener.com",
+    "itsfoss.com",
+    "freerepublic.com",
 ]
 
 PACKAGE_PATTERNS = [
@@ -158,11 +266,32 @@ HIGH_PRIORITY_KEYWORDS = [
     "intelligent automation",
     "ai security",
     "enterprise platform",
-    "enterprise transformation"
+    "enterprise transformation",
+    "agentic",
+    "autonomous",
+    "enterprise operations",
+    "enterprise workflow",
+    "enterprise execution",
+    "operational intelligence",
+    "ai observability",
+    "production ai",
+    "ai governance",
+    "enterprise security",
+    "ai infrastructure",
+    "intelligent operations",
+    "enterprise software",
+    "business operations",
+    "shadow ai",
+    "ai spend",
+    "ai investment",
+    "ai budget",
+    "ai talent",
+    "ai roi",
+    "ai strategy",
 ]
 
 MEDIUM_PRIORITY_KEYWORDS = [
-    "workflow",
+    
     "workflow automation",
     "automation",
     "enterprise software",
@@ -175,7 +304,6 @@ MEDIUM_PRIORITY_KEYWORDS = [
     "copilot",
     "enterprise copilot",
     "digital transformation",
-    "productivity",
     "ai assistant",
     "autonomous workflow",
     "orchestration",
@@ -190,43 +318,53 @@ MEDIUM_PRIORITY_KEYWORDS = [
     "enterprise applications",
     "workflow intelligence",
     "business operations",
-    "software lifecycle"
+    "software lifecycle",
+    "operations",
+"production",
+"observability",
+"governance",
+"workflow",
+"platform",
+"infrastructure",
+"enterprise",
+"business",
+"deployment",
+"implementation",
+"adoption",
+"security",
+"productivity",
 ]
 
 LOW_PRIORITY_KEYWORDS = [
     "llm",
     "language model",
+    "large language model",
+    "foundation model",
+    "reasoning model",
     "generative ai",
     "machine learning"
 ]
 
 UNWANTED_KEYWORDS = [
-    # Consumer Tech
     "iphone",
     "android",
     "camera",
     "smartphone",
-    # Hardware
     "gpu",
     "graphics card",
     "chip",
     "processor",
-    # Gaming
     "gaming",
     "playstation",
     "xbox",
-    # Crypto
     "bitcoin",
     "ethereum",
     "token",
-    # Politics
     "election",
     "campaign",
-    # Reviews
     "benchmark",
     "hands-on",
     "review",
-    # Academic
     "arxiv",
     "paper",
     "research paper"
@@ -273,20 +411,75 @@ TOPIC_CLASSIFICATION = {
     ]
 }
 
+INDUSTRY_CLASSIFICATION = {
+    "Healthcare": [
+        "healthcare", "hospital", "clinical", "patient", "health system"
+    ],
+    "Finance": [
+        "bank", "banking", "finance", "fintech", "insurance", "payments"
+    ],
+    "Retail": [
+        "retail", "e-commerce", "ecommerce", "consumer goods", "merchandising"
+    ],
+    "Manufacturing": [
+        "manufacturing", "factory", "supply chain", "industrial", "plant"
+    ],
+    "Cloud": [
+        "cloud", "aws", "azure", "google cloud", "saas", "hyperscaler"
+    ],
+    "Security": [
+        "cybersecurity", "security breach", "threat detection", "soc", "cyberattack"
+    ],
+    "Software": [
+        "software company", "developer tools", "engineering team", "devops", "saas platform"
+    ],
+    "Government": [
+        "government", "public sector", "federal agency", "regulator", "policy maker"
+    ],
+    "Education": [
+        "education", "university", "school district", "edtech", "higher education"
+    ],
+}
+
+AUDIENCE_CLASSIFICATION = {
+    "CISO": [
+        "security", "governance", "risk", "compliance", "breach", "threat"
+    ],
+    "CTO": [
+        "architecture", "infrastructure", "technical stack", "engineering platform", "system design"
+    ],
+    "CIO": [
+        "it operations", "enterprise software", "digital transformation", "technology strategy", "legacy systems"
+    ],
+    "COO": [
+        "operations", "workforce", "productivity", "process", "supply chain", "execution"
+    ],
+    "CEO": [
+        "strategy", "market", "competitive", "investment", "business model", "growth"
+    ],
+}
+
+TOPIC_DIVERSITY_LOOKBACK = 5
+CLUSTER_DIVERSITY_LOOKBACK = 5
+
+RELEVANCE_THRESHOLD = 3
+
 # ============================================================================
-# FUNCTIONS
+# HELPERS
 # ============================================================================
 
+BARE_AI_RE = re.compile(r"\bai\b", re.IGNORECASE)
+
+
+def _has_bare_ai_mention(text: str) -> bool:
+    return bool(BARE_AI_RE.search(text))
+
+
+def normalize_url(url: str) -> str:
+    return url.split("?")[0].rstrip("/").lower()
+
+
 def classify_topic(text: str):
-    """
-    Classify text into predefined topics based on keywords.
-    
-    Args:
-        text (str): Input text to classify
-        
-    Returns:
-        str: Topic with highest keyword match score
-    """
     text = text.lower()
     scores = {}
 
@@ -305,18 +498,100 @@ def classify_topic(text: str):
     return best_topic
 
 
+def classify_industry(text: str):
+    text = text.lower()
+    scores = {}
+
+    for industry, keywords in INDUSTRY_CLASSIFICATION.items():
+        score = sum(keyword in text for keyword in keywords)
+        scores[industry] = score
+
+    best_industry = max(scores, key=scores.get)
+
+    if scores[best_industry] == 0:
+        return "Cross-Industry"
+
+    return best_industry
+
+
+def classify_audience(text: str):
+    text = text.lower()
+    scores = {}
+
+    for audience, keywords in AUDIENCE_CLASSIFICATION.items():
+        score = sum(keyword in text for keyword in keywords)
+        scores[audience] = score
+
+    best_audience = max(scores, key=scores.get)
+
+    if scores[best_audience] == 0:
+        return "CIO"
+
+    return best_audience
+
+
+def topic_penalty(topic: str, recent_topics) -> int:
+    if topic in recent_topics:
+        return 4
+    return 0
+
+
+def select_topic_cluster(exclude=None):
+    exclude = set(exclude or [])
+
+    recent_clusters = get_used_clusters(limit=CLUSTER_DIVERSITY_LOOKBACK)
+
+    excluded = set(recent_clusters) | exclude
+
+    available = [
+        name for name in TOPIC_CLUSTERS
+        if name not in excluded
+    ]
+
+    if not available:
+        available = [
+            name for name in TOPIC_CLUSTERS
+            if name not in exclude
+        ]
+
+    if not available:
+        available = list(TOPIC_CLUSTERS.keys())
+
+    chosen = random.choice(available)
+
+    return chosen, TOPIC_CLUSTERS[chosen]
+
+
+def _fetch_via_requests_fallback(url, timeout=15):
+    """
+    Second-chance extraction when newspaper3k's download() is blocked
+    (403/anti-bot). Uses a browser-like User-Agent, which newspaper3k
+    does not set by default and which is why sites like SiliconANGLE
+    return 403 to it specifically. Falls back to paragraph-tag text
+    extraction via BeautifulSoup -- cruder than newspaper3k's article
+    parser, but still far more real content than NewsAPI's truncated
+    description/content snippet.
+    """
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/124.0.0.0 Safari/537.36"
+        )
+    }
+    try:
+        resp = _requests_lib.get(url, headers=headers, timeout=timeout)
+        if resp.status_code != 200:
+            return None
+        soup = BeautifulSoup(resp.text, "html.parser")
+        paragraphs = [p.get_text(" ", strip=True) for p in soup.find_all("p")]
+        text = " ".join(p for p in paragraphs if len(p.split()) > 4)
+        text = " ".join(text.split())
+        return text if len(text) > 200 else None
+    except Exception:
+        return None
+
 def normalize_title(title: str) -> str:
-    """
-    Normalize title for better duplicate detection.
-    
-    Removes punctuation and extra spaces for comparison.
-    
-    Args:
-        title (str): Title to normalize
-        
-    Returns:
-        str: Normalized title
-    """
     normalized = (
     title.lower()
     .replace(":", "")
@@ -331,25 +606,106 @@ def normalize_title(title: str) -> str:
     .replace("?", "")
     .strip()
 )
-    # Remove extra whitespace
     normalized = " ".join(normalized.split())
     return normalized
 
 
 def is_package_release(title: str, url: str) -> bool:
-    """
-    Detect if article is about a package/library release.
-    
-    Args:
-        title (str): Article title
-        url (str): Article URL
-        
-    Returns:
-        bool: True if this is a package release announcement
-    """
     content_to_check = f"{title} {url}".lower()
     return any(pattern in content_to_check for pattern in PACKAGE_PATTERNS)
 
+
+def _title_similarity(a, b):
+    """
+    Ratio-based title similarity used to identify when two different
+    outlets are covering the same underlying story.
+    """
+    if not a or not b:
+        return 0.0
+    return SequenceMatcher(None, a.lower(), b.lower()).ratio()
+
+
+def find_related_coverage(primary_title, primary_url, primary_source, published, max_results=4):
+    """
+    Finds OTHER trusted outlets covering the same story as the selected
+    article, so the blog page can list multiple sources line by line
+    instead of one 'View Original Source' link. NewsAPI has no story
+    clustering, so this approximates it via title-similarity matching
+    within a tight time window around the original publish date.
+    """
+    all_trusted_lower = {s.lower() for s in (PREMIUM_SOURCES | SECONDARY_SOURCES)}
+
+    related = [{
+        "source": primary_source,
+        "url": primary_url,
+        "primary": True,
+    }]
+
+    keywords = " ".join(re.findall(r"[A-Za-z]{4,}", primary_title)[:8])
+    if not keywords.strip():
+        return related
+
+    params = {
+        "q": keywords,
+        "sortBy": "relevancy",
+        "language": "en",
+        "pageSize": 20,
+        "excludeDomains": ",".join(BAD_DOMAINS),
+        "apiKey": NEWS_API_KEY,
+    }
+
+    if published:
+        try:
+            pub_dt = datetime.fromisoformat(published.replace("Z", "+00:00")).replace(tzinfo=None)
+            params["from"] = (pub_dt - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+            params["to"] = (pub_dt + timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        except Exception:
+            pass
+
+    try:
+        response = requests.get("https://newsapi.org/v2/everything", params=params, timeout=20)
+        if response.status_code != 200:
+            return related
+        articles = response.json().get("articles", [])
+    except requests.exceptions.RequestException:
+        return related
+
+    seen_urls = {normalize_url(primary_url)}
+    candidates = []
+
+    for a in articles:
+        a_title = a.get("title", "")
+        a_source = a.get("source", {}).get("name", "")
+        a_url = a.get("url", "").strip()
+
+        if not a_title or not a_url:
+            continue
+        if normalize_url(a_url) in seen_urls:
+            continue
+        if not any(trusted in a_source.lower() for trusted in all_trusted_lower):
+            continue
+        if any(domain in a_url for domain in BAD_DOMAINS):
+            continue
+
+        similarity = _title_similarity(a_title, primary_title)
+        if similarity < 0.45:
+            continue
+
+        seen_urls.add(normalize_url(a_url))
+        candidates.append({"source": a_source, "url": a_url, "primary": False, "_score": similarity})
+
+    candidates.sort(key=lambda c: c["_score"], reverse=True)
+
+    for c in candidates[:max_results]:
+        c.pop("_score", None)
+        related.append(c)
+
+    return related
+
+
+# ============================================================================
+# MAIN FETCH FUNCTION
+# ============================================================================
 
 def fetch_ai_news(
     previous_titles=None,
@@ -358,271 +714,503 @@ def fetch_ai_news(
 ):
     """
     Fetch and filter AI news articles from NewsAPI.
-    
-    Implements multiple filtering layers:
-    - Keyword-based relevance filtering with confidence scoring
-    - Tiered trusted news source bonuses (Premium vs Secondary)
-    - Freshness bonus for recent articles
-    - Short title penalty
-    - Duplicate detection with normalization
-    - Bad domain blocking
-    - Package release detection
-    - Article extraction with fallback
-    - Minimum content length validation
-    
-    Args:
-        previous_titles (list, optional): List of previously used article titles
-        previous_sources (list, optional): List of previously used article sources
-        previous_urls (list, optional): List of previously used article URLs
-    
-    Returns:
-        str: Formatted article with metadata and context, or None if no suitable article found
+
+    Returns a tuple: (research_package: str | None, related_sources: list)
+    related_sources is always a list (empty if none found or on early exit).
     """
-    articles = []
+    all_trusted_sources = PREMIUM_SOURCES | SECONDARY_SOURCES
+    trusted_sources = {s.lower() for s in all_trusted_sources}
 
-    # Try multiple time windows to find fresh articles
-    for hours in [24, 48, 72]:
-        cutoff = (
-            datetime.utcnow() - timedelta(hours=hours)
-        ).strftime("%Y-%m-%dT%H:%M:%SZ")
+    recent_topics = get_used_topics()[-TOPIC_DIVERSITY_LOOKBACK:]
 
-        print(f"Trying {hours}-hour news window")
+    candidates = []
+    soft_pool = []
+    cluster_name = None
+    tried_clusters_this_run = set()
 
-        try:
-            response = requests.get(
-                "https://newsapi.org/v2/everything",
-                params={
-                    "q": ENTERPRISE_AI_QUERY.strip(),
-                    "from": cutoff,
-                    "sortBy": "publishedAt",
-                    "language": "en",
-                    "pageSize": 100,
-                    "apiKey": NEWS_API_KEY,
-                },
-                timeout=20,
-            )
+    for cluster_attempt in range(3):
 
-        except requests.exceptions.RequestException as e:
-            print(f"NewsAPI request failed: {e}")
-            continue
-
-        if response.status_code != 200:
-            print("NEWS API ERROR")
-            print(response.text)
-            continue
-
-        data = response.json()
-        articles = data.get("articles", [])
-
-        print(f"Found {len(articles)} articles in {hours}-hour window")
-
-        if articles:
-            break
-
-    if not articles:
-        print("No articles found")
-        return None
-
-    # Process and filter articles
-    for article in articles:
-        title = article.get("title", "")
-        source = article.get("source", {}).get("name", "")
-        url = article.get("url", "")
-        description = article.get("description") or ""
-        published = article.get("publishedAt", "")
-
-        # FILTER 1: Skip press releases
-        if "business wire" in source.lower():
-            print("Skipping press release")
-            continue
-
-        if "press release" in title.lower():
-            print("Skipping press release")
-            continue
-
-        # FILTER 2: Skip package releases with improved detection
-        if is_package_release(title, url):
-            print("Skipping package release")
-            continue
-
-        content_to_check = f"{title} {description}".lower()
-
-        # FILTER 3: Check for required keywords with improved scoring
-        high_matches = sum(
-            keyword in content_to_check
-            for keyword in HIGH_PRIORITY_KEYWORDS
+        cluster_name, cluster_query = select_topic_cluster(
+            exclude=tried_clusters_this_run
         )
+        tried_clusters_this_run.add(cluster_name)
 
-        medium_matches = sum(
-            keyword in content_to_check
-            for keyword in MEDIUM_PRIORITY_KEYWORDS
-        )
+        print(f"\nTrying Topic Cluster {cluster_attempt + 1}/3")
+        print(f"Using topic cluster: {cluster_name}")
+        print(f"Using query: {cluster_query}")
 
-        low_matches = sum(
-            keyword in content_to_check
-            for keyword in LOW_PRIORITY_KEYWORDS
-        )
+        articles = []
 
-        # FILTER 4: Apply tiered source bonus (Premium vs Secondary)
-        source_bonus = 0
+        for hours in [24, 48, 72, 168, 336]:
 
-        if any(s.lower() in source.lower() for s in PREMIUM_SOURCES):
-            source_bonus = 3
+            cutoff = (
+                datetime.utcnow() - timedelta(hours=hours)
+            ).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-        elif any(s.lower() in source.lower() for s in SECONDARY_SOURCES):
-            source_bonus = 1
-        
-        base_score = (
-            high_matches * 4
-            + medium_matches * 2
-            + low_matches
-        )
-        
-        total_score = base_score + source_bonus
+            print(f"Trying {hours}-hour news window")
 
-        # Apply short title penalty
-        if len(title.split()) < 5:
-            total_score -= 2
-
-        # Apply freshness bonus
-        if published:
             try:
-                age_hours = (
-                    datetime.utcnow() -
-                    datetime.fromisoformat(
-                        published.replace("Z", "+00:00")
-                    ).replace(tzinfo=None)
-                ).total_seconds() / 3600
-
-                if age_hours <= 12:
-                    total_score += 2
-
-                elif age_hours <= 24:
-                    total_score += 1
-            except Exception as e:
-                print(f"Could not parse publish date: {e}")
-        
-        print(f"TITLE: {title}")
-        print(f"Score: {total_score} (High: {high_matches}, Medium: {medium_matches}, Low: {low_matches}, Source Bonus: {source_bonus})")
-        print("-" * 60)
-
-        # IMPROVED SCORING THRESHOLD: Relaxed from 6 to 5
-        if total_score < 5:
-            print("Skipping low relevance article")
-            continue
-
-        # FILTER 5: Skip if URL already used
-        if previous_urls and url in previous_urls:
-            print("Skipping used URL")
-            continue
-
-        # FILTER 6: Skip if title already used - with improved normalization for duplicates
-        if previous_titles:
-            normalized_title = normalize_title(title)
-            previous_normalized = [
-                normalize_title(t)
-                for t in previous_titles
-            ]
-            if normalized_title in previous_normalized:
-                print("Skipping duplicate title")
+                response = requests.get(
+                    "https://newsapi.org/v2/everything",
+                    params={
+                        "q": cluster_query.strip(),
+                        "from": cutoff,
+                        "sortBy": "publishedAt",
+                        "language": "en",
+                        "pageSize": 100,
+                        "excludeDomains": ",".join(BAD_DOMAINS),
+                        "apiKey": NEWS_API_KEY,
+                    },
+                    timeout=20,
+                )
+            except requests.exceptions.RequestException as e:
+                print(f"NewsAPI request failed: {e}")
                 continue
 
-        # FILTER 7: Skip articles with unwanted keywords
-        if any(word in title.lower() for word in UNWANTED_KEYWORDS):
-            print("Skipping unwanted article")
+            if response.status_code != 200:
+                print("NEWS API ERROR")
+                continue
+
+            data = response.json()
+            articles = data.get("articles", [])
+            print(f"Found {len(articles)} articles")
+
+            if len(articles) >= 5:
+                break
+
+        if not articles:
+            print("Not enough raw articles. Trying another cluster...")
             continue
 
-        # FILTER 8: Skip articles from bad domains
-        if any(domain in url for domain in BAD_DOMAINS):
-            print("Skipping bad source")
-            continue
+        cluster_candidates = []
 
+        for article in articles:
+            title = article.get("title", "")
+            source = article.get("source", {}).get("name", "")
+            url = article.get("url", "").strip()
+            description = article.get("description") or ""
+            published = article.get("publishedAt", "")
+
+            if not any(trusted in source.lower() for trusted in trusted_sources):
+                print(f"Skipping untrusted source: {source}")
+                continue
+
+            if "business wire" in source.lower():
+                print("Skipping press release")
+                continue
+
+            if "press release" in title.lower():
+                print("Skipping press release")
+                continue
+
+            if is_package_release(title, url):
+                print("Skipping package release")
+                continue
+
+            if previous_urls:
+                normalized_previous_urls = {normalize_url(u) for u in previous_urls}
+                if normalize_url(url) in normalized_previous_urls:
+                    print("Skipping used URL")
+                    continue
+
+            if previous_titles:
+                normalized_title = normalize_title(title)
+                previous_normalized = [normalize_title(t) for t in previous_titles]
+                if normalized_title in previous_normalized:
+                    print("Skipping duplicate title")
+                    continue
+
+            if any(word in title.lower() for word in UNWANTED_KEYWORDS):
+                print("Skipping unwanted article")
+                continue
+
+            if any(domain in url for domain in BAD_DOMAINS):
+                print("Skipping bad source")
+                continue
+
+            content_to_check = f"{title} {description}".lower()
+
+            high_matches = sum(k in content_to_check for k in HIGH_PRIORITY_KEYWORDS)
+            medium_matches = sum(k in content_to_check for k in MEDIUM_PRIORITY_KEYWORDS)
+            low_matches = sum(k in content_to_check for k in LOW_PRIORITY_KEYWORDS)
+
+            source_bonus = 0
+            if any(s.lower() in source.lower() for s in PREMIUM_SOURCES):
+                source_bonus = 3
+            elif any(s.lower() in source.lower() for s in SECONDARY_SOURCES):
+                source_bonus = 1
+
+            base_score = high_matches * 5 + medium_matches * 2 + low_matches
+
+            title_lower = title.lower()
+            if any(k in title_lower for k in HIGH_PRIORITY_KEYWORDS):
+                base_score += 3
+            elif any(k in title_lower for k in MEDIUM_PRIORITY_KEYWORDS):
+                base_score += 2
+
+            description_lower = description.lower()
+            if any(k in description_lower for k in HIGH_PRIORITY_KEYWORDS):
+                base_score += 2
+            elif any(k in description_lower for k in MEDIUM_PRIORITY_KEYWORDS):
+                base_score += 1
+
+            used_fallback_signal = False
+            if base_score == 0 and source_bonus > 0 and _has_bare_ai_mention(content_to_check):
+                base_score += 4
+                used_fallback_signal = True
+
+            topic = classify_topic(f"{title} {description}")
+
+            pre_penalty_score = base_score + source_bonus
+
+            if len(title.split()) < 5:
+                pre_penalty_score -= 2
+
+            if published:
+                try:
+                    age_hours = (
+                        datetime.utcnow() -
+                        datetime.fromisoformat(published.replace("Z", "+00:00")).replace(tzinfo=None)
+                    ).total_seconds() / 3600
+                    if age_hours <= 6:
+                        pre_penalty_score += 3
+                    elif age_hours <= 12:
+                        pre_penalty_score += 2
+                    elif age_hours <= 24:
+                        pre_penalty_score += 1
+                except Exception as e:
+                    print(f"Could not parse publish date: {e}")
+
+            penalty = topic_penalty(topic, recent_topics)
+            total_score = pre_penalty_score - penalty if penalty else pre_penalty_score
+
+            if penalty:
+                print(f"Topic '{topic}' used recently. Applying diversity penalty (-{penalty}).")
+
+            print(f"TITLE: {title}")
+            print(
+                f"Score: {total_score} (pre-penalty: {pre_penalty_score}, "
+                f"High: {high_matches}, Medium: {medium_matches}, Low: {low_matches}, "
+                f"Source Bonus: {source_bonus}, Topic: {topic}"
+                + (", fallback AI signal used" if used_fallback_signal else "")
+                + ")"
+            )
+            print("-" * 60)
+
+            record = {
+                "score": total_score,
+                "pre_penalty_score": pre_penalty_score,
+                "title": title,
+                "source": source,
+                "url": url,
+                "description": description,
+                "published": published,
+                "article": article,
+            }
+
+            if pre_penalty_score >= RELEVANCE_THRESHOLD:
+                soft_pool.append(record)
+
+            if total_score < RELEVANCE_THRESHOLD:
+                print("Skipping low relevance article (hard threshold)")
+                continue
+
+            print("TITLE =", title)
+            print("SOURCE =", source)
+            print("URL =", url)
+            print("-" * 80)
+
+            cluster_candidates.append(record)
+
+        print(f"\nCluster '{cluster_name}' qualified candidates: {len(cluster_candidates)}")
+
+        if cluster_candidates:
+            candidates = cluster_candidates
+            print(f"Using cluster: {cluster_name}")
+            break
+
+        print("This cluster produced 0 qualified candidates. Trying another cluster...")
+
+    if not candidates:
+        if soft_pool:
+            print(
+                f"\nNo cluster produced a hard-qualified candidate, but "
+                f"{len(soft_pool)} article(s) cleared relevance without "
+                f"the topic-diversity penalty. Using relaxed threshold "
+                f"as a fallback so the pipeline doesn't stall on a slow "
+                f"news day."
+            )
+            candidates = sorted(soft_pool, key=lambda x: x["pre_penalty_score"], reverse=True)
+        else:
+            print("No suitable article found after trying all clusters")
+            return None, []
+
+    candidates.sort(key=lambda x: x["score"], reverse=True)
+    top_candidates = candidates[:10]
+
+    print("\nTop Candidates:")
+    for candidate in top_candidates:
+        print(f"{candidate['score']} - {candidate['title']}")
+    print()
+
+    remaining = top_candidates.copy()
+    selected = None
+    full_text = None
+    title = source = url = description = published = article = None
+
+    while remaining:
+        min_score = min(c["score"] for c in remaining)
+        shift = abs(min_score) + 1 if min_score <= 0 else 0
+        weights = [(c["score"] + shift) ** 2 for c in remaining]
+
+        choice = random.choices(remaining, weights=weights, k=1)[0]
+        remaining.remove(choice)
+
+        title = choice["title"]
+        source = choice["source"]
+        url = choice["url"]
+        description = choice["description"]
+        published = choice["published"]
+        article = choice["article"]
+
+        print(f"Selected candidate (Score {choice['score']})")
         print("TITLE =", title)
         print("SOURCE =", source)
         print("URL =", url)
         print("-" * 80)
 
-        full_text = ""
-
-        # EXTRACTION STEP 1: Try newspaper3k extraction
         try:
             article_obj = Article(url)
             article_obj.download()
             article_obj.parse()
-            full_text = article_obj.text
-            full_text = " ".join(full_text.split())
-            full_text = full_text[:15000]
+            full_text = " ".join(article_obj.text.split())
+            full_text = full_text[:4000]
             print("ARTICLE EXTRACTED")
-            print("Using extracted content for analysis.")
-
-        # EXTRACTION STEP 2: Fallback to API content
+            print(f"Extracted {len(full_text)} characters for analysis.")
         except Exception as e:
-            print("ARTICLE EXTRACTION FAILED:", e)
-            description = article.get("description") or ""
-            content = article.get("content") or ""
-            full_text = f"""
-{description}
+            print("ARTICLE EXTRACTION FAILED (newspaper3k):", e)
+            print("Trying fallback scraper with browser headers...")
 
-{content}
-""".strip()
-            print("Using NewsAPI fallback content.")
+            fallback_text = _fetch_via_requests_fallback(url)
 
-        # FILTER 9: Ensure minimum content length
+            if fallback_text:
+                full_text = fallback_text[:4000]
+                print("FALLBACK SCRAPE SUCCEEDED")
+                print(f"Extracted {len(full_text)} characters for analysis.")
+            else:
+                print("FALLBACK SCRAPE ALSO FAILED. Using NewsAPI snippet as last resort.")
+                fallback_description = article.get("description") or ""
+                fallback_content = article.get("content") or ""
+                full_text = f"{fallback_description}\n\n{fallback_content}".strip()
+                print(f"NewsAPI snippet length: {len(full_text)} characters (likely thin).")
+
         if len(full_text.strip()) < 120:
-            print("Description too short. Skipping article.")
+            print("Article too short, trying next candidate.")
             continue
 
-        # Classify article topic
-        topic = classify_topic(
-            f"{title} {description} {full_text[:2000]}"
-        )
+        selected = choice
+        break
 
-        # RETURN FORMATTED ARTICLE
-        return f"""
-Title: {title}
+    if not selected:
+        print("No suitable article found after trying all candidates.")
+        return None, []
 
-Topic: {topic}
+    topic = classify_topic(f"{title} {description}")
+    industry = classify_industry(f"{title} {description}")
+    audience = classify_audience(f"{title} {description}")
 
-Summary:
-{article.get('description', '')}
+    remember_topic(topic)
+    remember_cluster(cluster_name)
 
-Source:
+    related_sources = find_related_coverage(
+        primary_title=title,
+        primary_url=url,
+        primary_source=source,
+        published=published,
+    )
+    source_material_is_thin = len(full_text.strip()) < 800
+
+    research_package = f"""
+
+# RESEARCH PACKAGE
+
+## HEADLINE
+{title}
+
+## TOPIC
+{topic}
+
+## INDUSTRY
+{industry}
+
+## PRIMARY AUDIENCE
+{audience}
+
+## SOURCE
 {source}
 
-Source URL:
+## PUBLISHED
+{published}
+
+## URL
 {url}
 
-Published Date:
-{article.get('publishedAt', '')}
+## EXECUTIVE SUMMARY
 
-Article Text:
-{full_text}
+{description}
 
-Business Context:
+## ARTICLE SUMMARY
 
-Treat the supplied article only as supporting evidence.
+{full_text[:3800]}
 
-Explain:
+## ARTICLE SUMMARY
 
-• enterprise strategy
+{full_text[:3800]}
 
-• operational redesign
+{"## SOURCE MATERIAL NOTICE\n\nThe extracted source content for this article is limited (full-text extraction was blocked by the source site). Do not manufacture named companies, statistics, or specific details beyond what is stated above. Where the article calls for a named example and none exists in this research package, use a generic sector descriptor rather than inventing specificity." if source_material_is_thin else ""}
 
-• organizational capability
+--------------------------------------------------
 
-• competitive positioning
+# RESEARCH TASK
 
-• executive decision making
+You are a Senior Enterprise AI Research Analyst.
 
-• future operating models
+Do NOT summarize the article.
 
-Avoid summarizing the article.
+Extract structured research that helps an executive writer produce an original editorial.
 
-Focus on why the enterprise landscape is changing.
 
-Image Prompt:
-Enterprise AI agents collaborating with human professionals, digital workers, intelligent automation, enterprise dashboards, modern business operations, futuristic corporate environment.
+
+==================================================
+EXECUTIVE RESEARCH
+==================================================
+
+Return ONLY the following sections.
+
+## Companies
+List companies explicitly mentioned.
+
+## Technologies
+List AI technologies, platforms, standards, or architectures mentioned.
+
+## Industry
+Identify the primary industry.
+
+## Strategic Theme
+Choose ONE:
+
+- Infrastructure
+- Governance
+- Security
+- AI Economics
+- Enterprise Productivity
+- Digital Workers
+- AI Agents
+- Customer Experience
+- Software Engineering
+- Enterprise Strategy
+
+## Enterprise Maturity
+
+Choose ONE:
+
+- Early Adoption
+- Growth
+- Mainstream
+- Mature
+
+## Primary Executive Audience
+
+Choose ONE:
+
+- CEO
+- CIO
+- CTO
+- COO
+- CISO
+- Chief Data Officer
+
+## Enterprise Use Cases
+
+List practical enterprise use cases supported by the article.
+
+## Implementation Challenges
+
+List implementation obstacles explicitly supported by the article.
+
+## Enterprise Risks
+
+List operational, governance, security, compliance, or organizational risks.
+
+## Competitive Landscape
+
+List major competitors and explain their strategic position.
+
+## Business Opportunities
+
+Identify opportunities created for enterprises.
+
+## Counterarguments
+
+Explain one realistic limitation or opposing viewpoint.
+
+## Enterprise Evidence
+
+Extract, in this priority order:
+
+1. Any NAMED company, organization, or named individual explicitly
+   mentioned in the source article (even a passing mention) — quote
+   the name exactly as it appears. This is the single most valuable
+   extraction for the writer; do not summarize it into a generic
+   category if a real name is available.
+2. Named products, platforms, or initiatives mentioned.
+3. Only if no named entities exist in the source material, extract
+   generic implementation/governance examples described in the
+   article (industry type, company size, sector — without inventing
+   a name).
+
+Do not invent examples or names not present in the source article.
+If the source contains real names, the writer should be told to use
+them; if it doesn't, say so explicitly rather than leaving this
+section vague.
+
+## Executive Insights
+
+Generate EXACTLY five strategic observations.
+
+Each should explain a different business implication.
+
+## Executive Questions
+
+Generate EXACTLY five questions that a CEO, CIO, CTO, or COO would ask after reading this news.
+
+## Key Facts
+
+Extract the five most important factual statements.
+
+Do not infer.
+
+## SEO Keywords
+
+Generate:
+
+- 5 Primary Keywords
+
+- 5 Long-tail Keywords
+
+- 10 Semantic Keywords
+
+The article's PRIMARY AUDIENCE is {audience}. Tailor strategic
+recommendations and business consequences to what a {audience} specifically
+cares about and is accountable for, rather than generic "leaders."
+
+The article's INDUSTRY context is {industry}. Where the industry is not
+"Cross-Industry," ground at least one example or implication in that
+specific vertical rather than defaulting to generic enterprise language.
+
+Do not summarize the news.
+
+Use the news as evidence for strategic analysis.
 """
 
-    print("No suitable article found")
-    return None
+    return research_package, related_sources

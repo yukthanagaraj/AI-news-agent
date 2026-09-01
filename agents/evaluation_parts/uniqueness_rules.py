@@ -1,13 +1,20 @@
 UNIQUENESS_RULES = """
-Score from 1 to 10.
+UNIQUENESS RULES
 
-Evaluate:
+Score originality strictly.
 
-- uniqueness
-- freshness
-- originality
+Penalize:
+- generic AI writing
+- repeated sentence structures
+- repeated executive advice
+- vague strategic claims
+- framework names that feel formulaic
+- conclusions that summarize instead of adding new insight
 
-Return:
-
-Originality Score: <score>
+Reward:
+- distinct executive reasoning
+- memorable but natural framework naming
+- original trade-off analysis
+- non-obvious enterprise implications
+- a conclusion that introduces a new insight
 """

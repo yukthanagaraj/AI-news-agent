@@ -1,11 +1,11 @@
 SECTION_TITLES = """
 SECTION TITLE OBJECTIVE
 
-Generate unique executive section titles for every article.
+Generate unique executive section titles that match the specific news topic.
 
 Do NOT reuse the same headings across articles.
 
-Every section title should clearly communicate the business idea of that section.
+Section titles should reflect the article's unique enterprise story rather than follow a fixed template.
 
 ==================================================
 GENERAL RULES
@@ -15,138 +15,148 @@ GENERAL RULES
 • Use Title Case.
 • Do NOT end headings with punctuation.
 • Keep headings concise.
-• Make every heading different from previous articles.
-• Prefer business language over technical language.
+• Use business language.
+• Avoid generic AI wording.
+• Every heading should sound like an executive report.
 
 ==================================================
-WRITING STYLE
+IMPORTANT
 ==================================================
 
-Section titles should sound like:
+The section headings should adapt to the article.
 
-• Executive briefings
-• Enterprise strategy reports
-• CIO presentations
-• Business intelligence reports
+For example:
 
-Avoid sounding like blog posts.
+Developer Productivity articles
+→ Software Engineering
+→ Developer Workflows
+→ Engineering Organizations
+
+Enterprise Security articles
+→ Governance
+→ Risk
+→ Trust
+→ Enterprise Controls
+
+Future of Work articles
+→ Workforce Evolution
+→ AI Employees
+→ Leadership
+→ Organizational Design
+
+Enterprise Strategy articles
+→ Competitive Advantage
+→ Market Dynamics
+→ Enterprise Capability
+→ Operating Models
+
+Do NOT force every article into the same structure.
+
+==================================================
+GOOD EXAMPLES
+==================================================
+
+Examples include:
+
+A Strategic Inflection Point
+
+The Market Signal Behind AI
+
+Beyond Traditional Automation
+
+Execution Becomes Competitive
+
+Inside Intelligent Operations
+
+Why Enterprise Priorities Shift
+
+The Next Operating Model
+
+Digital Labor Takes Shape
+
+Scaling Decision Intelligence
+
+Building Organizational Resilience
+
+Leadership Beyond Automation
+
+The New Coordination Layer
+
+Execution Without Bottlenecks
+
+Intelligence At Operational Scale
+
+Organizations Learn Differently
+
+Software Engineering Evolves
+
+The Rise Of Autonomous Teams
+
+Designing AI Native Enterprises
+
+Governance As Competitive Advantage
+
+Enterprise Capability Accelerates
 
 ==================================================
 AVOID
 ==================================================
 
-Do NOT generate:
+Avoid generic headings such as:
 
 Enterprise Impact
 
 AI Perspective
 
+Business Impact
+
 Human AI Collaboration
 
-Future of Work
+Future Of Work
 
-Business Impact
+Introduction
 
 Conclusion
 
 Summary
 
-Introduction
-
 Key Insights
 
-These are too generic.
+These headings are overused and reduce originality.
 
 ==================================================
-SECTION 1
+ARTICLE FLOW
 ==================================================
 
-Purpose:
+The headings should naturally follow the article.
 
-Explain why this news matters.
+Examples:
 
-Possible styles:
+Industry Shift
 
-• Why This Matters Now
-• The Bigger Enterprise Shift
-• A Strategic Inflection Point
-• A Turning Point For Enterprises
-• Enterprise Momentum Accelerates
-• The Market Signal Behind The News
+↓
 
-==================================================
-SECTION 2
-==================================================
+Operational Change
 
-Purpose:
+↓
 
-Explain operational changes.
+Enterprise Capability
 
-Possible styles:
+↓
 
-• Operations Become More Autonomous
-• Execution Moves Closer To AI
-• Enterprise Workflows Continue Evolving
-• Operational Intelligence Expands
-• Automation Changes Daily Execution
-• Enterprise Systems Learn Faster
+Leadership Implications
 
-==================================================
-SECTION 3
-==================================================
+↓
 
-Purpose:
+Strategic Recommendations
 
-Explain AI Agents.
-
-Possible styles:
-
-• AI Agents Become Execution Partners
-• Agents Expand Enterprise Intelligence
-• Autonomous Decisions Scale Operations
-• AI Agents Reshape Enterprise Execution
-• Intelligent Automation Reaches Operations
-• AI Agents Move Beyond Assistance
-
-==================================================
-SECTION 4
-==================================================
-
-Purpose:
-
-Explain Human–AI Collaboration.
-
-Possible styles:
-
-• Human Judgment Remains Essential
-• Collaboration Defines Enterprise Success
-• Trust Shapes Intelligent Operations
-• Governance Enables Responsible Automation
-• Humans Direct Autonomous Systems
-• Leadership Evolves Alongside AI
-
-==================================================
-SECTION 5
-==================================================
-
-Purpose:
-
-Explain Future of Work.
-
-Possible styles:
-
-• The Workforce Continues To Evolve
-• AI Employees Reshape Modern Teams
-• Enterprise Roles Continue Changing
-• Digital Workers Expand Enterprise Capacity
-• Skills Become Competitive Advantages
-• Organizations Learn New Capabilities
+Every article may use different wording.
 
 ==================================================
 KEY TAKEAWAYS
 ==================================================
 
-Always use exactly:
+Always use:
 
 ## Key Takeaways
 
@@ -154,7 +164,7 @@ Always use exactly:
 CONCLUSION
 ==================================================
 
-Always use exactly:
+Always use:
 
 ## Strategic Conclusion
 
@@ -162,21 +172,19 @@ Always use exactly:
 FINAL VALIDATION
 ==================================================
 
-Before generating titles verify:
+Before returning headings verify:
 
 ✓ Every heading is unique.
 
+✓ Matches the article topic.
+
+✓ Sounds like executive editorial.
+
+✓ Uses enterprise language.
+
 ✓ No repeated wording.
 
-✓ Executive tone.
+✓ No generic AI headings.
 
-✓ Enterprise focused.
-
-✓ Business language.
-
-✓ 3–7 words.
-
-✓ No clickbait.
-
-✓ No generic headings.
+✓ Natural variety across articles.
 """

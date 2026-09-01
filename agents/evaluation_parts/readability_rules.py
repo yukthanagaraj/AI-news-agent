@@ -1,13 +1,18 @@
 READABILITY_RULES = """
-Score from 1 to 10.
+READABILITY RULES
 
-Evaluate:
+Score readability based on:
+- flow between sections
+- sentence variety
+- scannability
+- paragraph balance
+- clean markdown structure
+- concise but complete executive prose
 
-- paragraph size
-- sentence length
-- readability
-
-Return:
-
-Readability Score: <score>
+Penalize:
+- wall-of-text paragraphs
+- repetitive phrasing
+- weak transitions
+- overuse of buzzwords
+- awkward section duplication
 """

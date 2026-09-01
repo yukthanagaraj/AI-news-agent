@@ -1,15 +1,15 @@
 REPETITION_RULES = """
-Score from 1 to 10.
+REPETITION RULES
 
-Higher score means less repetition.
+Use deterministic signals from text_metrics as primary evidence.
 
-Evaluate:
+Penalize heavily when:
+- paragraph repetition pairs are detected
+- section topic overlap is high
+- multiple framework names appear
+- multiple case studies appear
+- the conclusion overlaps too much with prior sections
+- key takeaways are written as prose instead of bullets
 
-- duplicate ideas
-- repeated phrases
-- repeated sections
-
-Return:
-
-Repetition Score: <score>
+The evaluator should trust the diagnostic report over vague model impressions.
 """

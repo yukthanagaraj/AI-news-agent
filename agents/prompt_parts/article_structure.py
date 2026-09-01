@@ -1,686 +1,684 @@
+# ARTICLE_STRUCTURE = """
+# ==================================================
+# ARTICLE OBJECTIVE
+# ==================================================
+
+# Generate a premium executive editorial article.
+
+# Length:
+# 2000–2600 words.
+
+# Target reading time:
+# 10–13 minutes.
+
+# Prioritize insight density over article length — never pad to hit the
+# word count. If the thesis is genuinely exhausted before 2000 words,
+# that is a sign more strategic dimensions need to be explored (second-
+# order consequences, a different industry angle, a sharper trade-off),
+# not that filler should be added.
+
+# The article should remain valuable months after the original news event.
+
+# ==================================================
+# ARTICLE ORGANIZATION
+# ==================================================
+
+# The Editorial Insight and selected Article Archetype determine:
+
+# - section headings
+# - section order
+# - business examples
+# - executive recommendations
+# - conclusion
+
+# Do NOT force every article into the same structure.
+
+# The article should naturally include:
+
+# - Executive Summary
+# - Introduction
+# - Main Analysis
+# - Enterprise Evidence
+# - Strategic Recommendations
+# - Key Takeaways
+# - Executive Conclusion
+
+# Additional sections may be added if the archetype requires them.
+
+# ==================================================
+# EXECUTIVE SUMMARY
+# ==================================================
+
+# Place this immediately under the title, before the Introduction.
+
+# Generate exactly 3–4 bullet points that let a time-constrained
+# executive grasp the article's core argument without reading further.
+
+# This is NOT the same as Key Takeaways (which recaps conclusions after
+# the analysis). The Executive Summary previews the thesis, the stakes,
+# and the central tension — written before the reader has any context.
+
+# Each bullet:
+
+# - one sentence
+# - states a claim, not a topic (e.g. "Unmetered agents are the
+#   single biggest driver of AI cost overruns," not "AI cost drivers")
+# - no company names
+# - bold the first 3–6 words of each bullet as the key claim
+
+# ==================================================
+# INTRODUCTION
+# ==================================================
+
+# Write exactly TWO paragraphs.
+
+# Paragraph 1
+
+# Open with a direct, opinionated executive-level thesis — the single
+# most important claim the article will prove. Do not begin with
+# background context, scene-setting, or market observations. State the
+# argument. Example register: "The enterprise AI infrastructure debate
+# is settled in the wrong direction — most organizations are optimizing
+# for cloud flexibility when the real constraint is GPU scheduling
+# discipline."
+
+# Focus on:
+
+# - a decisive claim about a changing enterprise reality
+# - the business consequence if executives get this wrong
+# - what is at stake for competitive positioning
+
+# Paragraph 2
+
+# Use the supplied news only as supporting evidence.
+
+# Do not summarize the news.
+
+# Immediately after Paragraph 2 include ONE markdown blockquote.
+
+# Requirements:
+
+# - one sentence
+# - 12–24 words
+# - timeless executive observation
+# - no company names
+
+# ==================================================
+# MAIN ANALYSIS
+# ==================================================
+
+# Create 3–4 dynamic H2 sections.
+
+# The headings should reflect the Editorial Insight and Article Archetype.
+
+# At least half of the H2 headings in every article must be phrased as
+# a direct question or a clear benefit statement the section then
+# answers — this is required for SEO featured-snippet eligibility and
+# AI answer-engine extraction (ChatGPT Search, Perplexity, Gemini,
+# Claude, Google AI Overviews). Do not phrase every heading this way;
+# mix question/benefit headings with conventional thematic headings so
+# the article doesn't read like an FAQ page.
+
+# Examples:
+
+# Infrastructure
+
+# ## What Does Enterprise AI Infrastructure Actually Require?
+# ## Scaling AI Infrastructure Without GPU Waste
+
+# Governance
+
+# ## How Mature Is Enterprise AI Governance Today?
+# ## When Data Sovereignty Overrides Cloud Convenience
+
+# Competition
+
+# ## What's Changing in Competitive Positioning?
+# ## Why Multi-Cloud AI Increases Operational Overhead Before It Reduces Cost
+
+# Implementation
+
+# ## How Should Deployment Strategy Change?
+# ## GPU Scheduling as a Strategic Discipline
+
+# Each section should explain:
+
+# - why the change matters
+# - enterprise consequences
+# - competitive implications
+# - leadership response
+
+# Avoid repeating ideas across sections.
+
+# MANDATORY COVERAGE ROTATION
+
+# Each article must cover at least ONE of the following domains that has
+# not been covered in the previous two articles. Rotate naturally:
+
+# - GPU scheduling and compute utilization (idle time, spot preemption,
+#   provisioning latency, utilization targets)
+# - FinOps for AI workloads (TCO modeling, token pricing, inference cost
+#   optimization, chargeback models)
+# - AI observability and monitoring (model drift, latency SLAs,
+#   cost-per-query tracking, evaluation pipelines)
+# - AI platform engineering (MLOps, model serving, orchestration layers,
+#   multi-cloud abstraction, SkyPilot, Ray, Kubernetes)
+# - Governance, security, and compliance (data sovereignty, EU AI Act,
+#   HIPAA, SOC 2, enterprise security perimeter)
+# - Data platform strategy (feature stores, vector databases,
+#   data contracts, training data governance)
+# - Operational excellence (incident response for AI, reliability
+#   engineering for inference, SRE practices adapted to ML)
+
+# ==================================================
+# ENTERPRISE EVIDENCE
+# ==================================================
+
+# Include ONE enterprise case study — never more than one per article.
+# If the research or archetype suggests a second illustrative scenario,
+# fold its most distinct detail into the first example rather than
+# running a second full Challenge → Approach → Outcome block.
+# Duplicate case studies dilute credibility more than they add.
+
+# NAMED ENTERPRISE PRIORITY
+
+# Prefer named, verifiable enterprises in this order:
+
+# 1. An enterprise explicitly named in the supplied research with
+#    documented outcomes (NVIDIA, JPMorgan Chase, Microsoft, Uber,
+#    Shopify, Meta, Google, Goldman Sachs, Walmart, or other named
+#    companies in the research).
+
+# 2. An enterprise named in the research without full outcome detail —
+#    use what is available, do not invent metrics.
+
+# 3. Only if zero named companies appear in the research: a plausible
+#    unnamed example from a named industry vertical. Even then, NEVER
+#    use anonymized proxies like "a global bank," "a mid-sized software
+#    firm," or "a healthcare provider." Use a sector descriptor instead:
+#    "A Tier-1 investment bank running 400,000 daily API calls..." is
+#    acceptable; "a global bank" is not.
+
+# CASE STUDY FORMAT
+
+# Challenge
+
+# ↓
+
+# Approach (include architecture or tooling specifics if sourced)
+
+# ↓
+
+# Outcome (quantitative if sourced; directional if not)
+
+# ↓
+
+# Executive lesson (what should other organizations learn?)
+
+# Use realistic operational outcomes. Never invent statistics.
+
+# ==================================================
+# INFRASTRUCTURE TRADE-OFF ANALYSIS
+# ==================================================
+
+# For articles covering AI infrastructure, cloud strategy, platform
+# engineering, or compute economics, include one INFRASTRUCTURE
+# TRADE-OFF section that compares at least two of the following
+# deployment options:
+
+# - On-premises GPU clusters (capital-intensive, highest control,
+#   lowest per-GPU-hour cost at scale, no egress fees)
+# - Public cloud managed AI services (variable cost, fast provisioning,
+#   vendor lock-in risk, egress cost exposure)
+# - Hybrid AI deployment (control plane on-prem, burst compute in cloud,
+#   requires orchestration sophistication)
+# - Multi-cloud AI orchestration (cost arbitrage via spot instances,
+#   highest resilience, operational complexity, tools: SkyPilot, Ray)
+
+# Present trade-offs as a PROSE COMPARISON — not a markdown table.
+# Each option should cover: cost profile, latency implications,
+# operational complexity, and vendor lock-in exposure.
+
+# This section should equip executives with a decision framework, not
+# a product recommendation.
+
+# ==================================================
+# STRATEGIC RECOMMENDATIONS
+# ==================================================
+
+# Provide practical executive guidance.
+
+# Organize recommendations naturally around:
+
+# - Immediate priorities (30 days)
+# - Medium-term initiatives (90 days)
+# - Long-term competitive advantage (12 months)
+
+# Explain:
+
+# - why each action matters
+# - business impact
+# - organizational implications
+
+# Include at least ONE recommendation with a measurable decision
+# criterion — a threshold, metric, or trigger that tells the executive
+# when to act. Examples:
+
+# - "When GPU idle time exceeds 35%, the TCO case for automated
+#   scheduling becomes self-funding within two quarters."
+# - "When monthly inference costs exceed $80,000, a FinOps ownership
+#   structure reduces overspend by a measurable margin without slowing
+#   model iteration."
+
+# Avoid generic advice such as:
+
+# "Adopt AI."
+
+# ==================================================
+# FORWARD-LOOKING SECTION (INFRASTRUCTURE & PLATFORM ARTICLES)
+# ==================================================
+
+# For articles with archetypes Technical Architecture, Implementation
+# Playbook, CIO Advisory, or Governance Deep Dive, include ONE
+# forward-looking section covering what AI infrastructure will look
+# like in 3–5 years and what executives must decide now to be positioned
+# for it.
+
+# Structure this section around:
+
+# - The infrastructure assumption that will no longer hold in 3 years
+# - The organizational capability executives must build now
+# - The competitive gap that opens between those who build early and
+#   those who retrofit later
+
+# Do not speculate beyond what the research direction credibly supports.
+# Write in the register of a seasoned enterprise architect, not a
+# futurist.
+
+# ==================================================
+# KEY TAKEAWAYS
+# ==================================================
+
+# Generate exactly FIVE bullet points.
+
+# Each should be:
+
+# - executive focused
+# - actionable
+# - unique
+# - concise
+
+# ==================================================
+# EXECUTIVE CONCLUSION
+# ==================================================
+
+# Write exactly TWO paragraphs.
+
+# The conclusion must deliver a DECISIVE EDITORIAL TAKEAWAY — a single
+# memorable strategic thesis that the reader will carry away. This is
+# NOT a summary of the article's points. It should feel like the final
+# sentence of a Gartner report or a McKinsey closing argument: a claim
+# about what the market will look like for those who act vs those who do
+# not.
+
+# End with one timeless executive insight.
+
+# Do not summarize the article.
+
+# Avoid:
+
+# - In conclusion
+# - Overall
+# - Finally
+# - To summarize
+# - As we've seen
+
+# The conclusion earns its weight by advancing the argument one step
+# further — not by repeating it.
+
+# ==================================================
+# ORIGINALITY
+# ==================================================
+
+# Every article should feel different.
+
+# Vary naturally:
+
+# - title style
+# - section headings
+# - opening
+# - enterprise example
+# - industry
+# - recommendations
+# - closing insight
+
+# Avoid repeating:
+
+# - Future of Work
+# - Enterprise Transformation
+# - AI Agents
+# - Operational Intelligence
+
+# unless they are central to today's editorial thesis.
+
+# ==================================================
+# FORMATTING
+# ==================================================
+
+# Use Markdown H2 headings.
+
+# Use spacing between paragraphs.
+
+# Generate exactly ONE markdown blockquote after the introduction.
+
+# Return only the finished article.
+# """
 ARTICLE_STRUCTURE = """
+==================================================
 ARTICLE OBJECTIVE
-
-Write a premium executive intelligence article inspired by leading Enterprise AI strategy publications such as Luvana AI Journal, Harvard Business Review and Stratechery.
-
-The supplied news is ONLY the trigger.
-
-The article must primarily analyze the larger enterprise transformation rather than the news itself.
-
-Spend no more than 10% of the article discussing the supplied company, product or event.
-
-Spend at least 90% of the article explaining:
-
-• Enterprise transformation
-• Organizational redesign
-• Enterprise execution
-• AI Agents
-• Operational intelligence
-• Leadership implications
-• Governance
-• Competitive strategy
-• Future business models
-
-The reader should finish understanding the industry shift rather than today's news.
-
-Never begin with:
-
-• The news...
-• According to...
-• Recently...
-• The latest announcement...
-• A recent report...
-• Today's news...
-• This article...
-• Research shows...
-
-Do not begin by describing the supplied event.
-
-Instead begin by explaining:
-
-• the enterprise shift
-• the changing business landscape
-• the strategic transformation
-• the changing operating model
-• the evolution of enterprise execution
-
-The first paragraph should read like the opening of an executive intelligence briefing.
-
-INTRODUCTION DEPTH
-
-The first paragraph should explain:
-
-• Why enterprise operating models are changing
-• Why executives are rethinking execution
-• Why competitive dynamics are shifting
-
-Do not introduce AI technology immediately.
-
-Begin with the business transformation.
-
-Mention Agentic AI or the supplied news only in the second paragraph as supporting evidence.
-
-Every recommendation should answer two questions:
-
-1. What should leaders do?
-
-2. Why does this create long-term strategic advantage?
-
-Never stop after describing an action.
-
-Always explain the business consequence.
-
-Whenever possible, relate recommendations to:
-
-• Enterprise economics
-• Competitive differentiation
-• Organizational resilience
-• Capital efficiency
-• Decision quality
-• Long-term market positioning
-
 ==================================================
 
-ARTICLE LENGTH
+Generate a premium Luvana AI Journal editorial article.
 
-Generate between 1500 and 1700 words.
+The article must focus on agentic AI only.
+
+Do not drift into broad AI transformation, cloud strategy, generic enterprise AI, customer engagement, or unrelated technology news.
+
+Length:
+1800–2400 words.
 
 Target reading time:
+9–12 minutes.
 
-12–15 minutes.
+Prioritize insight density over article length. Never pad to hit the word count.
 
-Never generate fewer than 1450 words.
+If the thesis is genuinely exhausted before 1800 words, that is a signal the article needs a sharper enterprise problem, a stronger trade-off, or a more concrete executive decision — not filler.
 
-==================================================
+The article should remain valuable months after the original news event.
 
-ARTICLE FLOW
-
-Follow this EXACT Markdown structure.
-
-Do NOT change the order.
-
-Do NOT omit any section.
-
-Every heading MUST use Markdown H2 syntax.
 
 ==================================================
+ARTICLE ORGANIZATION
+==================================================
 
-## Introduction
+The Editorial Insight and selected Article Archetype determine:
 
-Write EXACTLY TWO paragraphs.
+- section headings
+- section order
+- enterprise examples
+- executive recommendations
+- conclusion
+
+Do not force every article into the same structure.
+
+The article should naturally include:
+
+- Executive Summary
+- Introduction
+- Main Analysis
+- Enterprise Evidence
+- Strategic Recommendations
+- Key Takeaways
+- Executive Conclusion
+
+Additional sections may be added if the archetype requires them.
+
+All sections must stay tied to one narrow enterprise problem within agentic AI.
+
+
+==================================================
+EXECUTIVE SUMMARY
+==================================================
+
+Place this immediately under the title, before the Introduction.
+
+Generate exactly 3–4 bullet points that let a time-constrained executive grasp the article’s core argument without reading further.
+
+This is not the same as Key Takeaways. The Executive Summary previews the thesis, the stakes, and the central tension — written before the reader has full context.
+
+Each bullet:
+
+- one sentence
+- states a claim, not a topic
+- no company names
+- bold the first 3–6 words of each bullet as the key claim
+
+
+==================================================
+INTRODUCTION
+==================================================
+
+Write exactly TWO paragraphs.
 
 Paragraph 1
 
-Never begin with:
+Open with a direct, opinionated executive-level thesis — the single most important claim the article will prove.
 
-• company name
-• CEO
-• funding
-• acquisition
-• product launch
-• news headline
+Do not begin with background context, scene-setting, or market observations.
 
-Instead begin with:
-
-• the enterprise shift
-• the industry transformation
-• why executives are changing priorities
-• why enterprise operating models are evolving
-
-The opening paragraph should immediately establish strategic context.
-
-Paragraph 2
-
-Introduce the supplied news ONLY as supporting evidence.
-
-Treat the news as one example of a much larger transformation.
-
-Do NOT summarize the article.
-
-Do NOT describe chronological events.
-
-Immediately after Paragraph 2 generate EXACTLY ONE markdown blockquote.
-
-Example
-
-> AI agents amplify execution before they replace effort.
-
-Rules
-
-• Markdown blockquote only
-
-• Exactly one sentence
-
-• Between 12 and 24 words
-
-• Executive tone
-
-• Strategic observation
-
-• Timeless
-
-• No company names
-
-• No quotation marks
-
-==================================================
-
-## Why This Matters
-
-Executive Question
-
-Why is this enterprise shift happening now?
-
-Write EXACTLY THREE paragraphs.
-
-Paragraph 1
-
-Explain the macro market forces.
-
-Paragraph 2
-
-Explain changing enterprise priorities.
-
-Paragraph 3
-
-Explain why this represents a long-term structural shift rather than a short-term technology trend.
-
-Every paragraph must introduce a different executive insight.
-
-Never repeat ideas.
-
-==================================================
-
-## Enterprise Impact
-
-Executive Question
-
-What changes inside organizations?
-
-Write EXACTLY THREE paragraphs.
-
-Paragraph 1
-
-Operating model redesign.
-
-Paragraph 2
-
-Organizational capability evolution.
-
-Paragraph 3
-
-Competitive positioning.
-
-Every paragraph must introduce a completely different organizational implication.
-
-Never discuss AI technology for its own sake.
-
-Focus on enterprise execution.
-
-==================================================
-
-## AI Agents Perspective
-
-Executive Question
-
-How does enterprise execution fundamentally change?
-
-Write EXACTLY THREE paragraphs.
-
-Paragraph 1
-
-Explain how AI Agents shift work from task automation to autonomous execution.
-
-Focus on execution systems rather than tools.
-
-Paragraph 2
-
-Explain orchestration.
-
-Discuss:
-
-• coordination
-• reasoning
-• memory
-• multi-agent workflows
-• enterprise decision flows
-
-Avoid repeating the previous paragraph.
-
-Paragraph 3
-
-Explain how operational intelligence becomes a competitive capability.
-
-Focus on enterprise execution rather than AI technology.
-
-Every paragraph must introduce a completely new strategic insight.
-
-==================================================
-
-## Human-AI Collaboration
-
-Executive Question
-
-What remains uniquely human?
-
-Write EXACTLY THREE paragraphs.
-
-Paragraph 1
-
-Explain how leadership evolves.
+State the argument immediately.
 
 Focus on:
 
-• judgment
-• prioritization
-• accountability
-• strategic direction
+- a decisive claim about a changing enterprise reality
+- the business consequence if executives get this wrong
+- what is at stake for competitive positioning
 
 Paragraph 2
 
-Explain governance.
+Use the supplied news only as supporting evidence.
 
-Discuss:
+Do not summarize the news.
 
-• oversight
-• compliance
-• transparency
-• trust
-• enterprise policy
+Immediately after Paragraph 2 include ONE markdown blockquote.
 
-Paragraph 3
+Requirements:
 
-Explain decision ownership.
+- one sentence
+- 12–24 words
+- timeless executive observation
+- no company names
 
-Describe how organizations redesign responsibilities between humans and AI Agents.
-
-Do NOT discuss productivity.
-
-Focus on governance.
 
 ==================================================
-
-## Future of Work
-
-Executive Question
-
-Which enterprise capabilities become most valuable?
-
-Write EXACTLY THREE paragraphs.
-
-Paragraph 1
-
-Explain the rise of AI Employees.
-
-Discuss organizational capacity rather than headcount reduction.
-
-Paragraph 2
-
-Explain Digital Workers.
-
-Focus on enterprise scalability.
-
-Avoid repeating AI Employees.
-
-Paragraph 3
-
-Explain workforce evolution.
-
-Discuss:
-
-• new enterprise roles
-• AI supervision
-• orchestration
-• strategic decision-making
-• continuous learning
-
-Avoid speculative predictions.
-
+MAIN ANALYSIS
 ==================================================
 
-## Strategic Recommendations
+Create 3–4 dynamic H2 sections.
 
-Executive Question
+The headings should reflect the Editorial Insight and Article Archetype.
 
-What should enterprise leaders do next?
+At least half of the H2 headings in every article must be phrased as a direct question or a clear benefit statement the section then answers.
 
-Write EXACTLY THREE paragraphs.
+Do not phrase every heading this way; mix question/benefit headings with conventional thematic headings so the article does not read like an FAQ page.
 
-Paragraph 1
+Each section should explain:
 
-Immediate priorities.
+- why the change matters
+- enterprise consequences
+- competitive implications
+- leadership response
 
-Examples include:
+Avoid repeating ideas across sections.
 
-• governance
-• AI strategy
-• operating model assessment
-• execution readiness
+MANDATORY COVERAGE ROTATION
 
-Paragraph 2
+Each article must cover at least ONE of the following domains that has not been covered in the previous two articles. Rotate naturally:
 
-Medium-term priorities.
-
-Discuss:
-
-• organizational redesign
-• capability building
-• AI operating models
-• enterprise architecture
-
-Paragraph 3
-
-Long-term priorities.
-
-Focus on:
-
-• competitive advantage
-• enterprise resilience
-• intelligent execution
-• continuous organizational learning
-
-Recommendations should be practical rather than aspirational.
-
-Every recommendation should explain why it matters.
+- GPU scheduling and compute utilization
+- FinOps for AI workloads
+- AI observability and monitoring
+- AI platform engineering
+- Governance, security, and compliance
+- Data platform strategy
+- Operational excellence for AI systems
 
 ==================================================
-
-## Key Takeaways
-
-Generate EXACTLY FIVE bullet points.
-
-Each bullet must:
-
-• Be one sentence.
-
-• Be executive focused.
-
-• Be actionable.
-
-• Introduce a completely different strategic insight.
-
-• Never repeat previous bullet points.
-
-Do NOT summarize the article.
-
-Instead capture the most important executive lessons.
-
+ENTERPRISE EVIDENCE
 ==================================================
 
-## Strategic Conclusion
+Include ONE enterprise case study — never more than one per article.
 
-Executive Question
+If the research or archetype suggests a second illustrative scenario, fold its most distinct detail into the first example rather than running a second full block.
 
-What long-term enterprise shift is underway?
+NAMED ENTERPRISE PRIORITY
 
-Write EXACTLY TWO paragraphs.
+Prefer named, verifiable enterprises in this order:
 
-Paragraph 1
+1. An enterprise explicitly named in the supplied research with documented outcomes.
+2. An enterprise named in the research without full outcome detail.
+3. Only if zero named companies appear in the research: use a named industry vertical and a concrete operational scenario, but never an anonymized proxy like "a global bank" or "a leading retailer."
 
-Explain the enduring strategic implications for enterprise leaders.
+CASE STUDY FORMAT
 
-Discuss how intelligent execution changes organizations over the coming years.
+Challenge
 
-Do NOT summarize the article.
+↓
 
-Paragraph 2
+Approach
 
-Finish with one memorable executive observation.
+↓
 
-The final paragraph should feel timeless.
+Outcome
 
-Leave the reader thinking about the future of enterprise execution rather than today's news.
+↓
 
-Never end with:
+Executive lesson
 
-• In conclusion
+Use realistic operational outcomes. Never invent statistics.
 
-• Overall
-
-• To summarize
-
-• Finally
 
 ==================================================
-
-EDITORIAL PHILOSOPHY
-
-Think like a senior enterprise strategist rather than a journalist.
-
-The article should resemble an executive intelligence briefing.
-
-Never narrate events chronologically.
-
-Never explain what happened step by step.
-
-Instead explain:
-
-• why industries change
-
-• why organizations redesign themselves
-
-• why execution models evolve
-
-• why enterprise leadership priorities shift
-
-• why competitive advantage changes
-
-Every paragraph should answer:
-
-"What completely new executive insight does this paragraph introduce?"
-
-If it repeats an earlier idea, rewrite it.
-
+INFRASTRUCTURE TRADE-OFF ANALYSIS
 ==================================================
 
-ANTI-REPETITION
+For articles covering AI infrastructure, cloud strategy, platform engineering, or compute economics, include one INFRASTRUCTURE TRADE-OFF section that compares at least two deployment options:
 
-Before writing EVERY section ask:
+- On-premises GPU clusters
+- Public cloud managed AI services
+- Hybrid AI deployment
+- Multi-cloud AI orchestration
 
-"What executive insight has NOT already been explained?"
+Present trade-offs as a PROSE COMPARISON — not a markdown table.
 
-Every section must answer a DIFFERENT executive question.
+Each option should cover:
 
-Never repeat the same discussion about:
+- cost profile
+- latency implications
+- operational complexity
+- vendor lock-in exposure
 
-• productivity
+This section should equip executives with a decision framework, not a product recommendation.
 
-• efficiency
-
-• automation
-
-• enterprise AI
-
-• AI Agents
-
-unless introducing a fundamentally different strategic perspective.
-
-Assume the reader has already read every previous section.
-
-Never restate previous conclusions.
 
 ==================================================
-
-WRITING STYLE
-
-Business before technology.
-
-Industry before company.
-
-Enterprise before product.
-
-Insight before explanation.
-
-Strategy before implementation.
-
-Leadership before features.
-
-Explain consequences instead of capabilities.
-
-Focus on:
-
-• enterprise operating models
-
-• organizational redesign
-
-• governance
-
-• operational intelligence
-
-• execution systems
-
-• business transformation
-
-• leadership decisions
-
-Never define AI concepts.
-
-Never rewrite the supplied news.
-
-Never repeat company announcements.
-
+STRATEGIC RECOMMENDATIONS
 ==================================================
 
-MARKDOWN FORMATTING
+Provide practical executive guidance.
 
-Every section heading MUST use Markdown H2 syntax.
+Organize recommendations naturally around:
 
-Use EXACTLY these headings:
+- Immediate priorities (30 days)
+- Medium-term initiatives (90 days)
+- Long-term competitive advantage (12 months)
 
-## Introduction
+Explain:
 
-## Why This Matters
+- why each action matters
+- business impact
+- organizational implications
 
-## Enterprise Impact
+Include at least ONE recommendation with a measurable decision criterion — a threshold, metric, or trigger that tells the executive when to act.
 
-## AI Agents Perspective
+Avoid generic advice such as "Adopt AI."
 
-## Human-AI Collaboration
-
-## Future of Work
-
-## Strategic Recommendations
-
-## Key Takeaways
-
-## Strategic Conclusion
-
-Never use:
-
-• plain text headings
-
-• numbered headings
-
-• bold-only headings
-
-Always use Markdown H2 headings.
-
-Generate exactly ONE Markdown blockquote immediately after the introduction.
 
 ==================================================
-
-
-SEO + AEO CONTENT STRATEGY
-
-The article should naturally satisfy both Search Engines and Answer Engines.
-
-Keyword Distribution
-
-Introduction
-
-• AI Agents
-• Enterprise AI
-
-Why This Matters
-
-• Agentic AI
-• Business Transformation
-
-Enterprise Impact
-
-• Enterprise Automation
-• Operational Intelligence
-
-AI Agents Perspective
-
-• AI Agents
-• Autonomous Operations
-
-Human-AI Collaboration
-
-• Human-AI Collaboration
-• Enterprise Productivity
-
-Future of Work
-
-• AI Employees
-• Digital Workers
-• Future of Work
-
-Strategic Recommendations
-
-• Enterprise AI
-• Agentic AI
-
-Strategic Conclusion
-
-• Business Transformation
-• Enterprise Execution
-
-Never force keywords.
-
-Spread them naturally across the article.
-
-Avoid keyword stuffing.
-
+FORWARD-LOOKING SECTION
 ==================================================
 
-AEO CONTENT REQUIREMENTS
+For technical architecture, implementation, CIO advisory, or governance archetypes, include ONE forward-looking section covering what AI infrastructure will look like in 3–5 years and what executives must decide now to be positioned for it.
 
-Every major section must naturally answer one executive search question.
+Structure this section around:
 
-The article should answer questions such as:
+- The infrastructure assumption that will no longer hold in 3 years
+- The organizational capability executives must build now
+- The competitive gap that opens between those who build early and those who retrofit later
 
-• What is Agentic AI changing?
+Do not speculate beyond what the research direction credibly supports.
 
-• Why does this matter?
-
-• How should enterprises prepare?
-
-• What changes inside organizations?
-
-• How do AI Agents affect execution?
-
-• What remains uniquely human?
-
-• What should executives do next?
-
-The reader should find answers without needing the FAQ section.
 
 ==================================================
+KEY TAKEAWAYS
+==================================================
 
-FINAL SELF-CHECK
+Generate exactly FIVE bullet points.
 
-Before generating the article verify:
+Each should be:
 
-✓ The article is 1500–1700 words.
+- executive focused
+- actionable
+- unique
+- concise
 
-✓ The introduction begins with an industry shift rather than a company.
 
-✓ The supplied news occupies no more than 10% of the article.
+==================================================
+EXECUTIVE CONCLUSION
+==================================================
 
-✓ Every section answers a unique executive question.
+Write exactly TWO paragraphs.
 
-✓ Every paragraph introduces a new strategic insight.
+The conclusion must deliver a DECISIVE EDITORIAL TAKEAWAY — a single memorable strategic thesis that the reader will carry away.
 
-✓ There is exactly one Markdown blockquote.
+This is not a summary of the article's points.
 
-✓ All section headings use Markdown H2 syntax.
+End with one timeless executive insight.
 
-✓ The conclusion ends with a timeless executive observation.
+Avoid:
 
-Return ONLY the completed article.
+- In conclusion
+- Overall
+- Finally
+- To summarize
+- As we've seen
 
+
+==================================================
+ORIGINALITY
+==================================================
+
+Every article should feel different.
+
+Vary naturally:
+
+- title style
+- section headings
+- opening
+- enterprise example
+- industry
+- recommendations
+- closing insight
+
+Avoid repeating:
+
+- Future of Work
+- Enterprise Transformation
+- AI Agents
+- Operational Intelligence
+
+unless they are central to today's editorial thesis.
+
+
+==================================================
+FORMATTING
+==================================================
+
+Use Markdown H2 headings.
+
+Use spacing between paragraphs.
+
+Generate exactly ONE markdown blockquote after the introduction.
+
+Return only the finished article.
 """
-
-

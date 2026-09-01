@@ -1,176 +1,173 @@
-# QUOTE_RULES = """
-# One section should contain a memorable standalone quote.
-
-# Rules:
-
-# - One or two lines.
-# - Editorial.
-# - Thought-provoking.
-# - Memorable.
-# - Suitable for italic formatting.
-# - Avoid generic statements.
-# - No company names.
-# - Sound like an executive insight.
-
-# Examples:
-
-# > Software was billed on availability.
-# AI Employees will be billed on execution.
-
-# > Intelligence is abundant.
-# Execution is scarce.
-
-# > Trust becomes infrastructure.
-
-# > Decision speed becomes a competitive advantage.
-
-# > Organizations will compete on autonomy.
-
-# > Digital labor scales differently than software.
-
-# > Human capability expands through autonomous systems.
-
-# > Knowledge work is becoming programmable.
-# """
-
 QUOTE_RULES = """
+==================================================
+EDITORIAL QUOTE
+==================================================
+
 QUOTE OBJECTIVE
 
 Generate EXACTLY ONE memorable executive quote.
 
-The quote should represent the single strongest strategic insight from the article.
+The quote should represent the strongest strategic insight from the article.
 
-The quote MUST appear immediately after the second introduction paragraph.
+It should feel like a premium editorial pull quote from publications such as Stripe, Anthropic, or Linear.
 
 Output ONLY as a markdown blockquote.
 
 Correct Example:
 
-> AI agents amplify execution before they replace effort.
+> AI agents are becoming the execution layer of modern enterprises.
 
 Incorrect:
 
-AI agents amplify execution before they replace effort.
+AI agents are becoming the execution layer of modern enterprises.
 
 Incorrect:
 
-> AI agents amplify execution
-
+> AI agents are becoming
 >
-
-> before they replace effort.
+> the execution layer of modern enterprises.
 
 ==================================================
 QUOTE LENGTH
-============
+==================================================
 
-* One sentence only.
-* Between 12 and 24 words.
-* Never exceed 24 words.
-* No quotation marks.
+- Exactly ONE sentence.
+- Between 8 and 12 words.
+- Never exceed 12 words.
+- Maximum 70 characters preferred.
+- No quotation marks.
+- No commas unless absolutely necessary.
+- No semicolons.
+- No colons.
+- No parentheses.
+
+The quote should naturally wrap into 2–3 lines on desktop.
 
 ==================================================
 WRITING STYLE
-=============
+==================================================
 
-The quote should sound like an observation from an enterprise strategist.
+The quote should sound like a timeless executive observation.
 
-It should feel timeless rather than tied to today's news.
+Keep it bold.
 
-Write with confidence.
+Keep it simple.
 
-Keep it concise.
+Keep it memorable.
 
-Professional editorial tone.
+Avoid complicated sentence structures.
+
+Every word should add meaning.
 
 ==================================================
 FOCUS
-=====
+==================================================
 
 The quote should naturally relate to one of these themes:
 
-* Agentic AI
-* AI Agents
-* Enterprise AI
-* AI Employees
-* Digital Workers
-* Enterprise Automation
-* Human-AI Collaboration
-* Operational Intelligence
-* Enterprise Productivity
-* Decision Making
-* Organizational Learning
-* Competitive Advantage
+- AI Agents
+- Enterprise AI
+- Agentic Execution
+- Enterprise Intelligence
+- Governance
+- Operational Intelligence
+- Enterprise Productivity
+- Human-AI Collaboration
+- Decision Making
+- Competitive Advantage
 
 ==================================================
 AVOID
-=====
+==================================================
 
 Do NOT:
 
-* Mention company names.
-* Mention CEOs.
-* Mention products.
-* Mention model names.
-* Mention funding.
-* Mention statistics.
-* Mention dates.
-* Mention news events.
-* Summarize the article.
-* Use marketing language.
-* Use clichés.
-* Generate motivational quotes.
+- Mention company names.
+- Mention CEOs.
+- Mention products.
+- Mention model names.
+- Mention funding.
+- Mention statistics.
+- Mention dates.
+- Mention news events.
+- Mention technical jargon.
+- Mention infrastructure components.
+- Use long lists.
+- Use multiple clauses.
+- Explain the article.
+- Summarize the article.
+- Use clichés.
+- Generate motivational quotes.
+
+Never write long quotes like:
+
+> Performance shifts from infrastructure placement, interconnects, and power where intelligence actually executes.
 
 ==================================================
 GOOD EXAMPLES
-=============
+==================================================
 
-> Software no longer creates value; intelligent execution does.
+> AI agents are becoming the execution layer of modern enterprises.
 
-> Intelligence compounds when execution becomes autonomous.
+> Governance determines enterprise AI success.
 
-> AI agents amplify execution before they replace effort.
+> Intelligence becomes valuable through disciplined execution.
 
-> Enterprises compete through coordination before computation.
+> Enterprises compete through operational intelligence.
 
-> Every intelligent workflow becomes a competitive asset.
+> Execution is replacing automation as the competitive advantage.
 
-> Competitive advantage increasingly belongs to operational intelligence.
+> Enterprise value begins where intelligent execution scales.
 
-> Organizations that coordinate intelligence outperform those that simply deploy AI.
+> Governance transforms intelligence into enterprise capability.
 
-> Business value emerges when intelligence becomes operational.
+> Competitive advantage now belongs to operational intelligence.
 
 ==================================================
 BAD EXAMPLES
-============
+==================================================
 
-OpenAI launched another powerful AI model.
+> Performance shifts from infrastructure placement, interconnects, and power where intelligence actually executes.
 
-AI is changing everything.
+> OpenAI launched another powerful model.
 
-This technology will revolutionize business.
+> AI is changing everything.
 
-AI Agents are the future.
+> Enterprise AI changes every business forever.
 
-The enterprise world is evolving rapidly.
+> This technology will revolutionize organizations.
+
+==================================================
+PLACEMENT
+==================================================
+
+The quote MUST appear immediately after the second introduction paragraph.
+
+The article must contain exactly ONE markdown blockquote.
+
+No additional blockquotes are allowed.
+
+Never split the quote across multiple markdown blockquote lines.
+
+Always output as:
+
+> Your single sentence here.
 
 ==================================================
 FINAL VALIDATION
-================
+==================================================
 
 Before returning the quote verify:
 
-* Exactly one markdown blockquote.
-* One sentence.
-* Between 12 and 24 words.
-* Executive tone.
-* Strategic insight.
-* No company names.
-* No product names.
-* No hype.
-* No repetition.
-* Suitable as the article's featured quote.
-
-Never generate more than ONE quote.
+✓ Exactly one markdown blockquote.
+✓ Exactly one sentence.
+✓ Between 8 and 12 words.
+✓ Maximum 12 words.
+✓ Premium editorial tone.
+✓ Strategic insight.
+✓ No company names.
+✓ No products.
+✓ No hype.
+✓ No repetition.
+✓ Reads naturally in 2–3 wrapped lines on desktop.
 """

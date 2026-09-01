@@ -1,13 +1,20 @@
+# quality_parts/structure.py
 STRUCTURE_CHECK_RULES = """
 STRUCTURE CHECK
 
-Verify the article follows ALL of these rules.
+Verify the article follows ALL of these rules. Do NOT check for a fixed
+list of section names — different article archetypes (Executive
+Briefing, Market Analysis, Governance Deep Dive, Implementation
+Playbook, Enterprise Case Study, Future Scenario, etc.) legitimately
+use different section names and different numbers of sections. Judge
+structure by function, not by matching specific heading text.
 
 INTRODUCTION
 
 PASS only if:
 
-- The article starts with an Introduction.
+- The article starts with an Introduction (may or may not be labeled
+  "Introduction" — the opening content counts even without a heading).
 - The Introduction contains exactly 2 paragraphs.
 - The Introduction explains the enterprise development.
 - The Introduction does not summarize the source article.
@@ -22,49 +29,51 @@ PASS only if:
 - The quote is a strategic observation.
 - The quote is not plain text.
 
-SECTION ORDER
+MAIN ANALYSIS
 
-Verify the following sections exist in this exact order:
+PASS only if:
 
-1. Introduction
-2. Why This Matters
-3. Enterprise Impact
-4. AI Agents Perspective
-5. Human-AI Collaboration
-6. Future of Work
-7. Strategic Recommendations
-8. Key Takeaways
-9. Strategic Conclusion
+- The article contains 2-4 H2 sections of substantive analysis
+  (beyond the introduction and conclusion), reflecting the article's
+  selected archetype.
+- No two sections answer the same underlying executive question,
+  regardless of how differently their headings are worded.
+- Section headings are specific to today's thesis, not generic
+  boilerplate like "Enterprise Impact" or "Strategic Recommendations"
+  repeated without distinction.
 
 SECTION VALIDATION
 
-PASS only if every major section contains at least 2 paragraphs.
+PASS only if every major H2 section contains at least 3 paragraphs.
 
-FAIL if any section contains only one paragraph.
+FAIL if any H2 section contains only one or two paragraphs.
 
 FAIL if any required section is missing.
 
 KEY TAKEAWAYS
 
-PASS only if:
+PASS only if, somewhere in the article:
 
-- Exactly 5 bullet points exist.
+- A Key Takeaways section (or equivalent bulleted summary section)
+  exists with exactly 5 bullet points.
 - Every bullet is unique.
-- Every bullet provides one executive insight.
+- Every bullet provides one executive insight not already stated
+  verbatim elsewhere.
 
 STRATEGIC CONCLUSION
 
 PASS only if:
 
-- Strategic Conclusion exists.
+- A concluding section exists (name may vary by archetype).
 - Contains exactly 2 paragraphs.
 - Ends with a strategic executive observation.
-- Does not summarize the article.
+- Introduces a new idea rather than summarizing prior sections.
 
 RETURN FORMAT
 
 Structure Check:
 PASS or FAIL
 
-If FAIL, briefly explain why.
+If FAIL, briefly explain why, and specify which functional requirement
+(not which heading name) was not met.
 """

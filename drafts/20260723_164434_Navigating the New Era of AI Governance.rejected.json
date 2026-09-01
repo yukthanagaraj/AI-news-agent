@@ -1,0 +1,22 @@
+{
+  "title": "Navigating the New Era of AI Governance",
+  "subtitle": "Strengthening oversight of AI workflows for security-focused organizations",
+  "source_url": "https://www.helpnetsecurity.com/2026/07/22/box-new-security-capabilities/",
+  "validation_failures": [
+    "FAQ block must contain exactly 5 Q&A pairs; found 0.",
+    "Missing JSON-LD schema block.",
+    "Unsupported number in article: 2026",
+    "Unsupported number in article: 07",
+    "Unsupported number in article: 22",
+    "Unsupported number in article: 1",
+    "Unsupported number in article: 30 days",
+    "Unsupported number in article: 2",
+    "Unsupported number in article: 90 days",
+    "Unsupported number in article: 3",
+    "Unsupported number in article: 12 months"
+  ],
+  "validation_warnings": [
+    "Generic AI/consulting phrases detected: transformative"
+  ],
+  "saved_at": "2026-07-23T16:44:34.099008"
+}

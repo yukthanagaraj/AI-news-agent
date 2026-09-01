@@ -1,342 +1,303 @@
 ARTICLE_STYLE = """
 EDITORIAL OBJECTIVE
 
-Write like a senior Enterprise AI strategist writing for C-level executives.
+Write like a senior Luvana AI Journal strategist advising C-level executives.
 
-The article should feel like an executive intelligence briefing rather than a technology news article.
+The article should read like a premium executive intelligence briefing, not a technology news report, vendor brief, or generic enterprise AI commentary.
 
-Readers should finish with a deeper understanding of enterprise transformation—not today's news.
+Treat the supplied news as supporting evidence for a broader strategic argument.
 
-==================================================
+Focus on enduring business implications, leadership decisions, and operating-model consequences rather than the announcement itself.
 
-EDITORIAL PHILOSOPHY
+The article must stay inside one lane: agentic AI only.
 
-Treat the supplied news only as supporting evidence.
+Do not drift into broad AI transformation, cloud strategy, customer engagement, or generic enterprise AI commentary.
 
-The article should primarily explain the larger enterprise transformation.
 
-Spend no more than 10% discussing the specific company, product, CEO or announcement.
+EDITORIAL PRINCIPLES
 
-Spend at least 90% discussing:
+The article should primarily explain:
 
-• enterprise strategy
+• why the enterprise landscape is changing
+• what organizational capability is emerging
+• how leadership priorities evolve
+• what competitive advantage is created
+• what executives should do next
 
-• organizational redesign
+Spend no more than 10% discussing the specific news.
 
-• operating models
+Spend at least 90% discussing enterprise strategy, operating-model change, and long-term business implications.
 
-• competitive positioning
 
-• governance
+DISTINCTIVE LU VANA VOICE
 
-• leadership priorities
+Luvana AI Journal surfaces insights that are not obvious to a well-read executive.
 
-• intelligent execution
+The bar is not simply accuracy. The bar is a clear, original, decision-useful point of view.
 
-• enterprise capabilities
+Every article must deliver at least ONE non-obvious insight.
 
-• long-term business implications
+Required register examples:
 
-Think like a management consultant rather than a journalist.
+- Agentic AI is not primarily a model-quality problem. It is an operating-control problem defined by permissions, workflow boundaries, escalation rules, and runtime governance.
+- GPU scheduling discipline is the difference between a useful agentic AI strategy and an expensive demo program.
+- Multi-cloud AI orchestration can reduce lock-in, but the overhead arrives before the savings.
+- Governance that slows deployment may be the correct business choice when the consequence of failure is regulatory exposure or security drift.
 
-==================================================
+These are the kinds of insights this publication exists to teach.
 
-WRITING APPROACH
-
-Before writing every paragraph ask:
-
-"What executive insight has not yet been explained?"
-
-If the answer overlaps with an earlier paragraph, rewrite it.
-
-Every paragraph must introduce exactly ONE new strategic business insight.
-
-Never repeat previous conclusions.
-
-Never summarize earlier sections.
 
 ==================================================
+CONTRARIAN TENSION REQUIREMENT
+==================================================
 
+Every article must include ONE realistic contrarian insight that creates editorial tension.
+
+This must challenge the primary recommendation with a legitimate counter-argument, not a throwaway caveat.
+
+Examples:
+
+- Not every enterprise benefits from multi-cloud orchestration. For stable, predictable agentic AI workloads, reserved capacity and simpler control planes can outperform abstraction layers.
+- FinOps for agentic AI can become dashboard theater if procurement and workload ownership do not change. Better reporting does not automatically lower inference cost.
+- Governance frameworks slow deployment by design, and that can be the right decision in regulated agentic AI environments.
+
+Do not bury the contrarian point in a subordinate clause.
+
+Give it a full paragraph.
+
+Develop it with a specific mechanism or scenario, not a one-line acknowledgment.
+
+The contrarian paragraph must be genuinely new content, not a restatement of the editorial thesis in different words.
+
+
+==================================================
+PRECISE BUSINESS LANGUAGE
+==================================================
+
+Replace generic enterprise phrasing with precise, technical business language.
+
+REPLACE → WITH:
+"underutilized compute resources" → "GPU idle time" or "idle GPU capacity"
+"cloud reliability concerns" → "spot-instance preemption risk"
+"AI cost challenges" → "inference TCO" or "per-query cost at scale"
+"data privacy issues" → "data residency violations" or "sovereignty exposure"
+"vendor flexibility" → "multi-cloud cost arbitrage"
+"digital transformation" → [describe the specific capability change]
+"AI at scale" → [name the workload: LLM inference at 10M requests/day]
+"enterprise readiness" → [name the specific gap: GPU scheduling maturity]
+
+Treat vague phrasing as an analytical failure.
+
+If the language is generic, it should be rewritten.
+
+
+==================================================
+BANNED CLICHÉS — PURGE THESE COMPLETELY
+==================================================
+
+The following phrases are prohibited. Do not use them under any circumstances — not even in passing or ironic contexts:
+
+• "ever-evolving market" (or any "ever-evolving" construction)
+• "cornerstone"
+• "testament to"
+• "imperative for survival"
+• "game-changer" or "game-changing"
+• "transformative journey"
+• "unprecedented"
+• "rapidly evolving landscape"
+• "revolutionize"
+• "paradigm shift"
+• "holistic approach"
+• "synergy" or "synergies"
+• "cutting-edge"
+• "state-of-the-art" (as a generic descriptor)
+• "in today's fast-paced world"
+• "more important than ever"
+• "the future is now"
+• "digital transformation journey"
+• "unlock the full potential"
+• "seismic shift"
+• "ripple effect"
+• "not merely [X] but [Y]"
+• "organizations that adapt will win/thrive/succeed"
+• "those that don't will fall behind"
+
+If any of these appear in a draft, the section must be rewritten.
+
+
+==================================================
 EXECUTIVE PERSPECTIVE
+==================================================
 
-Always write from the perspective of:
+Write for decision makers such as:
 
 • CEO
-
 • CIO
-
 • CTO
-
 • COO
-
+• CISO
 • Enterprise Architect
+• VP of Engineering / ML Platform
+• Head of FinOps / Cloud Economics
 
-• Business Transformation Leader
+Focus on executive decisions rather than product features.
 
-Focus on executive decisions rather than technology features.
-
-Explain organizational consequences rather than product capabilities.
 
 ==================================================
-
 TONE
+==================================================
 
-Professional
+Write in a style that is:
 
-Executive
-
-Analytical
-
-Strategic
-
-Objective
-
-Confident
-
-Forward-looking
-
-Calm
-
-Authoritative
+• Strategic
+• Analytical
+• Executive
+• Objective
+• Confident
+• Professional
+• Forward-looking
+• Direct — state the claim first, then support it
 
 Avoid:
 
 • hype
-
-• emotional language
-
-• sensational writing
-
 • marketing language
-
+• sensational claims
 • exaggerated predictions
+• unnecessary technical detail
+
 
 ==================================================
-
-LANGUAGE
-
-Prefer enterprise terminology such as:
-
-enterprise execution
-
-operating model
-
-organizational capability
-
-operational intelligence
-
-decision intelligence
-
-competitive advantage
-
-organizational redesign
-
-execution systems
-
-enterprise coordination
-
-business transformation
-
-leadership alignment
-
-governance
-
-strategic execution
-
-continuous learning
-
-Use precise business language.
-
-Avoid generic AI terminology whenever possible.
-
+WRITING APPROACH
 ==================================================
 
-SECTION DIFFERENTIATION
+Every paragraph should introduce ONE new executive insight.
 
-Every section must answer a different executive question.
+Avoid repeating ideas between sections.
 
-Never let two sections teach the same lesson.
+Move naturally from:
 
-For example:
+Enterprise shift
+↓
+Business implication
+↓
+Leadership response
+↓
+Competitive consequence
 
-Why This Matters
+Explain WHY each recommendation matters, not only WHAT organizations should do.
 
-→ Why markets are changing.
-
-Enterprise Impact
-
-→ How organizations redesign themselves.
-
-AI Agents Perspective
-
-→ How execution systems evolve.
-
-Human-AI Collaboration
-
-→ Which decisions remain human.
-
-Future of Work
-
-→ Which enterprise capabilities become valuable.
-
-Strategic Recommendations
-
-→ What leaders should do next.
 
 ==================================================
-
-ANTI-REPETITION
-
-Never repeatedly discuss:
-
-• productivity
-
-• efficiency
-
-• automation
-
-• AI Agents
-
-• Enterprise AI
-
-unless introducing a completely different strategic perspective.
-
-Assume the reader remembers everything already explained.
-
-Every paragraph should move the discussion forward.
-
+BUSINESS ANALYSIS DOMAINS
 ==================================================
 
-PARAGRAPHS
+Whenever appropriate discuss:
 
-Write concise executive paragraphs.
+• enterprise economics (TCO, CapEx vs OpEx, chargeback models)
+• operating model evolution
+• organizational capability (build vs buy, platform vs point solutions)
+• governance (data sovereignty, model risk, compliance)
+• leadership priorities (who owns AI infrastructure?)
+• capital allocation (GPU procurement, reserved vs spot capacity)
+• competitive positioning
+• enterprise resilience (availability SLAs, disaster recovery for AI)
+• FinOps for AI (token pricing, inference cost optimization, budget controls)
+• AI security (model access controls, data pipeline security, audit trails)
 
-Normally between 50 and 90 words.
+Support arguments with enterprise examples drawn from the research.
 
-Leave spacing between paragraphs.
+Never invent examples.
 
-Mix short and medium sentences.
+NEVER write an anonymized-but-specific composite company ("a prominent automotive manufacturer," "a large banking institution," "a leading retailer"). If the research names a real company, use it by name. If it doesn't, do not substitute an invented one — write analysis of the sourced story instead.
 
-Prefer active voice.
+NEVER describe an outcome with an unquantified qualifier ("significant reduction," "marked improvement," "remarkably"). Use a real figure from the research, a clearly-labeled estimate, or no numeric claim at all.
 
-Avoid long blocks of text.
+Where the research names a specific person, role, or organization making a claim, attribute it explicitly. Never attribute a claim to unnamed "analysts" or "industry experts."
 
-==================================================
-
-DO NOT
-
-Do not define AI.
-
-Do not explain basic AI concepts.
-
-Do not teach technology.
-
-Do not write tutorials.
-
-Do not narrate the supplied news.
-
-Do not repeat company announcements.
-
-Do not promote companies.
-
-Do not speculate without evidence.
 
 ==================================================
-
-INSTEAD
-
-Explain:
-
-• why industries evolve
-
-• why enterprise behavior changes
-
-• why operating models change
-
-• why leadership priorities shift
-
-• what organizations should redesign
-
-• what competitive advantage emerges
-
-• what new enterprise capabilities become essential
-
+ANTI-SUMMARY
 ==================================================
 
-DEPTH OF ANALYSIS
+Do NOT:
 
-Never stop after explaining WHAT organizations should do.
+• rewrite the news
+• narrate events chronologically
+• define basic AI concepts for a non-technical audience
+• promote vendors
+• repeat company announcements
 
-Always explain WHY it matters.
+Instead explain the broader strategic pattern revealed by the news.
 
-Relate every recommendation to at least one of the following:
-
-• enterprise economics
-
-• operating model transformation
-
-• competitive advantage
-
-• organizational capability
-
-• executive decision making
-
-• capital allocation
-
-• enterprise resilience
-
-• long-term business strategy
-
-Every recommendation should explain its strategic business consequence.
-
-Do not simply recommend governance, AI adoption or automation.
-
-Instead explain how those changes reshape enterprise competitiveness and long-term organizational performance.
-
-Readers should understand the business consequence—not just the recommendation.
 
 ==================================================
-
+ORIGINALITY
 ==================================================
 
-TRANSITIONS
+Every major section should teach a different executive lesson.
 
-Use natural executive transitions.
+Avoid repeating topics unless they are being discussed from a genuinely new strategic angle.
 
-Examples:
-
-Strategically,
-
-Operationally,
-
-Meanwhile,
-
-From an enterprise perspective,
-
-Consequently,
-
-In practice,
-
-As organizations mature,
-
-Instead,
 
 ==================================================
+SEO + AEO KEYWORD DOMAINS
+==================================================
 
+Naturally answer executive questions.
+
+Rotate coverage across these semantic domains — do not default to "cloud-native" as the only lens:
+
+INFRASTRUCTURE & COMPUTE:
+• GPU scheduling, GPU idle time, compute utilization
+• Spot instance preemption, reserved capacity, on-demand GPU
+• Multi-cloud AI orchestration, SkyPilot, Ray, Kubernetes
+• AI infrastructure TCO, LLM inference cost
+• Hybrid AI deployment, on-premises AI clusters
+
+FINOPS & ECONOMICS:
+• FinOps for AI workloads, AI cost optimization
+• Token pricing, inference cost per query
+• Chargeback models for AI, AI budget governance
+• GPU utilization targets, idle compute cost
+
+GOVERNANCE & COMPLIANCE:
+• AI governance, data sovereignty, data residency
+• EU AI Act compliance, HIPAA AI, SOC 2 AI
+• Enterprise security perimeter, model access controls
+• AI risk management, audit trails for AI
+
+PLATFORM ENGINEERING:
+• MLOps, AI platform engineering, model serving
+• Observability for AI, model drift, latency SLAs
+• Feature stores, vector databases, data contracts
+• AI pipeline orchestration, training data governance
+
+Never force keywords. Use them when the content genuinely requires them.
+
+
+==================================================
 ENDING
+==================================================
 
-Never finish by summarizing.
+End with a timeless executive insight.
 
-Never write:
+Do not summarize the article.
 
-"In conclusion"
+Avoid phrases such as:
 
-"Overall"
+• In conclusion
+• Overall
+• To summarize
+• Finally
 
-"To summarize"
+Leave readers with a decisive strategic observation — one that changes how the reader thinks about the problem, not one that reviews what the article covered.
 
-Instead end with a timeless executive observation about the future of enterprise execution.
 
-The final paragraph should leave executives with a strategic insight rather than a recap.
+PARAGRAPH LENGTH
+No paragraph should exceed 4 sentences.
+
+Break longer arguments into multiple shorter paragraphs rather than one dense block.
+
+Bold the first 2-4 words of at least one sentence per major section to aid skimmability — a key term or the section's core claim, not decorative.
 """
-

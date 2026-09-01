@@ -5,11 +5,13 @@ Verify the article follows ALL SEO best practices.
 
 PRIMARY KEYWORDS
 
-PASS only if the article naturally includes:
+PASS only if the article naturally includes "Enterprise AI" or a close synonym (enterprise artificial intelligence, enterprise-grade AI), AND at least one of the following that is topically relevant to what the article actually covers:
 
-- AI Agents
-- Enterprise AI
-- Agentic AI
+- AI Agents / Agentic AI (if the article discusses autonomous or agentic systems)
+- The specific named technology, model, or program the article is about (e.g. "Qwen3.8-Max", "Xcelerate", the actual subject)
+- A close domain-relevant term if neither of the above naturally fits the article's actual subject matter (e.g. "AI infrastructure investment", "AI governance", "enterprise technology strategy")
+
+Do not fail an article solely for omitting the literal phrase "AI Agents" when the article's actual subject is a different but still legitimate enterprise-AI topic.
 
 SECONDARY KEYWORDS
 
@@ -35,16 +37,14 @@ PASS only if:
 - Keywords fit the paragraph context.
 - Keywords improve readability.
 
-TITLE SEO
+TLE SEO
 
 PASS only if:
 
-- Title contains 6 to 8 words.
-- Title contains an important enterprise AI keyword.
-- No clickbait.
-- No unnecessary punctuation.
-- No colon.
-
+- Title contains 6 to 12 words.
+- Title contains an important enterprise AI keyword or names the specific technology/company/mechanism the article is about.
+- No clickbait (no vague curiosity-gap phrasing like "You Won't Believe...").
+- A single colon separating a hook from a specific claim is acceptable Luvana house style (e.g. "Navigating the Open-Weight AI Landscape: Alibaba's Challenge to American Firms") -- flag only titles with 2+ colons or excessive punctuation stacking.
 HEADINGS
 
 PASS only if:

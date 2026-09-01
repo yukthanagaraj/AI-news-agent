@@ -1,0 +1,19 @@
+{
+  "title": "Unpacking the Governance Gap in AI Adoption",
+  "subtitle": "",
+  "source_url": "https://www.techradar.com/pro/the-agent-problem-nobody-budgeted-for",
+  "validation_failures": [
+    "FAQ block must contain exactly 5 Q&A pairs; found 0.",
+    "Missing JSON-LD schema block.",
+    "Unsupported number in article: 90%",
+    "Unsupported number in article: 80%",
+    "Unsupported number in article: 100%",
+    "Unsupported number in article: 30 days",
+    "Unsupported number in article: 95%",
+    "Unsupported number in article: 30%"
+  ],
+  "validation_warnings": [
+    "Generic AI/consulting phrases detected: transformative"
+  ],
+  "saved_at": "2026-07-22T20:07:50.263974"
+}

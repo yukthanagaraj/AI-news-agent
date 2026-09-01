@@ -1,0 +1,13 @@
+{
+  "title": "\"The Rise of AI Governance: Strategic Imperatives for Financial Leaders\"",
+  "subtitle": "",
+  "source_url": "https://www.livemint.com/opinion/online-views/financial-institutions-ai-governance-banking-reserve-bank-of-india-rbi-artificial-intelligence-11784551392066.html",
+  "validation_failures": [
+    "FAQ block must contain exactly 5 Q&A pairs; found 0.",
+    "Missing JSON-LD schema block.",
+    "Unsupported number in article: 11784551392066",
+    "Unsupported number in article: 40%"
+  ],
+  "validation_warnings": [],
+  "saved_at": "2026-07-22T20:18:06.568610"
+}

@@ -4,7 +4,6 @@ import { JWT } from "google-auth-library";
 function formatDate(date: string) {
     if (!date) return "";
 
-    // Already formatted
     if (date.includes(",")) {
         return date;
     }
@@ -19,6 +18,17 @@ function formatDate(date: string) {
         });
     } catch {
         return date;
+    }
+}
+
+function parseRelatedSources(raw: string) {
+    if (!raw) return [];
+    try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+        return [];
+    } catch {
+        return [];
     }
 }
 
@@ -50,8 +60,10 @@ export async function getInsights() {
         date: formatDate(row.get("Date")),
         category: row.get("Category"),
         title: row.get("Title"),
+        subtitle: row.get("Subtitle") || "",
         content: row.get("Blog Content"),
         imageUrl: row.get("Image URL"),
         sourceUrl: row.get("Source URL"),
+        relatedSources: parseRelatedSources(row.get("Related Sources")),
     }));
 }

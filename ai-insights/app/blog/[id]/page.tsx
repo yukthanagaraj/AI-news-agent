@@ -29,7 +29,6 @@ export default async function BlogPage({
         );
     }
 
-    // Dynamic reading time
     const words =
         article.content?.split(/\s+/).length || 0;
 
@@ -41,50 +40,65 @@ export default async function BlogPage({
     return (
         <main className="min-h-screen bg-white">
 
-            <article className="max-w-5xl mx-auto px-8 py-24">
+            <article className="max-w-6xl mx-auto px-8 py-24">
 
                 {article.imageUrl && (
                     <img
                         src={article.imageUrl}
                         alt={article.title}
                         className="
-                        w-full
-                        aspect-[16/9]
-                        object-cover
-                        rounded-[2rem]
-                        shadow-2xl
+                            w-full
+                            aspect-[16/9]
+                            object-cover
+                            rounded-[2rem]
+                            shadow-2xl
                         "
                     />
                 )}
 
-                {/* Title */}
                 <h1
                     className="
-          mt-14
-          text-center
-          text-[clamp(3rem,6vw,4.8rem)]
-          leading-[1.05]
-          tracking-[-0.05em]
-          font-bold
-          text-zinc-950
-          "
+                        mt-14
+                        text-center
+                        text-[clamp(3rem,6vw,4.8rem)]
+                        leading-[1.05]
+                        tracking-[-0.05em]
+                        font-bold
+                        text-zinc-950
+                    "
                 >
                     {article.title}
                 </h1>
 
-                {/* Metadata */}
+                {article.subtitle && (
+                    <p
+                        className="
+                            mt-5
+                            text-center
+                            text-[clamp(1.1rem,2vw,1.4rem)]
+                            leading-snug
+                            text-zinc-500
+                            font-normal
+                            max-w-3xl
+                            mx-auto
+                        "
+                    >
+                        {article.subtitle}
+                    </p>
+                )}
+
                 <div
                     className="
-          mt-7
-          flex
-          items-center
-          justify-center
-          gap-8
-          text-zinc-500
-          tracking-[0.12em]
-          uppercase
-          text-[13px]
-          "
+                        mt-7
+                        flex
+                        items-center
+                        justify-center
+                        gap-8
+                        text-zinc-500
+                        tracking-[0.12em]
+                        uppercase
+                        text-[13px]
+                    "
                 >
                     <div className="flex items-center gap-2">
                         <Calendar size={13} />
@@ -101,9 +115,7 @@ export default async function BlogPage({
                     </div>
                 </div>
 
-
-                {/* Body */}
-                <div className="prose max-w-4xl mx-auto mt-24">
+                <div className="prose max-w-5xl mx-auto mt-24">
 
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
@@ -132,47 +144,66 @@ export default async function BlogPage({
                                 </li>
                             ),
 
-
                             blockquote: ({ children }) => (
                                 <blockquote>
                                     {children}
                                 </blockquote>
-                            )
+                            ),
                         }}
                     >
                         {article.content}
                     </ReactMarkdown>
-
                 </div>
 
-                {/* Source */}
-                <div className="mt-16">
+                {article.relatedSources && article.relatedSources.length > 0 && (
+                    <div className="mt-16 border-t border-zinc-200 pt-10">
 
-                    <a
-                        href={article.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-            inline-flex
-            items-center
-            px-7
-            py-4
-            rounded-full
-            bg-orange-50
-            border
-            border-orange-200
-            hover:-translate-y-1
-            hover:shadow-lg
-            text-orange-700
-            font-semibold
-            hover:bg-orange-200
-            transition
-            "
-                    >
-                        View Original Source →
-                    </a>
+                        <p className="text-xs uppercase tracking-[0.12em] text-zinc-400 font-semibold mb-5">
+                            Reported by
+                        </p>
 
-                </div>
+                        <div className="flex flex-col gap-3">
+                            {article.relatedSources.map(
+                                (
+                                    s: {
+                                        source: string;
+                                        url: string;
+                                        primary?: boolean;
+                                    },
+                                    i: number
+                                ) => (
+                                    <a
+                                        key={i}
+                                        href={s.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="
+                                            flex items-center justify-between
+                                            px-6 py-4
+                                            rounded-2xl
+                                            bg-orange-50
+                                            border border-orange-200
+                                            hover:-translate-y-0.5
+                                            hover:shadow-md
+                                            hover:bg-orange-100
+                                            text-orange-700
+                                            font-semibold
+                                            transition
+                                        "
+                                    >
+                                        <span>
+                                            {s.primary ? "Original Source — " : ""}
+                                            {s.source}
+                                        </span>
+
+                                        <span>→</span>
+                                    </a>
+                                )
+                            )}
+                        </div>
+
+                    </div>
+                )}
 
                 <div className="mt-24">
                     <RelatedArticles />

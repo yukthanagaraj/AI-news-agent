@@ -41,6 +41,7 @@ PASS only if:
 - Bullet points summarize important ideas.
 - Information is easy for AI systems to extract.
 
+
 ENTERPRISE FOCUS
 
 PASS only if:
